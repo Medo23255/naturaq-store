@@ -1,101 +1,57 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صابونة طبيعية - NaturaQ</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NaturaQ – صابونة طبيعية يدوية</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="ar">
+  <!-- رأس الصفحة مع الشعار وأزرار اللغة -->
+  <header class="header">
+    <a href="index.html" class="logo"><img src="images/logo.png" alt="NaturaQ Logo" /></a>
+    <div class="lang-switch">
+      <button id="btn-ar" class="lang-btn active">العربية</button>
+      <button id="btn-en" class="lang-btn">English</button>
+    </div>
+  </header>
 
-<!-- Language Switcher -->
-<div class="language-switcher">
-  <button onclick="setLanguage('ar')">العربية</button>
-  <button onclick="setLanguage('en')">English</button>
-</div>
+  <!-- محتوى تفاصيل المنتج -->
+  <main class="product-detail">
+    <h1 class="product-title">
+      <span class="lang-ar">صابونة طبيعية يدوية</span>
+      <span class="lang-en">Natural Handmade Soap</span>
+    </h1>
+    <img src="images/natural-handmade-soap.jpg" alt="Natural Handmade Soap" class="product-detail-image" />
+    <p class="product-price-detail">
+      <span class="lang-ar">السعر: 45 ر.ق</span>
+      <span class="lang-en">Price: 45 QAR</span>
+    </p>
+    <div class="product-description">
+      <!-- وصف المنتج بالعربية -->
+      <p class="lang-ar">
+        صابون طبيعي مصنوع يدويًا من زيوت عضوية وزبدة الشيا. يساعد على ترطيب البشرة وتنظيفها بعمق دون التسبب في الجفاف. مناسب لجميع أنواع البشرة، ويترك البشرة ناعمة ومنتعشة.
+      </p>
+      <!-- Product description in English -->
+      <p class="lang-en">
+        A natural handmade soap crafted with organic oils and shea butter. It helps moisturize and deeply cleanse your skin without causing dryness. Suitable for all skin types, leaving your skin soft and refreshed.
+      </p>
+    </div>
+  </main>
 
-<header class="header">
-  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-</header>
+  <!-- تذييل الصفحة -->
+  <footer class="footer">
+    <p>
+      <span class="lang-ar">© 2025 NaturaQ. جميع الحقوق محفوظة.</span>
+      <span class="lang-en">© 2025 NaturaQ. All rights reserved.</span>
+    </p>
+  </footer>
 
-<section class="product">
-  <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
-  <h1>صابونة طبيعية</h1>
-  <p class="price">السعر: 45 ر.ق</p>
-
-  <div class="description">
-    <h2>وصف المنتج:</h2>
-    <p>صابونة طبيعية مصنوعة من أجود الزيوت الطبيعية والمستخلصات النباتية. تنظف البشرة بلطف وتتركها ناعمة ونضرة بدون جفاف.</p>
-  </div>
-
-  <div class="usage">
-    <h2>طريقة الاستخدام:</h2>
-    <ul>
-      <li>بلل البشرة بالماء الدافئ.</li>
-      <li>افرك الصابون بين يديك حتى تتكون رغوة.</li>
-      <li>دلك البشرة بلطف ثم اشطفها بالماء.</li>
-    </ul>
-  </div>
-
-  <div class="order-section">
-    <label>اختر الكمية:</label><br>
-    <input type="number" id="quantity" value="1" min="1">
-    <p><strong>الإجمالي:</strong> <span id="total-price">45 ر.ق</span></p>
-
-    <form action="https://formspree.io/f/mwkgeqkw" method="POST">
-      <input type="hidden" name="product" value="صابونة طبيعية">
-      <input type="hidden" name="price" value="45">
-      <input type="hidden" name="total" id="form-total">
-      <input type="hidden" name="quantity" id="form-quantity">
-      <button type="submit" class="btn-order">تأكيد الطلب</button>
-    </form>
-
-    <a href="index.html" class="back-link">عودة إلى الرئيسية</a>
-  </div>
-</section>
-
-<footer class="footer">
-  © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer>
-
-<script src="script.js"></script>
-<script>
-const price = 45;
-const quantityInput = document.getElementById('quantity');
-const totalPrice = document.getElementById('total-price');
-const formTotal = document.getElementById('form-total');
-const formQuantity = document.getElementById('form-quantity');
-
-function updateTotal() {
-  const qty = parseInt(quantityInput.value) || 1;
-  const total = qty * price;
-  totalPrice.textContent = total + ' ر.ق';
-  formTotal.value = total;
-  formQuantity.value = qty;
-}
-
-quantityInput.addEventListener('input', updateTotal);
-updateTotal();
-
-// Language handling
-function setLanguage(lang) {
-  localStorage.setItem('language', lang);
-  applyLanguage(lang);
-}
-
-function applyLanguage(lang) {
-  if (lang === 'ar') {
-    document.documentElement.setAttribute('dir', 'rtl');
-  } else {
-    document.documentElement.setAttribute('dir', 'ltr');
-  }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  const savedLang = localStorage.getItem('language') || 'ar';
-  applyLanguage(savedLang);
-});
-</script>
-
+  <!-- ملفات JavaScript + كود Chatbase -->
+  <script src="script.js"></script>
+  <script>
+    window.chatbaseConfig = { chatbotId: "YOUR_CHATBOT_ID" };
+  </script>
+  <script src="https://www.chatbase.co/embed.min.js" id="YOUR_CHATBOT_ID" defer></script>
 </body>
 </html>
