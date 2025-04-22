@@ -101,30 +101,35 @@
   © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
-<!-- بوت الذكاء الاصطناعي مصغر وطبيعي -->
+<!-- بوت الذكاء الاصطناعي مصغر ومضبوط -->
 <script>
 (function() {
   window.chatbaseConfig = {
     chatbotId: "QyA3pZTR2k1v9jspuzdAs",
-    openOnLoad: false,              // لا يفتح تلقائي
-    autoShow: false,                // لا يظهر تلقائي
-    disableSessionStorage: true,    // لا يحفظ المحادثات
-    showLauncher: true,             // زر صغير أسفل الصفحة
+    openOnLoad: false,
+    autoShow: false,
+    disableSessionStorage: true,
+    showLauncher: true,
     launcherTitle: "مساعد NaturaQ",
     launcherPosition: "bottom-right",
     theme: {
-      launcherButtonColor: "#A8D5BA", // لون الزر أخضر نعناع
+      launcherButtonColor: "#A8D5BA",
       primaryColor: "#A8D5BA",
-      chatBackground: "#ffffff",      // خلفية الدردشة بيضاء
-      launcherLogo: ""                // بدون لوجو إضافي
+      chatBackground: "#ffffff"
     },
     iframeProps: {
       style: {
-        width: "350px",               // عرض الشات 350 بيكسل
-        height: "500px",              // طول الشات 500 بيكسل
-        borderRadius: "20px",         // حواف ناعمة
+        width: "350px",
+        height: "500px",
+        maxWidth: "90%",
+        borderRadius: "20px",
         overflow: "hidden",
-        boxShadow: "0px 4px 20px rgba(0,0,0,0.2)" // ظل بسيط
+        position: "fixed",
+        bottom: "80px", /* ارفعه فوق الزر شوية */
+        right: "20px",
+        zIndex: "9999",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+        display: "none" /* الافتراضي انه مش ظاهر */
       }
     }
   };
