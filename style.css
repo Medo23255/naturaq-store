@@ -1,13 +1,11 @@
-/* إعدادات عامة */
 body {
   font-family: 'Cairo', sans-serif;
-  background-color: #fdfaf6; /* أوف وايت ناعم */
+  background-color: #fafafa;
   margin: 0;
   padding: 0;
   color: #333;
 }
 
-/* الهيدر */
 .header {
   text-align: center;
   padding: 20px;
@@ -17,164 +15,103 @@ body {
   max-width: 150px;
 }
 
-/* مبدل اللغة */
 .language-switcher {
   text-align: center;
-  margin-top: 10px;
+  margin: 15px;
 }
 
 .language-switcher button {
-  background-color: #A8D5BA; /* أخضر هادي */
+  background-color: #98E2C6;
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  margin: 5px;
-  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  font-weight: bold;
 }
 
 .language-switcher button:hover {
-  background-color: #90c8ac;
+  background-color: #82cdb0;
 }
 
-/* إشعار الذكاء الاصطناعي */
-.ai-banner {
-  background-color: #e0f7fa; /* تركوازي ناعم */
-  padding: 10px 20px;
-  text-align: center;
-  font-size: 14px;
-  color: #006064;
+.product-page {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* البانر الرئيسي */
-.hero {
-  text-align: center;
-  background-color: #e8f5e9; /* أخضر فاتح */
-  padding: 50px 20px;
-}
-
-.hero h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 18px;
+.product-image {
+  width: 100%;
+  border-radius: 12px;
   margin-bottom: 20px;
 }
 
-.btn-primary {
-  background-color: #A8D5BA;
+.product-description {
+  margin-top: 20px;
+}
+
+.order-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.quantity-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.quantity-control button {
+  background-color: #98E2C6;
+  border: none;
   color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quantity-control input {
+  width: 50px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  margin: 0 10px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  display: block;
+  background-color: #5BBE8A;
+  color: white;
   text-decoration: none;
-  font-size: 16px;
-  transition: background-color 0.3s;
+  padding: 12px;
+  margin: 15px auto;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 .btn-primary:hover {
-  background-color: #90c8ac;
-}
-
-/* شبكة المنتجات */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  padding: 40px;
-}
-
-.product-card {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.4s, box-shadow 0.4s;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.product-img {
-  max-width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px; /* فريم ناعم للصور */
-  margin-bottom: 15px;
-}
-
-.product-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  background-color: #48a679;
 }
 
 .btn-secondary {
-  background-color: #A8D5BA;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 20px;
+  display: block;
+  background-color: #ddd;
+  color: #333;
   text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
+  padding: 10px;
+  margin: 15px auto;
+  border-radius: 8px;
+  font-weight: bold;
 }
 
 .btn-secondary:hover {
-  background-color: #90c8ac;
-}
-
-/* قسم لماذا تختارنا */
-.why-us {
-  background-color: #f0f9f5; /* أخضر هادي إضافي */
-  padding: 50px 20px;
-  text-align: center;
-}
-
-.why-us h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.reasons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.reason {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  padding: 20px;
-  transition: transform 0.4s;
-}
-
-.reason:hover {
-  transform: translateY(-8px);
-}
-
-.reason h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #5a7d6f;
-}
-
-.reason p {
-  font-size: 14px;
-  color: #555;
-}
-
-/* الفوتر */
-.footer {
-  background-color: #e8f5e9;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  margin-top: 50px;
+  background-color: #ccc;
 }
