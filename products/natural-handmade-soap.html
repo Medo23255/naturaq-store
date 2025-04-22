@@ -1,74 +1,112 @@
+<!-- صفحة منتج NaturaQ (تفاصيل كاملة مع السعر الثابت وطلب واتساب)-->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - Natural Handmade Soap</title>
+  <title>تفاصيل المنتج | NaturaQ</title>
   <link rel="stylesheet" href="../style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .product-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+    }
+    .product-container img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    h1 { font-size: 22px; margin-bottom: 10px; }
+    .price { font-size: 20px; margin-bottom: 10px; color: green; }
+    .desc, .usage {
+      margin-bottom: 15px;
+    }
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .qty-controls input {
+      width: 50px;
+      text-align: center;
+    }
+    .total {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .btn-order {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
 
-<header class="header">
-  <img src="../images/logo.png" alt="NaturaQ Logo" class="logo">
-  <div class="language-switcher">
-    <button id="btn-ar">العربية</button>
-    <button id="btn-en">English</button>
+<div class="product-container">
+  <img src="../images/soap.png" alt="Natural Handmade Soap">
+  <h1>صابونة طبيعية</h1>
+  <div class="price">السعر: <span id="price">45</span> ر.ق</div>
+
+  <div class="desc">
+    <strong>الوصف:</strong>
+    <p>استمتعي بالتنظيف الطبيعي مع صابونة مصنوعة من الزيوت النباتية العضوية. مثالية للبشرة الحساسة.</p>
   </div>
-</header>
 
-<section class="hero">
-  <h1 id="product-title">صابونة طبيعية يدوية</h1>
-  <p id="product-desc">مصنوعة من الزيوت الطبيعية لتنظيف وترطيب البشرة بعمق.</p>
-</section>
-
-<section class="product-details">
-  <div class="product-detail-container">
-    <img src="../images/soap.png" alt="Natural Handmade Soap" class="product-image">
-    <div class="product-info">
-      <h2 id="product-subtitle">تفاصيل المنتج:</h2>
-      <ul id="product-features">
-        <li>خالٍ من المواد الكيميائية الضارة والعطور الصناعية.</li>
-        <li>غني بالزيوت الطبيعية لترطيب عميق للبشرة.</li>
-        <li>مناسب لجميع أنواع البشرة بما في ذلك الحساسة.</li>
-      </ul>
-      <p><strong id="product-price">السعر: 45 ر.ق</strong></p>
-      <a href="https://wa.me/97470948788" class="btn-primary" target="_blank" id="order-now">اطلب الآن عبر واتساب</a>
-    </div>
+  <div class="usage">
+    <strong>طريقة الاستخدام:</strong>
+    <p>تُستخدم يومياً مع ماء فاتر لتنظيف الوجه أو الجسم.</p>
   </div>
-</section>
 
-<footer class="footer">
-  © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer>
+  <div class="qty-controls">
+    <label>الكمية:</label>
+    <button onclick="decreaseQty()">-</button>
+    <input type="text" id="quantity" value="1" readonly>
+    <button onclick="increaseQty()">+</button>
+  </div>
 
-<!-- سكريبت اللغة -->
-<script src="../script.js"></script>
+  <div class="total">الإجمالي: <span id="total">45</span> ر.ق</div>
 
-<!-- سكريبت الذكاء الاصطناعي -->
+  <a id="orderBtn" class="btn-order" href="" target="_blank">تأكيد الطلب عبر واتساب</a>
+</div>
+
 <script>
-(function(){
-  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-    window.chatbase = (...args) => {
-      if(!window.chatbase.q) window.chatbase.q = [];
-      window.chatbase.q.push(args);
-    };
-    window.chatbase = new Proxy(window.chatbase, {
-      get(target, prop){
-        if(prop === "q") return target.q;
-        return (...args) => target(prop, ...args);
-      }
-    });
+  const price = 45;
+  const qtyInput = document.getElementById('quantity');
+  const totalSpan = document.getElementById('total');
+  const orderBtn = document.getElementById('orderBtn');
+
+  function updateTotal() {
+    const qty = parseInt(qtyInput.value);
+    totalSpan.textContent = price * qty;
+    orderBtn.href = `https://wa.me/97470948788?text=أرغب في طلب ${qty} × صابونة طبيعية بإجمالي ${price * qty} ر.ق`;
   }
-  const onLoad = function(){
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "QyA3pZTR2k1v9jspuzdAs";
-    document.body.appendChild(script);
-  };
-  if(document.readyState === "complete"){ onLoad(); }
-  else { window.addEventListener("load", onLoad); }
-})();
+
+  function increaseQty() {
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+    updateTotal();
+  }
+
+  function decreaseQty() {
+    if (parseInt(qtyInput.value) > 1) {
+      qtyInput.value = parseInt(qtyInput.value) - 1;
+      updateTotal();
+    }
+  }
+
+  updateTotal();
 </script>
 
 </body>
