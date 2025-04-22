@@ -1,10 +1,15 @@
 /* ===== إعدادات عامة ===== */
 body {
   font-family: 'Cairo', sans-serif;
-  background-color: #fdfaf6;
+  background-color: #fdfaf6; /* خلفية أوف وايت */
   margin: 0;
   padding: 0;
   color: #333;
+  direction: rtl; /* افتراضي عربي */
+}
+
+html[lang="en"] body {
+  direction: ltr; /* انجليزي */
 }
 
 /* ===== الهيدر ===== */
@@ -49,7 +54,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* ===== البانر الرئيسي ===== */
+/* ===== بانر رئيسي ===== */
 .hero {
   text-align: center;
   background-color: #e8f5e9;
@@ -68,18 +73,16 @@ body {
 
 /* ===== أزرار عامة ===== */
 .btn-primary, .btn-secondary {
-  display: block;
-  width: 90%;
-  max-width: 300px;
-  margin: 15px auto;
-  padding: 15px 0;
-  font-size: 16px;
-  font-weight: bold;
+  display: inline-block;
   text-align: center;
   text-decoration: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
   border-radius: 30px;
-  border: none;
-  cursor: pointer;
+  margin: 10px 0;
+  width: 90%;
+  max-width: 300px;
   transition: background-color 0.3s ease;
 }
 
@@ -124,7 +127,7 @@ body {
 }
 
 .product-img {
-  max-width: 100%;
+  width: 100%;
   height: 220px;
   object-fit: cover;
   border-radius: 12px;
@@ -133,7 +136,7 @@ body {
 
 .product-card h3 {
   font-size: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #333;
 }
 
@@ -211,7 +214,7 @@ body {
   line-height: 1.6;
 }
 
-/* ===== التحكم في الكمية ===== */
+/* ===== تحكم الكمية ===== */
 .quantity-control {
   display: flex;
   justify-content: center;
@@ -249,7 +252,7 @@ body {
 #total-price {
   font-size: 18px;
   font-weight: bold;
-  margin: 20px 0 10px;
+  margin-top: 15px;
   color: #333;
 }
 
@@ -262,19 +265,17 @@ body {
   margin-top: 50px;
 }
 
-/* ===== Responsive للموبايل ===== */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
-  .product-page {
-    margin: 20px 10px;
-    padding: 15px;
+  .hero {
+    padding: 30px 10px;
   }
 
-  .product-image {
-    max-width: 100%;
+  .products-grid {
+    padding: 20px;
   }
 
-  .btn-primary,
-  .btn-secondary {
+  .btn-primary, .btn-secondary {
     width: 90%;
   }
 }
