@@ -4,104 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>صابونة طبيعية - NaturaQ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: #fffaf7;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    .header {
-      text-align: center;
-      padding: 20px;
-    }
-    .logo {
-      width: 120px;
-    }
-    .container {
-      text-align: center;
-      padding: 20px;
-    }
-    .product-img {
-      width: 90%;
-      max-width: 350px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      margin-top: 20px;
-      font-size: 28px;
-      color: #4CAF50;
-    }
-    .price {
-      font-size: 22px;
-      margin: 15px 0;
-      color: #ff4081;
-    }
-    .description, .benefits, .usage {
-      text-align: right;
-      margin: 20px;
-    }
-    .benefits ul, .usage ul {
-      padding-right: 20px;
-    }
-    ul li::before {
-      content: '\2713';
-      color: #4CAF50;
-      margin-left: 5px;
-    }
-    .order-section {
-      margin: 30px 0;
-    }
-    input[type="number"] {
-      width: 60px;
-      font-size: 18px;
-      padding: 5px;
-      margin: 10px;
-      text-align: center;
-    }
-    .btn-order {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    .btn-order:hover {
-      background-color: #43a047;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #4CAF50;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #f1f8e9;
-      margin-top: 30px;
-      font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- Language Switcher -->
+<div class="language-switcher">
+  <button onclick="setLanguage('ar')">العربية</button>
+  <button onclick="setLanguage('en')">English</button>
+</div>
 
 <header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
-<div class="container">
+<section class="product">
   <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
-
-  <h1>صابونة طبيعية Handmade Soap</h1>
+  <h1>صابونة طبيعية</h1>
   <p class="price">السعر: 45 ر.ق</p>
 
   <div class="description">
@@ -109,21 +28,12 @@
     <p>صابونة طبيعية مصنوعة من أجود الزيوت الطبيعية والمستخلصات النباتية. تنظف البشرة بلطف وتتركها ناعمة ونضرة بدون جفاف.</p>
   </div>
 
-  <div class="benefits">
-    <h2>فوائد المنتج:</h2>
-    <ul>
-      <li>ترطيب فائق للبشرة الحساسة.</li>
-      <li>خالية من المواد الكيميائية الضارة.</li>
-      <li>مناسبة للاستخدام اليومي.</li>
-    </ul>
-  </div>
-
   <div class="usage">
     <h2>طريقة الاستخدام:</h2>
     <ul>
       <li>بلل البشرة بالماء الدافئ.</li>
       <li>افرك الصابون بين يديك حتى تتكون رغوة.</li>
-      <li>دلك البشرة بلطف واشطف بالماء.</li>
+      <li>دلك البشرة بلطف ثم اشطفها بالماء.</li>
     </ul>
   </div>
 
@@ -137,18 +47,18 @@
       <input type="hidden" name="price" value="45">
       <input type="hidden" name="total" id="form-total">
       <input type="hidden" name="quantity" id="form-quantity">
-      <input type="hidden" name="email" value="Naturaqstore@gmail.com">
       <button type="submit" class="btn-order">تأكيد الطلب</button>
     </form>
 
-    <a href="index.html" class="back-link">العودة إلى الصفحة الرئيسية</a>
+    <a href="index.html" class="back-link">عودة إلى الرئيسية</a>
   </div>
-</div>
+</section>
 
-<footer>
+<footer class="footer">
   © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
+<script src="script.js"></script>
 <script>
 const price = 45;
 const quantityInput = document.getElementById('quantity');
@@ -166,6 +76,25 @@ function updateTotal() {
 
 quantityInput.addEventListener('input', updateTotal);
 updateTotal();
+
+// Language handling
+function setLanguage(lang) {
+  localStorage.setItem('language', lang);
+  applyLanguage(lang);
+}
+
+function applyLanguage(lang) {
+  if (lang === 'ar') {
+    document.documentElement.setAttribute('dir', 'rtl');
+  } else {
+    document.documentElement.setAttribute('dir', 'ltr');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const savedLang = localStorage.getItem('language') || 'ar';
+  applyLanguage(savedLang);
+});
 </script>
 
 </body>
