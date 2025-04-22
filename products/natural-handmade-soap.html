@@ -1,128 +1,171 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - Discover Natural Beauty</title>
-  <link rel="stylesheet" href="style.css">
+  <title>صابونة طبيعية - NaturaQ</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #fffaf7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .header {
+      text-align: center;
+      padding: 20px;
+    }
+    .logo {
+      width: 120px;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+    .product-img {
+      width: 90%;
+      max-width: 350px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 28px;
+      color: #4CAF50;
+    }
+    .price {
+      font-size: 22px;
+      margin: 15px 0;
+      color: #ff4081;
+    }
+    .description, .benefits, .usage {
+      text-align: right;
+      margin: 20px;
+    }
+    .benefits ul, .usage ul {
+      padding-right: 20px;
+    }
+    ul li::before {
+      content: '\2713';
+      color: #4CAF50;
+      margin-left: 5px;
+    }
+    .order-section {
+      margin: 30px 0;
+    }
+    input[type="number"] {
+      width: 60px;
+      font-size: 18px;
+      padding: 5px;
+      margin: 10px;
+      text-align: center;
+    }
+    .btn-order {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .btn-order:hover {
+      background-color: #43a047;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #4CAF50;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #f1f8e9;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Language Switcher -->
-<div class="language-switcher">
-  <button onclick="setLanguage('en')">English</button>
-  <button onclick="setLanguage('ar')">العربية</button>
-</div>
-
-<!-- Header -->
 <header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
-<!-- Hero Section -->
-<section class="hero">
-  <h1>Experience True Natural Beauty with NaturaQ.</h1>
-  <p>Handcrafted skincare from the finest natural ingredients.</p>
-  <a href="#products" class="btn-primary">Shop Now</a>
-</section>
+<div class="container">
+  <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
 
-<!-- Products Section -->
-<div id="products">
+  <h1>صابونة طبيعية Handmade Soap</h1>
+  <p class="price">السعر: 45 ر.ق</p>
 
-  <!-- Product 1 -->
-  <section class="section">
-    <img src="images/soap.png" alt="Natural Handmade Soap" class="product-img">
-    <div class="section-content">
-      <h2>Natural Handmade Soap</h2>
-      <p><strong>Price: 45 ر.ق</strong></p>
-      <button class="toggle-details">Show Details</button>
-      <div class="details">
-        <p>Discover the purest form of cleansing with our Natural Handmade Soap, made from organic oils and botanical extracts.</p>
-        <ul>
-          <li>Free from chemicals and artificial fragrances.</li>
-          <li>Rich in natural hydration oils.</li>
-          <li>Perfect for sensitive skin.</li>
-        </ul>
-        <a href="https://wa.me/97470948788" class="btn-primary" target="_blank">Order Now</a>
-      </div>
-    </div>
-  </section>
+  <div class="description">
+    <h2>وصف المنتج:</h2>
+    <p>صابونة طبيعية مصنوعة من أجود الزيوت الطبيعية والمستخلصات النباتية. تنظف البشرة بلطف وتتركها ناعمة ونضرة بدون جفاف.</p>
+  </div>
 
-  <!-- Product 2 -->
-  <section class="section">
-    <img src="images/rice_serum.png" alt="Fermented Rice Serum" class="product-img">
-    <div class="section-content">
-      <h2>Fermented Rice Serum</h2>
-      <p><strong>Price: 90 ر.ق</strong></p>
-      <button class="toggle-details">Show Details</button>
-      <div class="details">
-        <p>Boost your skin glow with our Fermented Rice Serum, rich in collagen boosters and hydration elements.</p>
-        <ul>
-          <li>Natural collagen production support.</li>
-          <li>Improves skin elasticity and radiance.</li>
-          <li>Brightens dull skin.</li>
-        </ul>
-        <a href="https://wa.me/97470948788" class="btn-primary" target="_blank">Order Now</a>
-      </div>
-    </div>
-  </section>
+  <div class="benefits">
+    <h2>فوائد المنتج:</h2>
+    <ul>
+      <li>ترطيب فائق للبشرة الحساسة.</li>
+      <li>خالية من المواد الكيميائية الضارة.</li>
+      <li>مناسبة للاستخدام اليومي.</li>
+    </ul>
+  </div>
 
+  <div class="usage">
+    <h2>طريقة الاستخدام:</h2>
+    <ul>
+      <li>بلل البشرة بالماء الدافئ.</li>
+      <li>افرك الصابون بين يديك حتى تتكون رغوة.</li>
+      <li>دلك البشرة بلطف واشطف بالماء.</li>
+    </ul>
+  </div>
+
+  <div class="order-section">
+    <label>اختر الكمية:</label><br>
+    <input type="number" id="quantity" value="1" min="1">
+    <p><strong>الإجمالي:</strong> <span id="total-price">45 ر.ق</span></p>
+
+    <form action="https://formspree.io/f/mwkgeqkw" method="POST">
+      <input type="hidden" name="product" value="صابونة طبيعية">
+      <input type="hidden" name="price" value="45">
+      <input type="hidden" name="total" id="form-total">
+      <input type="hidden" name="quantity" id="form-quantity">
+      <input type="hidden" name="email" value="Naturaqstore@gmail.com">
+      <button type="submit" class="btn-order">تأكيد الطلب</button>
+    </form>
+
+    <a href="index.html" class="back-link">العودة إلى الصفحة الرئيسية</a>
+  </div>
 </div>
 
-<!-- WhatsApp Section -->
-<section class="whatsapp-section">
-  <h2>Need Help? Contact Us!</h2>
-  <a href="https://wa.me/97470948788" class="btn-primary" target="_blank">Chat on WhatsApp</a>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-  © 2025 NaturaQ. All rights reserved.
+<footer>
+  © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
-<!-- Back to Top -->
-<a href="#" class="back-to-top" title="Back to top">↑</a>
-
-<!-- JavaScript Files -->
-<script src="script.js"></script>
-
-<!-- AOS Animation Library (اختياري لو عايز مؤثرات حركة) -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init();
-</script>
+const price = 45;
+const quantityInput = document.getElementById('quantity');
+const totalPrice = document.getElementById('total-price');
+const formTotal = document.getElementById('form-total');
+const formQuantity = document.getElementById('form-quantity');
 
-<!-- Chatbot Script with Unique User ID -->
-<script>
-(function() {
-  if (!window.chatbase || window.chatbase("getState") !== "initialized") {
-    window.chatbase = (...args) => {
-      if (!window.chatbase.q) { window.chatbase.q = [] }
-      window.chatbase.q.push(args);
-    };
-    window.chatbase = new Proxy(window.chatbase, {
-      get(target, prop) {
-        if (prop === "q") { return target.q }
-        return (...args) => target(prop, ...args);
-      }
-    });
-  }
+function updateTotal() {
+  const qty = parseInt(quantityInput.value) || 1;
+  const total = qty * price;
+  totalPrice.textContent = total + ' ر.ق';
+  formTotal.value = total;
+  formQuantity.value = qty;
+}
 
-  const onLoad = function() {
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "QyA3pZTR2k1v9jspuzdAs"; // رقم البوت الخاص بك
-    script.setAttribute('user-id', Date.now().toString()); // كل زائر ليه محادثة جديدة
-    document.body.appendChild(script);
-  };
-
-  if (document.readyState === "complete") { 
-    onLoad(); 
-  } else {
-    window.addEventListener("load", onLoad);
-  }
-})();
+quantityInput.addEventListener('input', updateTotal);
+updateTotal();
 </script>
 
 </body>
