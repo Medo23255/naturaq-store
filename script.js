@@ -1,11 +1,12 @@
 // ===== script.js =====
 
-// حفظ واختيار اللغة
+// تغيير اللغة وحفظ الاختيار
 function setLanguage(lang) {
   localStorage.setItem('language', lang);
   applyLanguage(lang);
 }
 
+// تطبيق اللغة المختارة
 function applyLanguage(lang) {
   if (lang === 'ar') {
     document.documentElement.setAttribute('dir', 'rtl');
@@ -14,8 +15,8 @@ function applyLanguage(lang) {
   }
 }
 
-// عند فتح الموقع، نشيك لو فيه لغة محفوظة ونطبقها
+// عند تحميل الصفحة شوف اللغة المحفوظة وطبقها
 document.addEventListener('DOMContentLoaded', function() {
-  const savedLang = localStorage.getItem('language') || 'ar'; // افتراضي عربي
+  const savedLang = localStorage.getItem('language') || 'ar'; // الافتراضي عربي
   applyLanguage(savedLang);
 });
