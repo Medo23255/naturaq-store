@@ -1,80 +1,99 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>زيت الأرغان النقي - NaturaQ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-      text-align: center;
-    }
-    .container {
-      padding: 20px;
-    }
-    img {
-      width: 90%;
-      max-width: 400px;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
-    h1 {
-      font-size: 28px;
-      margin: 15px 0 5px;
-    }
-    h2 {
-      font-size: 20px;
-      color: #555;
-      margin: 5px 0 20px;
-    }
-    p {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-    ul {
-      text-align: right;
-      display: inline-block;
-      margin: 20px auto;
-      padding: 0;
-      list-style: none;
-    }
-    ul li::before {
-      content: '\2022';
-      color: #4CAF50;
-      font-weight: bold;
-      display: inline-block;
-      width: 1em;
-      margin-left: -1em;
-    }
-    .price {
-      font-size: 22px;
-      color: #4CAF50;
-      margin: 10px 0;
-    }
-    .btn-whatsapp {
-      background-color: #25D366;
-      color: white;
-      padding: 12px 30px;
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 20px;
-    }
-  </style>
+  <title>زيت الأرغان الطبيعي - NaturaQ</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body><div class="container">
-  <img src="images/argan_oil.png" alt="زيت الأرغان النقي">  <h1>زيت الأرغان النقي</h1>
-  <h2>Pure Argan Oil</h2>  <p class="price">السعر: 65 ر.ق</p>  <p>زيت الأرغان الطبيعي 100% لترطيب وتغذية البشرة والشعر.</p>
-  <p>100% Pure Argan Oil for nourishing and moisturizing skin and hair.</p>  <ul>
-    <li>يرطب البشرة بعمق</li>
-    <li>يحمي الشعر ويزيد لمعانه</li>
-    <li>مضاد للأكسدة ومكافح للشيخوخة</li>
-  </ul><a href="https://wa.me/97470948788" class="btn-whatsapp" target="_blank">اطلب الآن عبر واتساب</a>
+<body>
 
-</div></body>
+<!-- Language Switcher -->
+<div class="language-switcher">
+  <button onclick="setLanguage('ar')">العربية</button>
+  <button onclick="setLanguage('en')">English</button>
+</div>
+
+<header class="header">
+  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+</header>
+
+<section class="product">
+  <img src="images/pure_argan_oil.png" alt="زيت الأرغان الطبيعي" class="product-img">
+  <h1>زيت الأرغان الطبيعي</h1>
+  <p class="price">السعر: 200 ر.ق</p>
+
+  <div class="description">
+    <h2>وصف المنتج:</h2>
+    <p>زيت الأرغان النقي، مغذي غني بفيتامين E والأحماض الدهنية، يعزز ترطيب البشرة ولمعان الشعر بشكل طبيعي.</p>
+  </div>
+
+  <div class="usage">
+    <h2>طريقة الاستخدام:</h2>
+    <ul>
+      <li>للبشرة: ضع بضع قطرات ودلك بلطف.</li>
+      <li>للشعر: ضع كمية صغيرة على الأطراف لترطيب ولمعان طبيعي.</li>
+    </ul>
+  </div>
+
+  <div class="order-section">
+    <label>اختر الكمية:</label><br>
+    <input type="number" id="quantity" value="1" min="1">
+    <p><strong>الإجمالي:</strong> <span id="total-price">200 ر.ق</span></p>
+
+    <form action="https://formspree.io/f/mwkgeqkw" method="POST">
+      <input type="hidden" name="product" value="زيت الأرغان الطبيعي">
+      <input type="hidden" name="price" value="200">
+      <input type="hidden" name="total" id="form-total">
+      <input type="hidden" name="quantity" id="form-quantity">
+      <button type="submit" class="btn-order">تأكيد الطلب</button>
+    </form>
+
+    <a href="index.html" class="back-link">عودة إلى الرئيسية</a>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2025 NaturaQ. جميع الحقوق محفوظة.
+</footer>
+
+<script src="script.js"></script>
+<script>
+const price = 200;
+const quantityInput = document.getElementById('quantity');
+const totalPrice = document.getElementById('total-price');
+const formTotal = document.getElementById('form-total');
+const formQuantity = document.getElementById('form-quantity');
+
+function updateTotal() {
+  const qty = parseInt(quantityInput.value) || 1;
+  const total = qty * price;
+  totalPrice.textContent = total + ' ر.ق';
+  formTotal.value = total;
+  formQuantity.value = qty;
+}
+
+quantityInput.addEventListener('input', updateTotal);
+updateTotal();
+
+function setLanguage(lang) {
+  localStorage.setItem('language', lang);
+  applyLanguage(lang);
+}
+
+function applyLanguage(lang) {
+  if (lang === 'ar') {
+    document.documentElement.setAttribute('dir', 'rtl');
+  } else {
+    document.documentElement.setAttribute('dir', 'ltr');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const savedLang = localStorage.getItem('language') || 'ar';
+  applyLanguage(savedLang);
+});
+</script>
+
+</body>
 </html>
