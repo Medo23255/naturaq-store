@@ -1,11 +1,11 @@
 function setLanguage(lang) {
   if (lang === 'ar') {
     document.documentElement.setAttribute('dir', 'rtl');
-    document.getElementById('hero-title').textContent = 'اكتشف الجمال الطبيعي الحقيقي مع NaturaQ.';
+    document.getElementById('hero-title').textContent = 'اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ.';
     document.getElementById('hero-description').textContent = 'منتجات طبيعية للعناية بجمالك وتألقك.';
-    document.getElementById('shop-now-btn').textContent = 'تسوق الآن';
+    document.getElementById('shop-now-btn').textContent = 'تسوقي الآن';
 
-    // ترجمة اسماء المنتجات
+    // أسماء المنتجات
     document.getElementById('product1-name').textContent = 'صابونة طبيعية يدوية';
     document.getElementById('product2-name').textContent = 'سيروم الأرز المخمر';
     document.getElementById('product3-name').textContent = 'قناع طين البحر الميت';
@@ -18,7 +18,7 @@ function setLanguage(lang) {
     document.getElementById('hero-description').textContent = 'Natural care products crafted from the finest ingredients for your beauty.';
     document.getElementById('shop-now-btn').textContent = 'Shop Now';
 
-    // أسماء المنتجات بالإنجليزي
+    // أسماء المنتجات
     document.getElementById('product1-name').textContent = 'Natural Handmade Soap';
     document.getElementById('product2-name').textContent = 'Fermented Rice Serum';
     document.getElementById('product3-name').textContent = 'Dead Sea Mud Mask';
