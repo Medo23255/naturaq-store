@@ -1,63 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - Natural Beauty</title>
+  <title>NaturaQ - الصفحة الرئيسية</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Language Switcher -->
 <div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
   <button onclick="setLanguage('en')">English</button>
 </div>
 
-<header>
+<header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
 <section class="hero">
-  <h1>Experience True Natural Beauty with NaturaQ.</h1>
-  <p>Handcrafted skincare from the finest natural ingredients.</p>
-  <a href="#products" class="btn-primary">Shop Now</a>
+  <h1>اكتشف الجمال الطبيعي الحقيقي مع NaturaQ</h1>
+  <p>منتجات طبيعية للعناية بجمالك ونضارة بشرتك.</p>
 </section>
 
-<div id="products">
-  <section class="section">
-    <img src="images/soap.png" alt="Natural Handmade Soap" class="product-img">
-    <div class="section-content">
-      <h2>Natural Handmade Soap</h2>
-      <p><strong>Price: 45 ر.ق</strong></p>
-      <a href="natural-handmade-soap.html" class="btn-primary">View Product</a>
-    </div>
-  </section>
+<section class="products">
 
-  <section class="section">
-    <img src="images/dead_sea.png" alt="Dead Sea Mud Mask" class="product-img">
-    <div class="section-content">
-      <h2>Dead Sea Mud Mask</h2>
-      <p><strong>Price: 120 ر.ق</strong></p>
-      <a href="dead-sea-mud-mask.html" class="btn-primary">View Product</a>
-    </div>
-  </section>
+  <div class="product-card">
+    <img src="images/soap.png" alt="Natural Handmade Soap">
+    <h2>صابونة طبيعية</h2>
+    <a href="natural-handmade-soap.html" class="btn-primary">تفاصيل المنتج</a>
+  </div>
 
-  <section class="section">
-    <img src="images/pure_argan_oil.png" alt="Pure Argan Oil" class="product-img">
-    <div class="section-content">
-      <h2>Pure Argan Oil</h2>
-      <p><strong>Price: 200 ر.ق</strong></p>
-      <a href="pure-argan-oil.html" class="btn-primary">View Product</a>
-    </div>
-  </section>
+  <div class="product-card">
+    <img src="images/dead_sea.png" alt="Dead Sea Mud Mask">
+    <h2>قناع طين البحر الميت</h2>
+    <a href="dead-sea-mud-mask.html" class="btn-primary">تفاصيل المنتج</a>
+  </div>
 
-</div>
+  <div class="product-card">
+    <img src="images/rice_serum.png" alt="Fermented Rice Serum">
+    <h2>سيروم الأرز المخمر</h2>
+    <a href="fermented-rice-serum.html" class="btn-primary">تفاصيل المنتج</a>
+  </div>
+
+  <div class="product-card">
+    <img src="images/pure_argan_oil.png" alt="Pure Argan Oil">
+    <h2>زيت الأرغان النقي</h2>
+    <a href="pure-argan-oil.html" class="btn-primary">تفاصيل المنتج</a>
+  </div>
+
+  <div class="product-card">
+    <img src="images/deep_cleanse_kit.png" alt="Deep Cleanse Kit">
+    <h2>مجموعة تنظيف عميق</h2>
+    <a href="deep-cleanse-kit.html" class="btn-primary">تفاصيل المنتج</a>
+  </div>
+
+</section>
 
 <footer class="footer">
-  © 2025 NaturaQ. All rights reserved.
+  © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
 <script src="script.js"></script>
+
+<!-- كود بوت الذكاء الاصطناعي -->
+<script>
+(function(){
+  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+    window.chatbase = (...args) => {
+      if(!window.chatbase.q){ window.chatbase.q = [] }
+      window.chatbase.q.push(args)
+    };
+    window.chatbase = new Proxy(window.chatbase, {
+      get(target, prop) {
+        if(prop === "q"){ return target.q }
+        return (...args) => target(prop, ...args)
+      }
+    });
+  }
+  const onLoad = function(){
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.id = "QyA3pZTR2k1v9jspuzdAs"; 
+    document.body.appendChild(script);
+  };
+  if(document.readyState === "complete"){ onLoad() }
+  else { window.addEventListener("load", onLoad) }
+})();
+</script>
+
 </body>
 </html>
