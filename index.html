@@ -1,129 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - Discover Natural Beauty</title>
+  <title>NaturaQ - Natural Beauty</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <!-- Language Switcher -->
 <div class="language-switcher">
-  <button onclick="setLanguage('en')">English</button>
   <button onclick="setLanguage('ar')">العربية</button>
+  <button onclick="setLanguage('en')">English</button>
 </div>
 
-<!-- Header -->
-<header class="header">
+<header>
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
-<!-- Hero Section -->
 <section class="hero">
   <h1>Experience True Natural Beauty with NaturaQ.</h1>
   <p>Handcrafted skincare from the finest natural ingredients.</p>
   <a href="#products" class="btn-primary">Shop Now</a>
 </section>
 
-<!-- Products Section -->
 <div id="products">
-
-  <!-- Product 1 -->
   <section class="section">
     <img src="images/soap.png" alt="Natural Handmade Soap" class="product-img">
     <div class="section-content">
       <h2>Natural Handmade Soap</h2>
       <p><strong>Price: 45 ر.ق</strong></p>
-      <button class="toggle-details">Show Details</button>
-      <div class="details">
-        <p>Discover the purest form of cleansing with our Natural Handmade Soap, made from organic oils and botanical extracts.</p>
-        <ul>
-          <li>Free from chemicals and artificial fragrances.</li>
-          <li>Rich in natural hydration oils.</li>
-          <li>Perfect for sensitive skin.</li>
-        </ul>
-        <a href="https://wa.me/97470948788" class="btn-primary" target="_blank">Order Now</a>
-      </div>
+      <a href="natural-handmade-soap.html" class="btn-primary">View Product</a>
     </div>
   </section>
 
-  <!-- Product 2 -->
   <section class="section">
-    <img src="images/rice_serum.png" alt="Fermented Rice Serum" class="product-img">
+    <img src="images/dead_sea.png" alt="Dead Sea Mud Mask" class="product-img">
     <div class="section-content">
-      <h2>Fermented Rice Serum</h2>
-      <p><strong>Price: 90 ر.ق</strong></p>
-      <button class="toggle-details">Show Details</button>
-      <div class="details">
-        <p>Boost your skin glow with our Fermented Rice Serum, rich in collagen boosters and hydration elements.</p>
-        <ul>
-          <li>Natural collagen production support.</li>
-          <li>Improves skin elasticity and radiance.</li>
-          <li>Brightens dull skin.</li>
-        </ul>
-        <a href="https://wa.me/97470948788" class="btn-primary" target="_blank">Order Now</a>
-      </div>
+      <h2>Dead Sea Mud Mask</h2>
+      <p><strong>Price: 120 ر.ق</strong></p>
+      <a href="dead-sea-mud-mask.html" class="btn-primary">View Product</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <img src="images/pure_argan_oil.png" alt="Pure Argan Oil" class="product-img">
+    <div class="section-content">
+      <h2>Pure Argan Oil</h2>
+      <p><strong>Price: 200 ر.ق</strong></p>
+      <a href="pure-argan-oil.html" class="btn-primary">View Product</a>
     </div>
   </section>
 
 </div>
 
-<!-- WhatsApp Section -->
-<section class="whatsapp-section">
-  <h2>Need Help? Contact Us!</h2>
-  <a href="https://wa.me/97470948788" class="btn-primary" target="_blank">Chat on WhatsApp</a>
-</section>
-
-<!-- Footer -->
 <footer class="footer">
   © 2025 NaturaQ. All rights reserved.
 </footer>
 
-<!-- Back to Top -->
-<a href="#" class="back-to-top" title="Back to top">↑</a>
-
-<!-- JavaScript Files -->
 <script src="script.js"></script>
-
-<!-- AOS Animation Library (اختياري لو عايز مؤثرات حركة) -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
-<!-- Chatbot Script with Unique User ID -->
-<script>
-(function() {
-  if (!window.chatbase || window.chatbase("getState") !== "initialized") {
-    window.chatbase = (...args) => {
-      if (!window.chatbase.q) { window.chatbase.q = [] }
-      window.chatbase.q.push(args);
-    };
-    window.chatbase = new Proxy(window.chatbase, {
-      get(target, prop) {
-        if (prop === "q") { return target.q }
-        return (...args) => target(prop, ...args);
-      }
-    });
-  }
-
-  const onLoad = function() {
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "QyA3pZTR2k1v9jspuzdAs"; // رقم البوت الخاص بك
-    script.setAttribute('user-id', Date.now().toString()); // كل زائر ليه محادثة جديدة
-    document.body.appendChild(script);
-  };
-
-  if (document.readyState === "complete") { 
-    onLoad(); 
-  } else {
-    window.addEventListener("load", onLoad);
-  }
-})();
-</script>
-
 </body>
 </html>
