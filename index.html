@@ -2,11 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NaturaQ - الجمال الطبيعي الحقيقي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaturaQ - العناية الطبيعية بجمالك</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -16,18 +15,18 @@
   <button onclick="setLanguage('en')">English</button>
 </div>
 
-<!-- الهيدر -->
+<!-- إشعار الذكاء الاصطناعي -->
+<div class="ai-banner" id="ai-message">
+  هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!
+</div>
+
+<!-- الشعار -->
 <header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
-<!-- إشعار الذكاء الاصطناعي -->
-<div class="ai-banner">
-  <p id="ai-message">هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!</p>
-</div>
-
 <!-- بانر رئيسي -->
-<section class="hero" data-aos="fade-up">
+<section class="hero">
   <h1 id="hero-title">اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ</h1>
   <p id="hero-description">منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.</p>
   <a href="#products" class="btn-primary" id="shop-now-btn">تسوقي الآن</a>
@@ -35,62 +34,60 @@
 
 <!-- المنتجات -->
 <section id="products" class="products-grid">
-
-  <div class="product-card" data-aos="fade-up">
-    <img src="images/soap.png" alt="Natural Handmade Soap" class="product-img">
+  <div class="product-card">
+    <img src="images/natural-soap.png" alt="صابونة طبيعية" class="product-img">
     <h3 id="product1-name">صابونة طبيعية يدوية</h3>
     <a href="products/natural-handmade-soap.html" class="btn-secondary">عرض التفاصيل</a>
   </div>
 
-  <div class="product-card" data-aos="fade-up">
-    <img src="images/rice_serum.png" alt="Fermented Rice Serum" class="product-img">
+  <div class="product-card">
+    <img src="images/rice-serum.png" alt="سيروم الأرز" class="product-img">
     <h3 id="product2-name">سيروم الأرز المخمر</h3>
     <a href="products/fermented-rice-serum.html" class="btn-secondary">عرض التفاصيل</a>
   </div>
 
-  <div class="product-card" data-aos="fade-up">
-    <img src="images/dead_sea.png" alt="Dead Sea Mud Mask" class="product-img">
+  <div class="product-card">
+    <img src="images/deadsea-mask.png" alt="قناع طين البحر الميت" class="product-img">
     <h3 id="product3-name">قناع طين البحر الميت</h3>
     <a href="products/dead-sea-mud-mask.html" class="btn-secondary">عرض التفاصيل</a>
   </div>
 
-  <div class="product-card" data-aos="fade-up">
-    <img src="images/pure_argan_Oil.png" alt="Pure Argan Oil" class="product-img">
+  <div class="product-card">
+    <img src="images/argan-oil.png" alt="زيت الأرغان" class="product-img">
     <h3 id="product4-name">زيت الأرغان النقي</h3>
     <a href="products/pure-argan-oil.html" class="btn-secondary">عرض التفاصيل</a>
   </div>
 
-  <div class="product-card" data-aos="fade-up">
-    <img src="images/deep-cleanse-kit.png" alt="Deep Cleanse Kit" class="product-img">
+  <div class="product-card">
+    <img src="images/cleanse-kit.png" alt="مجموعة تنظيف" class="product-img">
     <h3 id="product5-name">مجموعة تنظيف عميق</h3>
     <a href="products/deep-cleanse-kit.html" class="btn-secondary">عرض التفاصيل</a>
   </div>
 
-  <div class="product-card" data-aos="fade-up">
-    <img src="images/rose_water_toner.png" alt="Rose Water Toner" class="product-img">
+  <div class="product-card">
+    <img src="images/rose-water.png" alt="تونر ماء الورد" class="product-img">
     <h3 id="product6-name">تونر ماء الورد</h3>
     <a href="products/rose-water-toner.html" class="btn-secondary">عرض التفاصيل</a>
   </div>
-
 </section>
 
-<!-- لماذا تختارنا -->
-<section class="why-us" id="why-us" data-aos="fade-up">
+<!-- لماذا تختارينا -->
+<section class="why-us">
   <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
   <div class="reasons">
-    <div class="reason" data-aos="fade-up">
+    <div class="reason">
       <h3 id="reason1-title">مكونات طبيعية 100%</h3>
       <p id="reason1-desc">منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية الفائقة ببشرتكِ.</p>
     </div>
-    <div class="reason" data-aos="fade-up">
+    <div class="reason">
       <h3 id="reason2-title">شحن سريع وآمن</h3>
       <p id="reason2-desc">نضمن توصيل آمن لمنتجاتك بأعلى جودة وفي أسرع وقت.</p>
     </div>
-    <div class="reason" data-aos="fade-up">
+    <div class="reason">
       <h3 id="reason3-title">دعم متواصل للعملاء</h3>
       <p id="reason3-desc">فريق دعم متوفر دائمًا للرد على استفساراتك بكل احترافية.</p>
     </div>
-    <div class="reason" data-aos="fade-up">
+    <div class="reason">
       <h3 id="reason4-title">رضاكِ أولويتنا</h3>
       <p id="reason4-desc">نضمن لكِ تجربة تسوق فريدة وجودة تليق بجمالكِ.</p>
     </div>
@@ -99,43 +96,37 @@
 
 <!-- الفوتر -->
 <footer class="footer">
-  <p>© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
+  © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
-<!-- مكتبة AOS للحركة -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
-<!-- سكريبت اللغة -->
-<script src="script.js"></script>
-
-<!-- بوت الذكاء الاصطناعي -->
+<!-- سكريبت الذكاء الاصطناعي -->
 <script>
 (function(){
-  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+  if(!window.chatbase || window.chatbase(\"getState\") !== \"initialized\"){
     window.chatbase = (...args) => {
       if(!window.chatbase.q){ window.chatbase.q = [] }
       window.chatbase.q.push(args)
     };
     window.chatbase = new Proxy(window.chatbase, {
       get(target, prop) {
-        if(prop === "q"){ return target.q }
+        if(prop === \"q\"){ return target.q }
         return (...args) => target(prop, ...args)
       }
     });
   }
   const onLoad = function(){
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "QyA3pZTR2k1v9jspuzdAs"; 
+    const script = document.createElement(\"script\");
+    script.src = \"https://www.chatbase.co/embed.min.js\";
+    script.id = \"QyA3pZTR2k1v9jspuzdAs\";
     document.body.appendChild(script);
   };
-  if(document.readyState === "complete"){ onLoad() }
-  else { window.addEventListener("load", onLoad) }
+  if(document.readyState === \"complete\"){ onLoad() }
+  else { window.addEventListener(\"load\", onLoad) }
 })();
 </script>
+
+<!-- سكريبت حفظ واختيار اللغة -->
+<script src=\"script.js\"></script>
 
 </body>
 </html>
