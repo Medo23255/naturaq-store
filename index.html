@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NaturaQ - Natural Beauty</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
-<!-- أزرار تغيير اللغة -->
+<!-- لغة -->
 <div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
   <button onclick="setLanguage('en')">English</button>
 </div>
 
-<!-- شعار -->
+<!-- رأس الموقع -->
 <header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
-<!-- سكشن البانر -->
+<!-- البانر الرئيسي -->
 <section class="hero">
   <h1 id="hero-title">Discover True Natural Beauty with NaturaQ.</h1>
   <p id="hero-description">Natural care products crafted from the finest ingredients for your beauty.</p>
@@ -28,58 +29,52 @@
 </section>
 
 <!-- المنتجات -->
-<div id="products" class="products-grid">
+<section id="products" class="products-grid">
 
-  <!-- منتج صابونة -->
   <div class="product-card" data-aos="fade-up">
     <img src="images/soap.png" alt="Natural Handmade Soap" class="product-img">
     <h3 id="product1-name">Natural Handmade Soap</h3>
     <a href="products/natural-handmade-soap.html" class="btn-secondary">View Details</a>
   </div>
 
-  <!-- منتج سيروم الأرز -->
   <div class="product-card" data-aos="fade-up">
     <img src="images/rice_serum.png" alt="Fermented Rice Serum" class="product-img">
     <h3 id="product2-name">Fermented Rice Serum</h3>
     <a href="products/fermented-rice-serum.html" class="btn-secondary">View Details</a>
   </div>
 
-  <!-- منتج قناع طين البحر الميت -->
   <div class="product-card" data-aos="fade-up">
     <img src="images/dead_sea.png" alt="Dead Sea Mud Mask" class="product-img">
     <h3 id="product3-name">Dead Sea Mud Mask</h3>
     <a href="products/dead-sea-mud-mask.html" class="btn-secondary">View Details</a>
   </div>
 
-  <!-- منتج زيت الأرجان النقي -->
   <div class="product-card" data-aos="fade-up">
     <img src="images/pure_argan_Oil.png" alt="Pure Argan Oil" class="product-img">
     <h3 id="product4-name">Pure Argan Oil</h3>
     <a href="products/pure-argan-oil.html" class="btn-secondary">View Details</a>
   </div>
 
-  <!-- منتج مجموعة تنظيف عميق -->
   <div class="product-card" data-aos="fade-up">
     <img src="images/deep-cleanse-kit.png" alt="Deep Cleanse Kit" class="product-img">
     <h3 id="product5-name">Deep Cleanse Kit</h3>
     <a href="products/deep-cleanse-kit.html" class="btn-secondary">View Details</a>
   </div>
 
-  <!-- منتج تونر ماء الورد -->
   <div class="product-card" data-aos="fade-up">
     <img src="images/rose_water_toner.png" alt="Rose Water Toner" class="product-img">
     <h3 id="product6-name">Rose Water Toner</h3>
     <a href="products/rose-water-toner.html" class="btn-secondary">View Details</a>
   </div>
 
-</div>
+</section>
 
-<!-- فوتر -->
+<!-- الفوتر -->
 <footer class="footer">
-  © 2025 NaturaQ. All rights reserved.
+  <p>© 2025 NaturaQ. All rights reserved.</p>
 </footer>
 
-<!-- مكتبة AOS -->
+<!-- مكتبة AOS للحركة -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
@@ -88,29 +83,29 @@
 <!-- سكريبت اللغة -->
 <script src="script.js"></script>
 
-<!-- سكريبت بوت الذكاء الصناعي -->
+<!-- بوت الذكاء الاصطناعي -->
 <script>
 (function(){
-  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+  if(!window.chatbase || window.chatbase(\"getState\") !== \"initialized\"){
     window.chatbase = (...args) => {
       if(!window.chatbase.q) window.chatbase.q = [];
       window.chatbase.q.push(args);
     };
     window.chatbase = new Proxy(window.chatbase, {
       get(target, prop) {
-        if (prop === "q") return target.q;
+        if (prop === \"q\") return target.q;
         return (...args) => target(prop, ...args);
       }
     });
   }
   const onLoad = function(){
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "QyA3pZTR2k1v9jspuzdAs";
+    const script = document.createElement(\"script\");
+    script.src = \"https://www.chatbase.co/embed.min.js\";
+    script.id = \"QyA3pZTR2k1v9jspuzdAs\";
     document.body.appendChild(script);
   };
-  if(document.readyState === "complete"){ onLoad(); }
-  else { window.addEventListener("load", onLoad); }
+  if(document.readyState === \"complete\"){ onLoad(); }
+  else { window.addEventListener(\"load\", onLoad); }
 })();
 </script>
 
