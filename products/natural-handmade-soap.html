@@ -1,163 +1,30 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صابونة طبيعية - NaturaQ</title>
+  <title>صابونة طبيعية يدوية - NaturaQ</title>
   <link rel="stylesheet" href="../style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body>
-
-<!-- مبدل اللغة -->
-<div class="language-switcher">
+<body><!-- مبدل اللغة --><div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
   <button onclick="setLanguage('en')">English</button>
-</div>
-
-<!-- الهيدر -->
-<header class="header">
-  <img src="../images/logo.png" alt="NaturaQ Logo" class="logo">
-</header>
-
-<!-- إشعار الذكاء الاصطناعي -->
-<div class="ai-banner">
-  <p id="ai-message">هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!</p>
-</div>
-
-<!-- تفاصيل المنتج -->
-<main class="product-page" data-aos="fade-up">
-  <img src="../images/soap.png" alt="Natural Handmade Soap" class="product-image">
-
-  <h1 id="product-name">صابونة طبيعية</h1>
-
+</div><!-- إشعار الذكاء الاصطناعي --><div class="ai-banner" id="ai-message">
+  هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!
+</div><!-- تفاصيل المنتج --><main class="product-page">
+  <img src="../images/natural-soap.png" alt="صابونة طبيعية" class="product-image">
+  <h1 id="product-title">صابونة طبيعية يدوية</h1>
   <p id="product-description">
-    صابونة مصنوعة من زيوت طبيعية نقية، تنظف البشرة بلطف وتحافظ على ترطيبها الطبيعي، مناسبة لكل أنواع البشرة.
-  </p>
+    صابونة لطيفة على البشرة مصنوعة من زيوت عضوية ومستخلصات نباتية. تنظف البشرة بعمق وتتركها ناعمة ونقية.
+  </p>  <!-- التحكم في الكمية -->  <div class="quantity-control">
+    <button onclick="changeQuantity(-1)">-</button>
+    <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
+    <button onclick="changeQuantity(1)">+</button>
+  </div>  <!-- السعر -->  <div id="total-price">السعر: 45 ر.ق</div>  <!-- الطلب --><a href="https://wa.me/97470948788?text=أرغب%20بطلب%20صابونة%20طبيعية%20يدوية" class="btn-primary" target="_blank" id="order-now-btn">اطلبي الآن عبر واتساب</a> <a href="../index.html" class="btn-secondary">العودة إلى القائمة الرئيسية</a>
 
-  <p id="product-usage">
-    طريقة الاستخدام: بللي الصابونة بالماء، افركي بلطف على البشرة، ثم اشطفي جيدًا.
-  </p>
-
-  <p id="price">السعر: 45 ر.ق</p>
-
-  <div class="quantity-control">
-    <button onclick="decreaseQuantity()">-</button>
-    <input type="text" id="quantity" value="1" readonly>
-    <button onclick="increaseQuantity()">+</button>
-  </div>
-
-  <p id="total-price">الإجمالي: 45 ر.ق</p>
-
-  <a id="order-link" href="https://wa.me/97470948788?text=أرغب في طلب صابونة طبيعية عدد 1" class="btn-primary" target="_blank">
-    تأكيد الطلب عبر واتساب
-  </a>
-
-  <a href="../index.html" class="btn-secondary" id="back-btn">← رجوع إلى الرئيسية</a>
-</main>
-
-<!-- الفوتر -->
-<footer class="footer">
-  <p>© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
-</footer>
-
-<!-- مكتبة AOS للحركة -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
-<!-- سكريبت اللغة والتحكم الكامل -->
-<script>
-// حفظ واختيار اللغة
-function setLanguage(lang) {
-  localStorage.setItem('selectedLanguage', lang);
-  applyLanguage(lang);
-}
-
-// تطبيق اللغة
-function applyLanguage(lang) {
-  if (lang === 'ar') {
-    document.documentElement.setAttribute('lang', 'ar');
-    document.documentElement.setAttribute('dir', 'rtl');
-
-    document.getElementById('product-name').textContent = 'صابونة طبيعية';
-    document.getElementById('product-description').textContent = 'صابونة مصنوعة من زيوت طبيعية نقية، تنظف البشرة بلطف وتحافظ على ترطيبها الطبيعي، مناسبة لكل أنواع البشرة.';
-    document.getElementById('product-usage').textContent = 'طريقة الاستخدام: بللي الصابونة بالماء، افركي بلطف على البشرة، ثم اشطفي جيدًا.';
-    document.getElementById('price').textContent = 'السعر: 45 ر.ق';
-    document.getElementById('total-price').textContent = `الإجمالي: ${45 * getQuantity()} ر.ق`;
-    document.getElementById('order-link').innerText = 'تأكيد الطلب عبر واتساب';
-    document.getElementById('ai-message').textContent = 'هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!';
-    document.getElementById('back-btn').textContent = '← رجوع إلى الرئيسية';
-    updateOrderLink();
-  } else {
-    document.documentElement.setAttribute('lang', 'en');
-    document.documentElement.setAttribute('dir', 'ltr');
-
-    document.getElementById('product-name').textContent = 'Natural Handmade Soap';
-    document.getElementById('product-description').textContent = 'A soap made from pure natural oils, gently cleanses and retains the skin’s natural moisture, suitable for all skin types.';
-    document.getElementById('product-usage').textContent = 'Usage: Wet the soap with water, gently massage onto skin, then rinse well.';
-    document.getElementById('price').textContent = 'Price: 45 QAR';
-    document.getElementById('total-price').textContent = `Total: ${45 * getQuantity()} QAR`;
-    document.getElementById('order-link').innerText = 'Confirm Order via WhatsApp';
-    document.getElementById('ai-message').textContent = 'Need help? Talk to our AI assistant now!';
-    document.getElementById('back-btn').textContent = '← Back to Main Page';
-    updateOrderLink();
-  }
-}
-
-// تحكم بالكمية
-function getQuantity() {
-  return parseInt(document.getElementById('quantity').value);
-}
-
-function increaseQuantity() {
-  let quantity = getQuantity();
-  quantity++;
-  document.getElementById('quantity').value = quantity;
-  updateTotalPrice();
-}
-
-function decreaseQuantity() {
-  let quantity = getQuantity();
-  if (quantity > 1) {
-    quantity--;
-    document.getElementById('quantity').value = quantity;
-    updateTotalPrice();
-  }
-}
-
-function updateTotalPrice() {
-  const price = 45;
-  const quantity = getQuantity();
-  const lang = localStorage.getItem('selectedLanguage') || 'ar';
-
-  if (lang === 'ar') {
-    document.getElementById('total-price').textContent = `الإجمالي: ${price * quantity} ر.ق`;
-  } else {
-    document.getElementById('total-price').textContent = `Total: ${price * quantity} QAR`;
-  }
-  updateOrderLink();
-}
-
-function updateOrderLink() {
-  const quantity = getQuantity();
-  const lang = localStorage.getItem('selectedLanguage') || 'ar';
-  let productName = lang === 'ar' ? 'صابونة طبيعية' : 'Natural Handmade Soap';
-  document.getElementById('order-link').href = `https://wa.me/97470948788?text=أرغب في طلب ${productName} عدد ${quantity}`;
-}
-
-// عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('selectedLanguage') || 'ar';
-  applyLanguage(savedLang);
-});
-
-</script>
-
-<!-- بوت الذكاء الاصطناعي -->
-<script>
+</main><!-- الفوتر --><footer class="footer">
+  © 2025 NaturaQ. جميع الحقوق محفوظة.
+</footer><!-- سكريبت الذكاء الاصطناعي --><script>
 (function(){
   if(!window.chatbase || window.chatbase("getState") !== "initialized"){
     window.chatbase = (...args) => {
@@ -174,13 +41,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const onLoad = function(){
     const script = document.createElement("script");
     script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "QyA3pZTR2k1v9jspuzdAs"; 
+    script.id = "QyA3pZTR2k1v9jspuzdAs";
     document.body.appendChild(script);
   };
   if(document.readyState === "complete"){ onLoad() }
   else { window.addEventListener("load", onLoad) }
 })();
-</script>
+</script><!-- سكريبت اللغة والتحكم --><script>
+function setLanguage(lang) {
+  localStorage.setItem('selectedLanguage', lang);
+  location.reload();
+}
 
-</body>
+function changeQuantity(amount) {
+  const input = document.getElementById('quantity');
+  let value = parseInt(input.value) + amount;
+  if (value < 1) value = 1;
+  input.value = value;
+  updateTotal();
+}
+
+function updateTotal() {
+  const quantity = parseInt(document.getElementById('quantity').value);
+  const total = 45 * quantity;
+  document.getElementById('total-price').textContent = `السعر: ${total} ر.ق`;
+}
+</script></body>
 </html>
