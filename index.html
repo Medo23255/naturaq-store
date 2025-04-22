@@ -1,103 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - Discover Natural Beauty</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaturaQ - الجمال الطبيعي الحقيقي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="language-switcher">
-  <button onclick="setLanguage('en')">English</button>
-  <button onclick="setLanguage('ar')">العربية</button>
-</div>
-
 <header class="header">
-  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+    <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+    <div class="language-switcher">
+        <button onclick="setLanguage('ar')">العربية</button>
+        <button onclick="setLanguage('en')">English</button>
+    </div>
 </header>
 
 <section class="hero">
-  <h1 id="hero-title">Experience True Natural Beauty with NaturaQ</h1>
-  <p id="hero-subtitle">Handcrafted skincare from the finest natural ingredients.</p>
-  <a href="#products" class="btn-primary" id="shop-now">Shop Now</a>
+    <h1>اكتشف الجمال الطبيعي الحقيقي مع NaturaQ</h1>
+    <p>منتجات طبيعية للعناية بجمالك ونضارة بشرتك.</p>
+    <a href="#products" class="btn-primary">تسوق الآن</a>
 </section>
 
-<div id="products" class="product-list">
+<section id="products" class="products-grid">
+    <div class="product-card">
+        <img src="images/soap.png" alt="صابونة طبيعية">
+        <h3>صابونة طبيعية</h3>
+        <a class="btn-details" data-product="natural-handmade-soap">تفاصيل المنتج</a>
+    </div>
 
-  <div class="product">
-    <img src="images/soap.png" alt="Natural Handmade Soap">
-    <h2>Natural Handmade Soap</h2>
-    <a href="products/natural-handmade-soap.html" class="btn-secondary">View Product</a>
-  </div>
+    <div class="product-card">
+        <img src="images/dead_sea.png" alt="قناع طين البحر الميت">
+        <h3>قناع طين البحر الميت</h3>
+        <a class="btn-details" data-product="dead-sea-mud-mask">تفاصيل المنتج</a>
+    </div>
 
-  <div class="product">
-    <img src="images/rice_serum.png" alt="Fermented Rice Serum">
-    <h2>Fermented Rice Serum</h2>
-    <a href="products/fermented-rice-serum.html" class="btn-secondary">View Product</a>
-  </div>
+    <div class="product-card">
+        <img src="images/rice_serum.png" alt="سيروم الأرز المخمر">
+        <h3>سيروم الأرز المخمر</h3>
+        <a class="btn-details" data-product="fermented-rice-serum">تفاصيل المنتج</a>
+    </div>
 
-  <div class="product">
-    <img src="images/dead_sea.png" alt="Dead Sea Mud Mask">
-    <h2>Dead Sea Mud Mask</h2>
-    <a href="products/dead-sea-mud-mask.html" class="btn-secondary">View Product</a>
-  </div>
+    <div class="product-card">
+        <img src="images/pure_argan_Oil.png" alt="زيت الأرجان النقي">
+        <h3>زيت الأرجان النقي</h3>
+        <a class="btn-details" data-product="pure-argan-oil">تفاصيل المنتج</a>
+    </div>
 
-  <div class="product">
-    <img src="images/deep_cleanse_kit.png" alt="Deep Cleanse Kit">
-    <h2>Deep Cleanse Kit</h2>
-    <a href="products/deep-cleanse-kit.html" class="btn-secondary">View Product</a>
-  </div>
+    <div class="product-card">
+        <img src="images/rose_water_toner.png" alt="تونر ماء الورد">
+        <h3>تونر ماء الورد</h3>
+        <a class="btn-details" data-product="rose-water-toner">تفاصيل المنتج</a>
+    </div>
 
-  <div class="product">
-    <img src="images/pure_argan_Oil.png" alt="Pure Argan Oil">
-    <h2>Pure Argan Oil</h2>
-    <a href="products/pure-argan-oil.html" class="btn-secondary">View Product</a>
-  </div>
-
-  <div class="product">
-    <img src="images/rose_water_toner.png" alt="Rose Water Toner">
-    <h2>Rose Water Toner</h2>
-    <a href="products/rose-water-toner.html" class="btn-secondary">View Product</a>
-  </div>
-
-</div>
-
-<section class="whatsapp-section">
-  <h2 id="contact-title">Need Help? Contact Us!</h2>
-  <a href="https://wa.me/97470948788" class="btn-primary" target="_blank" id="contact-button">Chat on WhatsApp</a>
+    <div class="product-card">
+        <img src="images/soap.png" alt="مجموعة تنظيف عميق">
+        <h3>مجموعة تنظيف عميق</h3>
+        <a class="btn-details" data-product="deep-cleanse-kit">تفاصيل المنتج</a>
+    </div>
 </section>
 
 <footer class="footer">
-  &copy; 2025 NaturaQ. All rights reserved.
+    © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
-<a href="#" class="back-to-top">&uarr;</a>
-
 <script src="script.js"></script>
+
+<!-- سكربت بوت المساعد الذكي -->
 <script>
 (function(){
-  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-    window.chatbase = (...args) => {
-      if(!window.chatbase.q){ window.chatbase.q = [] }
-      window.chatbase.q.push(args)
+    if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+        window.chatbase = (...args) => {
+            if(!window.chatbase.q) window.chatbase.q = [];
+            window.chatbase.q.push(args);
+        };
+        window.chatbase = new Proxy(window.chatbase, {
+            get(target, prop){
+                if(prop === "q") return target.q;
+                return (...args) => target(prop, ...args);
+            }
+        });
+    }
+    const onLoad = function(){
+        const script = document.createElement("script");
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "QyA3pZTR2k1v9jspuzdAs";
+        document.body.appendChild(script);
     };
-    window.chatbase = new Proxy(window.chatbase, {
-      get(target, prop) {
-        if(prop === "q"){ return target.q }
-        return (...args) => target(prop, ...args)
-      }
-    });
-  }
-  const onLoad = function(){
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "QyA3pZTR2k1v9jspuzdAs";
-    document.body.appendChild(script);
-  };
-  if(document.readyState === "complete"){ onLoad() }
-  else { window.addEventListener("load", onLoad) }
+    if(document.readyState === "complete"){ onLoad(); }
+    else { window.addEventListener("load", onLoad); }
 })();
 </script>
 
