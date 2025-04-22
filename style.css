@@ -1,12 +1,13 @@
 /* إعدادات عامة */
 body {
   font-family: 'Cairo', sans-serif;
-  background-color: #fdfaf6; /* خلفية أوف وايت */
+  background-color: #fdfaf6; /* أوف وايت ناعم */
   margin: 0;
   padding: 0;
   color: #333;
 }
 
+/* الهيدر */
 .header {
   text-align: center;
   padding: 20px;
@@ -23,7 +24,7 @@ body {
 }
 
 .language-switcher button {
-  background-color: #A8D5BA; /* أخضر هادئ */
+  background-color: #A8D5BA; /* أخضر هادي */
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -38,7 +39,16 @@ body {
   background-color: #90c8ac;
 }
 
-/* البانر */
+/* إشعار الذكاء الاصطناعي */
+.ai-banner {
+  background-color: #e0f7fa; /* تركوازي ناعم */
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #006064;
+}
+
+/* البانر الرئيسي */
 .hero {
   text-align: center;
   background-color: #e8f5e9; /* أخضر فاتح */
@@ -46,7 +56,7 @@ body {
 }
 
 .hero h1 {
-  font-size: 30px;
+  font-size: 32px;
   margin-bottom: 10px;
 }
 
@@ -87,8 +97,8 @@ body {
 }
 
 .product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .product-img {
@@ -116,6 +126,48 @@ body {
 
 .btn-secondary:hover {
   background-color: #90c8ac;
+}
+
+/* قسم لماذا تختارنا */
+.why-us {
+  background-color: #f0f9f5; /* أخضر هادي إضافي */
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.why-us h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.reason {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 20px;
+  transition: transform 0.4s;
+}
+
+.reason:hover {
+  transform: translateY(-8px);
+}
+
+.reason h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #5a7d6f;
+}
+
+.reason p {
+  font-size: 14px;
+  color: #555;
 }
 
 /* الفوتر */
