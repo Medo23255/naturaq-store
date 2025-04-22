@@ -1,141 +1,105 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NaturaQ – اكتشف الجمال الطبيعي</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaturaQ - Discover Natural Beauty</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="ar"><!-- نحدد اللغة الافتراضية كعربية بإضافة الفئة "ar" إلى وسم الجسم -->
-  <!-- قسم الرأس الذي يحتوي على شعار الموقع وأزرار تغيير اللغة -->
-  <header class="header">
-    <!-- شعار NaturaQ (صورة قابلة للنقر للعودة للصفحة الرئيسية) -->
-    <a href="index.html" class="logo"><img src="images/logo.png" alt="NaturaQ Logo" /></a>
-    <!-- أزرار اختيار اللغة -->
-    <div class="lang-switch">
-      <button id="btn-ar" class="lang-btn active">العربية</button>
-      <button id="btn-en" class="lang-btn">English</button>
-    </div>
-  </header>
+<body>
 
-  <!-- قسم المقدمة/البطل (Hero) مع شعار أو رسالة ترحيبية -->
-  <section class="hero">
-    <h1 class="tagline">
-      <span class="lang-ar">اكتشف الجمال الطبيعي الحقيقي مع <strong>NaturaQ</strong>.</span>
-      <span class="lang-en">Discover true natural beauty with <strong>NaturaQ</strong>.</span>
-    </h1>
-    <p class="subtitle">
-      <span class="lang-ar">منتجات طبيعية للعناية بجمالك وإشراقتك مصنوعة من أفضل المكونات العضوية.</span>
-      <span class="lang-en">Natural products to care for your beauty and radiance, made from the finest organic ingredients.</span>
-    </p>
-    <a href="#products" class="cta-button">
-      <span class="lang-ar">تسوق الآن</span>
-      <span class="lang-en">Shop Now</span>
-    </a>
-  </section>
+<div class="language-switcher">
+  <button onclick="setLanguage('en')">English</button>
+  <button onclick="setLanguage('ar')">العربية</button>
+</div>
 
-  <!-- قائمة المنتجات -->
-  <section id="products" class="products-list">
-    <!-- المنتج 1: صابونة طبيعية -->
-    <div class="product-card">
-      <img src="images/natural-handmade-soap.jpg" alt="Natural Handmade Soap" class="product-image" />
-      <h2 class="product-name">
-        <span class="lang-ar">صابونة طبيعية يدوية</span>
-        <span class="lang-en">Natural Handmade Soap</span>
-      </h2>
-      <p class="product-price">
-        <span class="lang-ar">السعر: 45 ر.ق</span>
-        <span class="lang-en">Price: 45 QAR</span>
-      </p>
-      <a href="natural-handmade-soap.html" class="details-button">
-        <span class="lang-ar">تفاصيل المنتج</span>
-        <span class="lang-en">Show Details</span>
-      </a>
-    </div>
+<header class="header">
+  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+</header>
 
-    <!-- المنتج 2: سيروم الأرز المخمر -->
-    <div class="product-card">
-      <img src="images/fermented-rice-serum.jpg" alt="Fermented Rice Serum" class="product-image" />
-      <h2 class="product-name">
-        <span class="lang-ar">سيروم الأرز المخمر</span>
-        <span class="lang-en">Fermented Rice Serum</span>
-      </h2>
-      <p class="product-price">
-        <span class="lang-ar">السعر: 85 ر.ق</span>
-        <span class="lang-en">Price: 85 QAR</span>
-      </p>
-      <a href="fermented-rice-serum.html" class="details-button">
-        <span class="lang-ar">تفاصيل المنتج</span>
-        <span class="lang-en">Show Details</span>
-      </a>
-    </div>
+<section class="hero">
+  <h1 id="hero-title">Experience True Natural Beauty with NaturaQ</h1>
+  <p id="hero-subtitle">Handcrafted skincare from the finest natural ingredients.</p>
+  <a href="#products" class="btn-primary" id="shop-now">Shop Now</a>
+</section>
 
-    <!-- المنتج 3: مجموعة تنظيف عميق -->
-    <div class="product-card">
-      <img src="images/deep-cleanse-kit.jpg" alt="Deep Cleanse Kit" class="product-image" />
-      <h2 class="product-name">
-        <span class="lang-ar">مجموعة التنظيف العميق</span>
-        <span class="lang-en">Deep Cleanse Kit</span>
-      </h2>
-      <p class="product-price">
-        <span class="lang-ar">السعر: 150 ر.ق</span>
-        <span class="lang-en">Price: 150 QAR</span>
-      </p>
-      <a href="deep-cleanse-kit.html" class="details-button">
-        <span class="lang-ar">تفاصيل المنتج</span>
-        <span class="lang-en">Show Details</span>
-      </a>
-    </div>
+<div id="products" class="product-list">
 
-    <!-- المنتج 4: قناع طين البحر الميت -->
-    <div class="product-card">
-      <img src="images/dead-sea-mud-mask.jpg" alt="Dead Sea Mud Mask" class="product-image" />
-      <h2 class="product-name">
-        <span class="lang-ar">قناع طين البحر الميت</span>
-        <span class="lang-en">Dead Sea Mud Mask</span>
-      </h2>
-      <p class="product-price">
-        <span class="lang-ar">السعر: 60 ر.ق</span>
-        <span class="lang-en">Price: 60 QAR</span>
-      </p>
-      <a href="dead-sea-mud-mask.html" class="details-button">
-        <span class="lang-ar">تفاصيل المنتج</span>
-        <span class="lang-en">Show Details</span>
-      </a>
-    </div>
+  <div class="product">
+    <img src="images/soap.png" alt="Natural Handmade Soap">
+    <h2>Natural Handmade Soap</h2>
+    <a href="products/natural-handmade-soap.html" class="btn-secondary">View Product</a>
+  </div>
 
-    <!-- المنتج 5: زيت الأرغان النقي -->
-    <div class="product-card">
-      <img src="images/pure-argan-oil.jpg" alt="Pure Argan Oil" class="product-image" />
-      <h2 class="product-name">
-        <span class="lang-ar">زيت الأرغان النقي</span>
-        <span class="lang-en">Pure Argan Oil</span>
-      </h2>
-      <p class="product-price">
-        <span class="lang-ar">السعر: 90 ر.ق</span>
-        <span class="lang-en">Price: 90 QAR</span>
-      </p>
-      <a href="pure-argan-oil.html" class="details-button">
-        <span class="lang-ar">تفاصيل المنتج</span>
-        <span class="lang-en">Show Details</span>
-      </a>
-    </div>
-  </section>
+  <div class="product">
+    <img src="images/rice_serum.png" alt="Fermented Rice Serum">
+    <h2>Fermented Rice Serum</h2>
+    <a href="products/fermented-rice-serum.html" class="btn-secondary">View Product</a>
+  </div>
 
-  <!-- تذييل الصفحة -->
-  <footer class="footer">
-    <p>
-      <span class="lang-ar">© 2025 NaturaQ. جميع الحقوق محفوظة.</span>
-      <span class="lang-en">© 2025 NaturaQ. All rights reserved.</span>
-    </p>
-  </footer>
+  <div class="product">
+    <img src="images/dead_sea.png" alt="Dead Sea Mud Mask">
+    <h2>Dead Sea Mud Mask</h2>
+    <a href="products/dead-sea-mud-mask.html" class="btn-secondary">View Product</a>
+  </div>
 
-  <!-- تضمين ملفات JavaScript -->
-  <script src="script.js"></script>
-  <!-- تضمين كود بوت Chatbase (استبدل YOUR_CHATBOT_ID بالمعرّف الخاص بالبوت الخاص بك) -->
-  <script>
-    window.chatbaseConfig = { chatbotId: "YOUR_CHATBOT_ID" };
-  </script>
-  <script src="https://www.chatbase.co/embed.min.js" id="YOUR_CHATBOT_ID" defer></script>
+  <div class="product">
+    <img src="images/deep_cleanse_kit.png" alt="Deep Cleanse Kit">
+    <h2>Deep Cleanse Kit</h2>
+    <a href="products/deep-cleanse-kit.html" class="btn-secondary">View Product</a>
+  </div>
+
+  <div class="product">
+    <img src="images/pure_argan_Oil.png" alt="Pure Argan Oil">
+    <h2>Pure Argan Oil</h2>
+    <a href="products/pure-argan-oil.html" class="btn-secondary">View Product</a>
+  </div>
+
+  <div class="product">
+    <img src="images/rose_water_toner.png" alt="Rose Water Toner">
+    <h2>Rose Water Toner</h2>
+    <a href="products/rose-water-toner.html" class="btn-secondary">View Product</a>
+  </div>
+
+</div>
+
+<section class="whatsapp-section">
+  <h2 id="contact-title">Need Help? Contact Us!</h2>
+  <a href="https://wa.me/97470948788" class="btn-primary" target="_blank" id="contact-button">Chat on WhatsApp</a>
+</section>
+
+<footer class="footer">
+  &copy; 2025 NaturaQ. All rights reserved.
+</footer>
+
+<a href="#" class="back-to-top">&uarr;</a>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+    window.chatbase = (...args) => {
+      if(!window.chatbase.q){ window.chatbase.q = [] }
+      window.chatbase.q.push(args)
+    };
+    window.chatbase = new Proxy(window.chatbase, {
+      get(target, prop) {
+        if(prop === "q"){ return target.q }
+        return (...args) => target(prop, ...args)
+      }
+    });
+  }
+  const onLoad = function(){
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.id = "QyA3pZTR2k1v9jspuzdAs";
+    document.body.appendChild(script);
+  };
+  if(document.readyState === "complete"){ onLoad() }
+  else { window.addEventListener("load", onLoad) }
+})();
+</script>
+
 </body>
 </html>
