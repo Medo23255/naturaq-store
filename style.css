@@ -73,14 +73,14 @@ html[lang="en"] body {
 
 /* ===== أزرار عامة ===== */
 .btn-primary, .btn-secondary {
-  display: inline-block;
+  display: block; /* تصحيح */
   text-align: center;
   text-decoration: none;
   padding: 15px 30px;
   font-size: 16px;
   font-weight: bold;
   border-radius: 30px;
-  margin: 10px 0;
+  margin: 10px auto; /* تصحيح */
   width: 90%;
   max-width: 300px;
   transition: background-color 0.3s ease;
