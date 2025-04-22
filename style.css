@@ -1,10 +1,12 @@
-/* ==== الأساسيات ==== */
+/* ========== ملفات Style.css الجديدة ========== */
+
+/* الأساسيات */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Cairo', sans-serif;
   background: #ffffff;
-  color: #333333;
+  color: #333;
   line-height: 1.6;
 }
 
@@ -17,13 +19,14 @@ a {
   text-decoration: none;
 }
 
-/* ==== الهيدر ==== */
+/* الهيدر */
 .header {
-  background-color: #f7f7f7;
+  background-color: #f8f8f8;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo img {
@@ -36,7 +39,7 @@ a {
 }
 
 .lang-btn {
-  background-color: #e0e0e0;
+  background-color: #eee;
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -51,19 +54,19 @@ a {
   color: white;
 }
 
-/* ==== السلايدر الرئيسي ==== */
+/* السلايدر */
 .hero {
-  background: linear-gradient(to bottom, #e8f5e9, #ffffff);
-  padding: 50px 20px;
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  padding: 60px 20px;
   text-align: center;
 }
 
-.hero .tagline {
-  font-size: 26px;
+.tagline {
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
-.hero .subtitle {
+.subtitle {
   font-size: 18px;
   margin-bottom: 20px;
 }
@@ -71,93 +74,135 @@ a {
 .cta-button {
   background-color: #4CAF50;
   color: white;
-  padding: 12px 25px;
+  padding: 12px 30px;
   font-size: 16px;
   border-radius: 8px;
   transition: background-color 0.3s;
 }
 
 .cta-button:hover {
-  background-color: #45a049;
+  background-color: #43a047;
 }
 
-/* ==== قسم المنتجات ==== */
+/* المنتجات */
 .products-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  padding: 40px 20px;
+  padding: 50px 20px;
 }
 
 .product-card {
-  background: #ffffff;
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   text-align: center;
-  transition: transform 0.3s;
+  padding: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
 }
 
-.product-image {
-  height: 250px;
-  object-fit: cover;
-}
-
 .product-card h2 {
   font-size: 20px;
-  margin: 10px 0;
-}
-
-.product-card p {
-  font-size: 16px;
-  margin-bottom: 10px;
+  margin-top: 15px;
 }
 
 .details-button {
   display: inline-block;
-  margin: 10px 0 20px;
+  margin-top: 15px;
   background-color: #4CAF50;
   color: white;
-  padding: 8px 15px;
+  padding: 8px 20px;
   border-radius: 5px;
   font-size: 14px;
+  transition: background-color 0.3s;
 }
 
 .details-button:hover {
   background-color: #388e3c;
 }
 
-/* ==== الفوتر ==== */
-.footer {
-  background: #f7f7f7;
+/* قسم لماذا تختاري NaturaQ */
+.why-natura {
+  background: #e8f5e9;
+  padding: 50px 20px;
   text-align: center;
-  padding: 15px 10px;
-  font-size: 14px;
-  color: #666666;
 }
 
-/* ==== Responsive ==== */
+.why-natura h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+.why-natura ul {
+  list-style: none;
+  padding: 0;
+}
+
+.why-natura li {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* قسم التواصل */
+.contact-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.contact-section h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* الفوتر */
+.footer {
+  background: #f8f8f8;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .hero {
     padding: 30px 15px;
   }
-
-  .hero .tagline {
-    font-size: 22px;
-  }
-
-  .hero .subtitle {
-    font-size: 16px;
+  .tagline {
+    font-size: 24px;
   }
 }
 
-@media (max-width: 480px) {
-  .lang-switch {
-    flex-direction: column;
-    align-items: flex-end;
-  }
+/* ========== حركات AOS ========== */
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: 0.8s;
+  transition-timing-function: ease-out;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: none;
+}
+
+[data-aos="fade-up"] {
+  transform: translateY(20px);
+}
+
+[data-aos="fade-down"] {
+  transform: translateY(-20px);
+}
+
+[data-aos="fade-right"] {
+  transform: translateX(20px);
+}
+
+[data-aos="fade-left"] {
+  transform: translateX(-20px);
 }
