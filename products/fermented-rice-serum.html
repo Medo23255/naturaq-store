@@ -8,16 +8,18 @@
 </head>
 <body>
 
-<!-- Language Switcher -->
+<!-- سويتشر اللغة -->
 <div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
   <button onclick="setLanguage('en')">English</button>
 </div>
 
+<!-- اللوجو -->
 <header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
+<!-- تفاصيل المنتج -->
 <section class="product">
   <img src="images/rice_serum.png" alt="سيروم الأرز المخمر" class="product-img">
   <h1>سيروم الأرز المخمر</h1>
@@ -25,18 +27,19 @@
 
   <div class="description">
     <h2>وصف المنتج:</h2>
-    <p>سيروم الأرز المخمر يساعد على تفتيح البشرة، تحسين نعومتها، وزيادة مرونتها بفضل غناه بمضادات الأكسدة الطبيعية.</p>
+    <p>سيروم الأرز المخمر بتركيبة طبيعية غني بمضادات الأكسدة يساعد على تفتيح البشرة وزيادة نعومتها ومرونتها الطبيعية.</p>
   </div>
 
   <div class="usage">
     <h2>طريقة الاستخدام:</h2>
     <ul>
-      <li>ضع قطرات قليلة على بشرة نظيفة وجافة.</li>
-      <li>دلك بلطف حتى يتم امتصاص السيروم بالكامل.</li>
-      <li>استخدمه صباحًا ومساءً لنتائج أفضل.</li>
+      <li>توضع قطرات قليلة على بشرة نظيفة وجافة.</li>
+      <li>يدلك بلطف حتى يتم امتصاص السيروم بالكامل.</li>
+      <li>يستخدم صباحًا ومساءً لنتائج فعالة.</li>
     </ul>
   </div>
 
+  <!-- قسم الطلب -->
   <div class="order-section">
     <label>اختر الكمية:</label><br>
     <input type="number" id="quantity" value="1" min="1">
@@ -54,10 +57,12 @@
   </div>
 </section>
 
+<!-- الفوتر -->
 <footer class="footer">
   © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
+<!-- سكريبت التعامل مع الكمية والسعر -->
 <script src="script.js"></script>
 <script>
 const price = 90;
@@ -76,24 +81,32 @@ function updateTotal() {
 
 quantityInput.addEventListener('input', updateTotal);
 updateTotal();
+</script>
 
-function setLanguage(lang) {
-  localStorage.setItem('language', lang);
-  applyLanguage(lang);
-}
-
-function applyLanguage(lang) {
-  if (lang === 'ar') {
-    document.documentElement.setAttribute('dir', 'rtl');
-  } else {
-    document.documentElement.setAttribute('dir', 'ltr');
+<!-- سكريبت بوت الذكاء الاصطناعي -->
+<script>
+(function(){
+  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+    window.chatbase = (...args) => {
+      if(!window.chatbase.q){ window.chatbase.q = [] }
+      window.chatbase.q.push(args)
+    };
+    window.chatbase = new Proxy(window.chatbase, {
+      get(target, prop) {
+        if(prop === "q"){ return target.q }
+        return (...args) => target(prop, ...args)
+      }
+    });
   }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  const savedLang = localStorage.getItem('language') || 'ar';
-  applyLanguage(savedLang);
-});
+  const onLoad = function(){
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.id = "QyA3pZTR2k1v9jspuzdAs"; 
+    document.body.appendChild(script);
+  };
+  if(document.readyState === "complete"){ onLoad() }
+  else { window.addEventListener("load", onLoad) }
+})();
 </script>
 
 </body>
