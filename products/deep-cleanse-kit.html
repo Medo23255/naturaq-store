@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>زيت الأرغان الطبيعي - NaturaQ</title>
+  <title>طقم تنظيف عميق للبشرة - NaturaQ</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,31 +19,32 @@
 </header>
 
 <section class="product">
-  <img src="images/pure_argan_oil.png" alt="زيت الأرغان الطبيعي" class="product-img">
-  <h1>زيت الأرغان الطبيعي</h1>
-  <p class="price">السعر: 200 ر.ق</p>
+  <img src="images/deep_cleanse_kit.png" alt="طقم تنظيف عميق للبشرة" class="product-img">
+  <h1>طقم تنظيف عميق للبشرة</h1>
+  <p class="price">السعر: 150 ر.ق</p>
 
   <div class="description">
     <h2>وصف المنتج:</h2>
-    <p>زيت الأرغان النقي، مغذي غني بفيتامين E والأحماض الدهنية، يعزز ترطيب البشرة ولمعان الشعر بشكل طبيعي.</p>
+    <p>طقم تنظيف عميق مصمم خصيصًا لإزالة الشوائب وتنقية البشرة ومنحها إشراقة طبيعية وصحية بتركيبة فريدة من المكونات الطبيعية.</p>
   </div>
 
   <div class="usage">
     <h2>طريقة الاستخدام:</h2>
     <ul>
-      <li>للبشرة: ضع بضع قطرات ودلك بلطف.</li>
-      <li>للشعر: ضع كمية صغيرة على الأطراف لترطيب ولمعان طبيعي.</li>
+      <li>استخدم الغسول يوميًا لتنظيف البشرة.</li>
+      <li>طبق الماسك مرتين أسبوعيًا لتعزيز الإشراقة.</li>
+      <li>رطب البشرة باستخدام السيروم المرافق للطقم.</li>
     </ul>
   </div>
 
   <div class="order-section">
     <label>اختر الكمية:</label><br>
     <input type="number" id="quantity" value="1" min="1">
-    <p><strong>الإجمالي:</strong> <span id="total-price">200 ر.ق</span></p>
+    <p><strong>الإجمالي:</strong> <span id="total-price">150 ر.ق</span></p>
 
     <form action="https://formspree.io/f/mwkgeqkw" method="POST">
-      <input type="hidden" name="product" value="زيت الأرغان الطبيعي">
-      <input type="hidden" name="price" value="200">
+      <input type="hidden" name="product" value="طقم تنظيف عميق للبشرة">
+      <input type="hidden" name="price" value="150">
       <input type="hidden" name="total" id="form-total">
       <input type="hidden" name="quantity" id="form-quantity">
       <button type="submit" class="btn-order">تأكيد الطلب</button>
@@ -59,7 +60,7 @@
 
 <script src="script.js"></script>
 <script>
-const price = 200;
+const price = 150;
 const quantityInput = document.getElementById('quantity');
 const totalPrice = document.getElementById('total-price');
 const formTotal = document.getElementById('form-total');
