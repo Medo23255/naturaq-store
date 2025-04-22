@@ -10,10 +10,13 @@ function applyLanguage(lang) {
     document.documentElement.setAttribute('lang', 'ar');
     document.documentElement.setAttribute('dir', 'rtl');
 
-    document.getElementById('hero-title').textContent = 'اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ';
-    document.getElementById('hero-description').textContent = 'منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.';
-    document.getElementById('shop-now-btn').textContent = 'تسوقي الآن';
-    document.getElementById('ai-message').textContent = 'هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!';
+    // الصفحة الرئيسية
+    if (document.getElementById('hero-title')) {
+      document.getElementById('hero-title').textContent = 'اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ';
+      document.getElementById('hero-description').textContent = 'منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.';
+      document.getElementById('shop-now-btn').textContent = 'تسوقي الآن';
+      document.getElementById('ai-message').textContent = 'هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!';
+    }
 
     if (document.getElementById('product1-name')) document.getElementById('product1-name').textContent = 'صابونة طبيعية يدوية';
     if (document.getElementById('product2-name')) document.getElementById('product2-name').textContent = 'سيروم الأرز المخمر';
@@ -26,24 +29,35 @@ function applyLanguage(lang) {
     detailButtons.forEach(btn => btn.textContent = 'عرض التفاصيل');
 
     // لماذا تختارنا
-    document.getElementById('why-choose-title').textContent = 'لماذا تختارين NaturaQ؟';
-    document.getElementById('reason1-title').textContent = 'مكونات طبيعية 100%';
-    document.getElementById('reason1-desc').textContent = 'منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية الفائقة ببشرتكِ.';
-    document.getElementById('reason2-title').textContent = 'شحن سريع وآمن';
-    document.getElementById('reason2-desc').textContent = 'نضمن توصيل آمن لمنتجاتك بأعلى جودة وفي أسرع وقت.';
-    document.getElementById('reason3-title').textContent = 'دعم متواصل للعملاء';
-    document.getElementById('reason3-desc').textContent = 'فريق دعم متوفر دائمًا للرد على استفساراتك بكل احترافية.';
-    document.getElementById('reason4-title').textContent = 'رضاكِ أولويتنا';
-    document.getElementById('reason4-desc').textContent = 'نضمن لكِ تجربة تسوق فريدة وجودة تليق بجمالكِ.';
+    if (document.getElementById('why-choose-title')) document.getElementById('why-choose-title').textContent = 'لماذا تختارين NaturaQ؟';
+    if (document.getElementById('reason1-title')) document.getElementById('reason1-title').textContent = 'مكونات طبيعية 100%';
+    if (document.getElementById('reason1-desc')) document.getElementById('reason1-desc').textContent = 'منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية الفائقة ببشرتكِ.';
+    if (document.getElementById('reason2-title')) document.getElementById('reason2-title').textContent = 'شحن سريع وآمن';
+    if (document.getElementById('reason2-desc')) document.getElementById('reason2-desc').textContent = 'نضمن توصيل آمن لمنتجاتك بأعلى جودة وفي أسرع وقت.';
+    if (document.getElementById('reason3-title')) document.getElementById('reason3-title').textContent = 'دعم متواصل للعملاء';
+    if (document.getElementById('reason3-desc')) document.getElementById('reason3-desc').textContent = 'فريق دعم متوفر دائمًا للرد على استفساراتك بكل احترافية.';
+    if (document.getElementById('reason4-title')) document.getElementById('reason4-title').textContent = 'رضاكِ أولويتنا';
+    if (document.getElementById('reason4-desc')) document.getElementById('reason4-desc').textContent = 'نضمن لكِ تجربة تسوق فريدة وجودة تليق بجمالكِ.';
+
+    // صفحة تفاصيل المنتج
+    if (document.getElementById('product-title')) document.getElementById('product-title').textContent = 'صابونة طبيعية يدوية';
+    if (document.getElementById('product-description')) document.getElementById('product-description').textContent = 'صابونة طبيعية مصنوعة يدويًا من أجود المكونات العضوية لتنظيف وترطيب بشرتكِ بلطف.';
+    if (document.getElementById('price-label')) document.getElementById('price-label').textContent = 'السعر:';
+    if (document.getElementById('total-label')) document.getElementById('total-label').textContent = 'الإجمالي:';
+    if (document.getElementById('confirm-btn')) document.getElementById('confirm-btn').textContent = 'تأكيد الطلب عبر واتساب';
+    if (document.getElementById('back-btn')) document.getElementById('back-btn').textContent = 'رجوع إلى القائمة الرئيسية';
 
   } else {
     document.documentElement.setAttribute('lang', 'en');
     document.documentElement.setAttribute('dir', 'ltr');
 
-    document.getElementById('hero-title').textContent = 'Discover True Natural Beauty with NaturaQ';
-    document.getElementById('hero-description').textContent = 'Natural care products crafted from the finest organic ingredients.';
-    document.getElementById('shop-now-btn').textContent = 'Shop Now';
-    document.getElementById('ai-message').textContent = 'Need help? Talk to our AI assistant now!';
+    // الصفحة الرئيسية
+    if (document.getElementById('hero-title')) {
+      document.getElementById('hero-title').textContent = 'Discover True Natural Beauty with NaturaQ';
+      document.getElementById('hero-description').textContent = 'Natural care products crafted from the finest organic ingredients.';
+      document.getElementById('shop-now-btn').textContent = 'Shop Now';
+      document.getElementById('ai-message').textContent = 'Need help? Talk to our AI assistant now!';
+    }
 
     if (document.getElementById('product1-name')) document.getElementById('product1-name').textContent = 'Natural Handmade Soap';
     if (document.getElementById('product2-name')) document.getElementById('product2-name').textContent = 'Fermented Rice Serum';
@@ -56,15 +70,23 @@ function applyLanguage(lang) {
     detailButtons.forEach(btn => btn.textContent = 'View Details');
 
     // لماذا تختارنا
-    document.getElementById('why-choose-title').textContent = 'Why Choose NaturaQ?';
-    document.getElementById('reason1-title').textContent = '100% Natural Ingredients';
-    document.getElementById('reason1-desc').textContent = 'Our products are made from the finest organic ingredients to care for your skin.';
-    document.getElementById('reason2-title').textContent = 'Fast & Secure Shipping';
-    document.getElementById('reason2-desc').textContent = 'We guarantee safe and high-quality delivery of your orders.';
-    document.getElementById('reason3-title').textContent = 'Continuous Customer Support';
-    document.getElementById('reason3-desc').textContent = 'Our support team is always available to assist you professionally.';
-    document.getElementById('reason4-title').textContent = 'Your Satisfaction is Our Priority';
-    document.getElementById('reason4-desc').textContent = 'We ensure you a unique shopping experience and premium quality.';
+    if (document.getElementById('why-choose-title')) document.getElementById('why-choose-title').textContent = 'Why Choose NaturaQ?';
+    if (document.getElementById('reason1-title')) document.getElementById('reason1-title').textContent = '100% Natural Ingredients';
+    if (document.getElementById('reason1-desc')) document.getElementById('reason1-desc').textContent = 'Our products are made from the finest organic ingredients to care for your skin.';
+    if (document.getElementById('reason2-title')) document.getElementById('reason2-title').textContent = 'Fast & Secure Shipping';
+    if (document.getElementById('reason2-desc')) document.getElementById('reason2-desc').textContent = 'We guarantee safe and high-quality delivery of your orders.';
+    if (document.getElementById('reason3-title')) document.getElementById('reason3-title').textContent = 'Continuous Customer Support';
+    if (document.getElementById('reason3-desc')) document.getElementById('reason3-desc').textContent = 'Our support team is always available to assist you professionally.';
+    if (document.getElementById('reason4-title')) document.getElementById('reason4-title').textContent = 'Your Satisfaction is Our Priority';
+    if (document.getElementById('reason4-desc')) document.getElementById('reason4-desc').textContent = 'We ensure you a unique shopping experience and premium quality.';
+
+    // صفحة تفاصيل المنتج
+    if (document.getElementById('product-title')) document.getElementById('product-title').textContent = 'Natural Handmade Soap';
+    if (document.getElementById('product-description')) document.getElementById('product-description').textContent = 'A handmade natural soap crafted from the finest organic ingredients to gently cleanse and hydrate your skin.';
+    if (document.getElementById('price-label')) document.getElementById('price-label').textContent = 'Price:';
+    if (document.getElementById('total-label')) document.getElementById('total-label').textContent = 'Total:';
+    if (document.getElementById('confirm-btn')) document.getElementById('confirm-btn').textContent = 'Confirm Order on WhatsApp';
+    if (document.getElementById('back-btn')) document.getElementById('back-btn').textContent = 'Back to Home';
   }
 }
 
