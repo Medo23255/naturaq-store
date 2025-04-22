@@ -6,15 +6,17 @@ function setLanguage(lang) {
 
 // تطبيق اللغة
 function applyLanguage(lang) {
-  if (lang === 'ar') {
-    document.documentElement.setAttribute('lang', 'ar');
-    document.documentElement.setAttribute('dir', 'rtl');
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
+  if (lang === 'ar') {
     // الصفحة الرئيسية
     if (document.getElementById('hero-title')) {
       document.getElementById('hero-title').textContent = 'اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ';
       document.getElementById('hero-description').textContent = 'منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.';
       document.getElementById('shop-now-btn').textContent = 'تسوقي الآن';
+    }
+    if (document.getElementById('ai-message')) {
       document.getElementById('ai-message').textContent = 'هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!';
     }
 
@@ -48,14 +50,13 @@ function applyLanguage(lang) {
     if (document.getElementById('back-btn')) document.getElementById('back-btn').textContent = 'رجوع إلى القائمة الرئيسية';
 
   } else {
-    document.documentElement.setAttribute('lang', 'en');
-    document.documentElement.setAttribute('dir', 'ltr');
-
     // الصفحة الرئيسية
     if (document.getElementById('hero-title')) {
       document.getElementById('hero-title').textContent = 'Discover True Natural Beauty with NaturaQ';
       document.getElementById('hero-description').textContent = 'Natural care products crafted from the finest organic ingredients.';
       document.getElementById('shop-now-btn').textContent = 'Shop Now';
+    }
+    if (document.getElementById('ai-message')) {
       document.getElementById('ai-message').textContent = 'Need help? Talk to our AI assistant now!';
     }
 
