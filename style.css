@@ -1,71 +1,186 @@
+/* إعدادات أساسية */
 body {
     margin: 0;
+    padding: 0;
     font-family: 'Cairo', sans-serif;
-    background: #f9f9f9;
-    direction: rtl;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
+/* اللوجو واللغة */
 .header {
-    text-align: center;
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .logo {
     width: 120px;
-}
-
-.language-switcher {
-    text-align: center;
-    margin: 10px;
+    height: auto;
 }
 
 .language-switcher button {
-    padding: 8px 16px;
-    margin: 5px;
     background-color: #4CAF50;
-    color: white;
+    color: #fff;
     border: none;
+    padding: 8px 16px;
+    margin: 0 5px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
+.language-switcher button:hover {
+    background-color: #45a049;
+}
+
+/* الهيرو */
 .hero {
-    background: #e8f5e9;
-    padding: 20px;
     text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(to right, #a8e063, #56ab2f);
+    color: white;
 }
 
 .hero h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
 .hero p {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 
-.hero .btn-primary {
-    background-color: #4CAF50;
-    color: white;
+.btn-primary {
+    background-color: #ffffff;
+    color: #4CAF50;
     padding: 10px 20px;
     border-radius: 8px;
     text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s;
 }
 
+.btn-primary:hover {
+    background-color: #e8f5e9;
+}
+
+/* المنتجات */
 .products {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 20px;
     gap: 20px;
+    padding: 30px 10px;
 }
 
 .product-card {
-    background: white;
+    background-color: white;
     border-radius: 12px;
-    box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 280px;
     overflow: hidden;
-    width: 300px;
-    text-align:
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+.product-card h3 {
+    font-size: 20px;
+    margin: 15px 0;
+    color: #333;
+}
+
+.btn-details {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 14px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn-details:hover {
+    background-color: #45a049;
+}
+
+/* سكشن الواتساب */
+.whatsapp-section {
+    text-align: center;
+    background: #4CAF50;
+    padding: 30px 20px;
+    color: white;
+}
+
+.whatsapp-section h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.whatsapp-section a {
+    background-color: #ffffff;
+    color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.whatsapp-section a:hover {
+    background-color: #e8f5e9;
+}
+
+/* الفوتر */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    font-size: 14px;
+}
+
+/* زر العودة للأعلى */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 20px;
+    display: none;
+}
+
+.back-to-top.show {
+    display: block;
+}
+
+/* ميديا كويري للموبايل */
+@media (max-width: 600px) {
+    .products {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 90%;
+    }
+}
