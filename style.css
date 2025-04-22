@@ -24,12 +24,12 @@ body {
 }
 
 .language-switcher button {
-  background-color: #A8D5BA; /* أخضر نعناع */
+  background-color: #A8D5BA;
   color: white;
   border: none;
   padding: 10px 20px;
   margin: 0 5px;
-  border-radius: 20px;
+  border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -41,7 +41,7 @@ body {
 
 /* ===== إشعار الذكاء الاصطناعي ===== */
 .ai-banner {
-  background-color: #e0f7fa; /* تركوازي خفيف */
+  background-color: #e0f7fa;
   padding: 10px;
   text-align: center;
   font-size: 14px;
@@ -49,10 +49,10 @@ body {
   margin-bottom: 10px;
 }
 
-/* ===== بانر رئيسي الصفحة الرئيسية ===== */
+/* ===== البانر الرئيسي ===== */
 .hero {
   text-align: center;
-  background-color: #e8f5e9; /* أخضر فاتح */
+  background-color: #e8f5e9;
   padding: 60px 20px;
 }
 
@@ -66,17 +66,26 @@ body {
   margin-bottom: 20px;
 }
 
-/* ===== أزرار عامة ===== */
+/* ===== أزرار موحدة ===== */
+.btn-primary, .btn-secondary, .quantity-control button {
+  display: inline-block;
+  width: 90%;
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .btn-primary {
   background-color: #A8D5BA;
   color: white;
-  padding: 12px 30px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  display: inline-block;
-  transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -86,14 +95,6 @@ body {
 .btn-secondary {
   background-color: #ddd;
   color: #333;
-  padding: 10px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
 }
 
 .btn-secondary:hover {
@@ -178,15 +179,6 @@ body {
   color: #666;
 }
 
-/* ===== الفوتر ===== */
-.footer {
-  background-color: #e8f5e9;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  margin-top: 50px;
-}
-
 /* ===== صفحة تفاصيل المنتج ===== */
 .product-page {
   max-width: 600px;
@@ -227,23 +219,6 @@ body {
   margin: 20px 0;
 }
 
-.quantity-control button {
-  background-color: #A8D5BA;
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  font-size: 22px;
-  margin: 0 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.quantity-control button:hover {
-  background-color: #82cdb0;
-}
-
 .quantity-control input {
   width: 50px;
   height: 40px;
@@ -258,6 +233,15 @@ body {
   font-weight: bold;
   margin-top: 15px;
   color: #333;
+}
+
+/* ===== الفوتر ===== */
+.footer {
+  background-color: #e8f5e9;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: 50px;
 }
 
 /* ===== Responsive للمويايل ===== */
