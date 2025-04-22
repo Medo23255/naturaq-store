@@ -1,41 +1,79 @@
-// وظيفة لتغيير اللغة وتحديث النصوص في الصفحة
-function setLanguage(lang) {
-    localStorage.setItem('lang', lang);
+// ==================
+// تغيير اللغة وحفظها
+// ==================
 
-    const isArabic = lang === 'ar';
+function applyLanguage(lang) {
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  document.body.classList.remove('ar', 'en');
+  document.body.classList.add(lang);
 
-    // تغيير اتجاه الصفحة
-    document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
+  // إظهار النصوص المناسبة
+  document.querySelectorAll('.lang-ar').forEach(el => {
+    el.style.display = (lang === 'ar') ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.lang-en').forEach(el => {
+    el.style.display = (lang === 'en') ? 'inline' : 'none';
+  });
 
-    // تحديث النصوص حسب اللغة
-    document.getElementById('hero-title').innerHTML = isArabic ? 'اكتشف الجمال الطبيعي الحقيقي مع NaturaQ' : 'Discover True Natural Beauty with NaturaQ';
-    document.getElementById('hero-subtitle').innerHTML = isArabic ? 'منتجات طبيعية للعناية بجمالك ونضارة بشرتك.' : 'Natural products to enhance your beauty and skin glow.';
-    document.getElementById('shop-now').innerHTML = isArabic ? 'تسوق الآن' : 'Shop Now';
-    document.getElementById('contact-title').innerHTML = isArabic ? 'هل تحتاج مساعدة؟ تواصل معنا' : 'Need Help? Contact Us!';
-    document.getElementById('contact-button').innerHTML = isArabic ? 'تواصل عبر واتساب' : 'Chat on WhatsApp';
-    document.querySelector('.footer').innerHTML = isArabic ? '© 2025 NaturaQ. جميع الحقوق محفوظة.' : '© 2025 NaturaQ. All rights reserved.';
-
-    // تغيير كل أزرار تفاصيل المنتجات
-    document.querySelectorAll('.btn-details').forEach(btn => {
-        btn.innerHTML = isArabic ? 'تفاصيل المنتج' : 'View Product';
-    });
+  // تغيير حالة أزرار اللغة
+  const btnAr = document.getElementById('btn-ar');
+  const btnEn = document.getElementById('btn-en');
+  if (btnAr && btnEn) {
+    btnAr.classList.toggle('active', lang === 'ar');
+    btnEn.classList.toggle('active', lang === 'en');
+  }
 }
 
-// عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('lang') || 'ar';
-    setLanguage(savedLang);
+function switchLanguage(lang) {
+  localStorage.setItem('preferredLanguage', lang);
+  applyLanguage(lang);
+}
 
-    // تفعيل أزرار اللغة
-    document.getElementById('btn-ar').addEventListener('click', () => setLanguage('ar'));
-    document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+document.addEventListener('DOMContentLoaded', function () {
+  const savedLang = localStorage.getItem('preferredLanguage') || 'ar';
+  applyLanguage(savedLang);
 
-    // تفعيل أزرار تفاصيل المنتجات
-    document.querySelectorAll('.btn-details').forEach(button => {
-        button.addEventListener('click', () => {
-            const product = button.getAttribute('data-product');
-            window.location.href = `products/${product}.html`;
-        });
-    });
+  const btnAr = document.getElementById('btn-ar');
+  const btnEn = document.getElementById('btn-en');
+
+  if (btnAr && btnEn) {
+    btnAr.addEventListener('click', () => switchLanguage('ar'));
+    btnEn.addEventListener('click', () => switchLanguage('en'));
+  }
 });
+
+// ================================
+// كود تفاصيل المنتجات (زيادة / نقصان الكمية)
+// ================================
+
+const priceElement = document.getElementById('price');
+const qtyInput = document.getElementById('quantity');
+const totalSpan = document.getElementById('total');
+const orderBtn = document.getElementById('orderBtn');
+
+if (priceElement && qtyInput && totalSpan && orderBtn) {
+  const price = parseFloat(priceElement.textContent);
+
+  function updateTotal() {
+    const qty = parseInt(qtyInput.value);
+    totalSpan.textContent = price * qty;
+
+    const productName = document.querySelector('h1')?.innerText || "منتج من NaturaQ";
+    orderBtn.href = `https://wa.me/97470948788?text=أرغب في طلب ${qty} × ${productName} بإجمالي ${price * qty} ر.ق`;
+  }
+
+  window.increaseQty = function () {
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+    updateTotal();
+  }
+
+  window.decreaseQty = function () {
+    if (parseInt(qtyInput.value) > 1) {
+      qtyInput.value = parseInt(qtyInput.value) - 1;
+      updateTotal();
+    }
+  }
+
+  updateTotal();
+}
