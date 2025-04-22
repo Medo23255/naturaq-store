@@ -71,7 +71,7 @@
   </div>
 </section>
 
-<!-- لماذا تختارينا -->
+<!-- لماذا تختارنا -->
 <section class="why-us">
   <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
   <div class="reasons">
@@ -99,34 +99,34 @@
   © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
-<!-- سكريبت الذكاء الاصطناعي -->
+<!-- بوت الذكاء الاصطناعي -->
 <script>
 (function(){
-  if(!window.chatbase || window.chatbase(\"getState\") !== \"initialized\"){
+  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
     window.chatbase = (...args) => {
       if(!window.chatbase.q){ window.chatbase.q = [] }
       window.chatbase.q.push(args)
     };
     window.chatbase = new Proxy(window.chatbase, {
       get(target, prop) {
-        if(prop === \"q\"){ return target.q }
+        if(prop === "q"){ return target.q }
         return (...args) => target(prop, ...args)
       }
     });
   }
   const onLoad = function(){
-    const script = document.createElement(\"script\");
-    script.src = \"https://www.chatbase.co/embed.min.js\";
-    script.id = \"QyA3pZTR2k1v9jspuzdAs\";
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.id = "QyA3pZTR2k1v9jspuzdAs";
     document.body.appendChild(script);
   };
-  if(document.readyState === \"complete\"){ onLoad() }
-  else { window.addEventListener(\"load\", onLoad) }
+  if(document.readyState === "complete"){ onLoad() }
+  else { window.addEventListener("load", onLoad) }
 })();
 </script>
 
-<!-- سكريبت حفظ واختيار اللغة -->
-<script src=\"script.js\"></script>
+<!-- سكريبت حفظ اللغة -->
+<script src="script.js"></script>
 
 </body>
 </html>
