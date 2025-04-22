@@ -10,18 +10,23 @@
 </head>
 <body>
 
-<!-- لغة -->
+<!-- مبدل اللغة -->
 <div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
   <button onclick="setLanguage('en')">English</button>
 </div>
 
-<!-- رأس الموقع -->
+<!-- رأس الصفحة -->
 <header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
 </header>
 
-<!-- البانر الرئيسي -->
+<!-- إشعار الذكاء الاصطناعي -->
+<div class="ai-banner">
+  <p id="ai-message">هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!</p>
+</div>
+
+<!-- بانر رئيسي -->
 <section class="hero">
   <h1 id="hero-title">Discover True Natural Beauty with NaturaQ.</h1>
   <p id="hero-description">Natural care products crafted from the finest ingredients for your beauty.</p>
@@ -69,9 +74,32 @@
 
 </section>
 
+<!-- لماذا تختارنا -->
+<section class="why-us" id="why-us">
+  <h2>لماذا تختارنا؟</h2>
+  <div class="reasons">
+    <div class="reason" data-aos="fade-up">
+      <h3>منتجات طبيعية 100%</h3>
+      <p>نستخدم أفضل المكونات الطبيعية لتحصلي على نتائج مذهلة وآمنة لبشرتك.</p>
+    </div>
+    <div class="reason" data-aos="fade-up">
+      <h3>شحن سريع وآمن</h3>
+      <p>نضمن توصيل منتجاتك بأسرع وقت وبأفضل تغليف.</p>
+    </div>
+    <div class="reason" data-aos="fade-up">
+      <h3>دعم عملاء مميز</h3>
+      <p>فريقنا جاهز للرد على استفساراتك ومساعدتك في أي وقت.</p>
+    </div>
+    <div class="reason" data-aos="fade-up">
+      <h3>ضمان رضاك</h3>
+      <p>نضمن لك تجربة تسوق ممتعة وجودة عالية ترضيك بالكامل.</p>
+    </div>
+  </div>
+</section>
+
 <!-- الفوتر -->
 <footer class="footer">
-  <p>© 2025 NaturaQ. All rights reserved.</p>
+  <p>© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
 </footer>
 
 <!-- مكتبة AOS للحركة -->
@@ -86,26 +114,26 @@
 <!-- بوت الذكاء الاصطناعي -->
 <script>
 (function(){
-  if(!window.chatbase || window.chatbase(\"getState\") !== \"initialized\"){
+  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
     window.chatbase = (...args) => {
       if(!window.chatbase.q) window.chatbase.q = [];
       window.chatbase.q.push(args);
     };
     window.chatbase = new Proxy(window.chatbase, {
       get(target, prop) {
-        if (prop === \"q\") return target.q;
+        if (prop === "q") return target.q;
         return (...args) => target(prop, ...args);
       }
     });
   }
   const onLoad = function(){
-    const script = document.createElement(\"script\");
-    script.src = \"https://www.chatbase.co/embed.min.js\";
-    script.id = \"QyA3pZTR2k1v9jspuzdAs\";
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.id = "QyA3pZTR2k1v9jspuzdAs";
     document.body.appendChild(script);
   };
-  if(document.readyState === \"complete\"){ onLoad(); }
-  else { window.addEventListener(\"load\", onLoad); }
+  if(document.readyState === "complete"){ onLoad(); }
+  else { window.addEventListener("load", onLoad); }
 })();
 </script>
 
