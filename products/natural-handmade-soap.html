@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Natural Handmade Soap | صابونة طبيعية</title>
+  <title>صابونة طبيعية يدوية - NaturaQ</title>
   <link rel="stylesheet" href="../style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -22,22 +22,26 @@
 
 <!-- صفحة المنتج -->
 <section class="product-page">
-  <img src="../images/natural-soap.png" alt="Natural Handmade Soap" class="product-image">
+  <img src="../images/soap.png" alt="صابونة طبيعية" class="product-image" id="product-image">
+
+  <h3 id="product-name-small">صابونة طبيعية يدوية</h3>
+
   <h1 id="product-title">صابونة طبيعية يدوية</h1>
-  <p id="product-description">
-    صابونة طبيعية مصنوعة يدوياً من أجود المكونات العضوية لتنظيف وترطيب بشرتك بلطف.
-  </p>
+
+  <p id="product-description">صابونة طبيعية مصنوعة يدوياً من أجود المكونات العضوية لتنظيف وترطيب بشرتك بلطف.</p>
 
   <div class="quantity-control">
     <button onclick="decreaseQuantity()">-</button>
-    <input type="number" id="quantity" value="1" min="1">
+    <input type="number" id="quantity" value="1" min="1" readonly>
     <button onclick="increaseQuantity()">+</button>
   </div>
 
-  <div id="total-price">السعر: 45 ر.ق</div>
+  <p id="price">السعر: 45 ر.ق</p>
+  <p id="total-price">الإجمالي: 45 ر.ق</p>
 
-  <a href="https://wa.me/97470948788" target="_blank" class="btn-primary" id="order-now">تأكيد الطلب عبر واتساب</a>
-  <a href="../index.html" class="btn-secondary" id="back-home">رجوع إلى القائمة الرئيسية</a>
+  <a href="#" id="whatsapp-button" class="btn-primary">تأكيد الطلب عبر واتساب</a>
+  <br>
+  <a href="../index.html" class="btn-secondary">رجوع إلى القائمة الرئيسية</a>
 </section>
 
 <!-- الفوتر -->
@@ -45,56 +49,7 @@
   © 2025 NaturaQ. جميع الحقوق محفوظة.
 </footer>
 
-<!-- سكريبت التحكم بالكمية -->
-<script>
-function decreaseQuantity() {
-  var qty = document.getElementById('quantity');
-  if (qty.value > 1) qty.value--;
-}
-
-function increaseQuantity() {
-  var qty = document.getElementById('quantity');
-  qty.value++;
-}
-</script>
-
-<!-- سكريبت حفظ اللغة وتطبيقها -->
-<script>
-function setLanguage(lang) {
-  localStorage.setItem('selectedLanguage', lang);
-  applyLanguage(lang);
-}
-
-function applyLanguage(lang) {
-  if (lang === 'ar') {
-    document.documentElement.lang = 'ar';
-    document.documentElement.dir = 'rtl';
-    document.getElementById('product-title').textContent = 'صابونة طبيعية يدوية';
-    document.getElementById('product-description').textContent = 'صابونة طبيعية مصنوعة يدوياً من أجود المكونات العضوية لتنظيف وترطيب بشرتك بلطف.';
-    document.getElementById('order-now').textContent = 'تأكيد الطلب عبر واتساب';
-    document.getElementById('back-home').textContent = 'رجوع إلى القائمة الرئيسية';
-    document.getElementById('ai-message').textContent = 'هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!';
-    document.getElementById('total-price').textContent = 'السعر: 45 ر.ق';
-  } else {
-    document.documentElement.lang = 'en';
-    document.documentElement.dir = 'ltr';
-    document.getElementById('product-title').textContent = 'Natural Handmade Soap';
-    document.getElementById('product-description').textContent = 'A handmade natural soap crafted from the finest organic ingredients to gently cleanse and hydrate your skin.';
-    document.getElementById('order-now').textContent = 'Confirm Order on WhatsApp';
-    document.getElementById('back-home').textContent = 'Back to Home';
-    document.getElementById('ai-message').textContent = 'Need help? Talk to our AI assistant now!';
-    document.getElementById('total-price').textContent = 'Price: 45 QAR';
-  }
-}
-
-// عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-  const savedLanguage = localStorage.getItem('selectedLanguage') || 'ar';
-  applyLanguage(savedLanguage);
-});
-</script>
-
-<!-- سكريبت بوت الذكاء الاصطناعي -->
+<!-- بوت الذكاء الاصطناعي -->
 <script>
 (function(){
   if(!window.chatbase || window.chatbase("getState") !== "initialized"){
@@ -118,6 +73,65 @@ document.addEventListener('DOMContentLoaded', function() {
   if(document.readyState === "complete"){ onLoad() }
   else { window.addEventListener("load", onLoad) }
 })();
+</script>
+
+<!-- السكريبت الخاص بالمنتج -->
+<script>
+// التحكم في الكمية والإجمالي
+let quantity = 1;
+const unitPrice = 45; // سعر القطعة
+function increaseQuantity() {
+  quantity++;
+  updateDisplay();
+}
+function decreaseQuantity() {
+  if (quantity > 1) {
+    quantity--;
+    updateDisplay();
+  }
+}
+function updateDisplay() {
+  document.getElementById('quantity').value = quantity;
+  document.getElementById('total-price').textContent = 'الإجمالي: ' + (quantity * unitPrice) + ' ر.ق';
+  document.getElementById('whatsapp-button').href = 'https://wa.me/?text=أرغب في طلب ' + quantity + ' × صابونة طبيعية بسعر ' + (quantity * unitPrice) + ' ر.ق';
+}
+
+// حفظ اللغة وتطبيقها
+function setLanguage(lang) {
+  localStorage.setItem('selectedLanguage', lang);
+  applyLanguage(lang);
+}
+
+function applyLanguage(lang) {
+  if (lang === 'ar') {
+    document.documentElement.setAttribute('lang', 'ar');
+    document.documentElement.setAttribute('dir', 'rtl');
+    document.getElementById('ai-message').textContent = 'هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!';
+    document.getElementById('product-name-small').textContent = 'صابونة طبيعية يدوية';
+    document.getElementById('product-title').textContent = 'صابونة طبيعية يدوية';
+    document.getElementById('product-description').textContent = 'صابونة طبيعية مصنوعة يدوياً من أجود المكونات العضوية لتنظيف وترطيب بشرتك بلطف.';
+    document.getElementById('price').textContent = 'السعر: 45 ر.ق';
+    document.getElementById('whatsapp-button').textContent = 'تأكيد الطلب عبر واتساب';
+    document.querySelector('.btn-secondary').textContent = 'رجوع إلى القائمة الرئيسية';
+  } else {
+    document.documentElement.setAttribute('lang', 'en');
+    document.documentElement.setAttribute('dir', 'ltr');
+    document.getElementById('ai-message').textContent = 'Need help? Talk to our AI assistant now!';
+    document.getElementById('product-name-small').textContent = 'Natural Handmade Soap';
+    document.getElementById('product-title').textContent = 'Natural Handmade Soap';
+    document.getElementById('product-description').textContent = 'A handmade natural soap crafted from the finest organic ingredients to gently cleanse and hydrate your skin.';
+    document.getElementById('price').textContent = 'Price: 45 QAR';
+    document.getElementById('whatsapp-button').textContent = 'Confirm Order on WhatsApp';
+    document.querySelector('.btn-secondary').textContent = 'Back to Home';
+  }
+}
+
+// تنفيذ عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLanguage = localStorage.getItem('selectedLanguage') || 'ar';
+  applyLanguage(savedLanguage);
+  updateDisplay();
+});
 </script>
 
 </body>
