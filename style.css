@@ -1,208 +1,118 @@
-/* ========== ملفات Style.css الجديدة ========== */
-
-/* الأساسيات */
 body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #fdfaf6; /* أوف وايت */
   margin: 0;
   padding: 0;
-  font-family: 'Cairo', sans-serif;
-  background: #ffffff;
   color: #333;
-  line-height: 1.6;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  text-decoration: none;
-}
-
-/* الهيدر */
 .header {
-  background-color: #f8f8f8;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
 }
 
-.logo img {
-  height: 50px;
+.logo {
+  max-width: 150px;
 }
 
-.lang-switch {
-  display: flex;
-  gap: 10px;
+.language-switcher {
+  text-align: center;
+  margin-top: 10px;
 }
 
-.lang-btn {
-  background-color: #eee;
+.language-switcher button {
+  background-color: #6fcf97; /* أخضر نعناع */
+  color: #fff;
   border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s;
 }
 
-.lang-btn.active,
-.lang-btn:hover {
-  background-color: #4CAF50;
-  color: white;
+.language-switcher button:hover {
+  background-color: #57b97e;
 }
 
-/* السلايدر */
 .hero {
-  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
-  padding: 60px 20px;
   text-align: center;
+  background-color: #e8f5e9; /* أخضر نعناع فاتح */
+  padding: 40px 20px;
 }
 
-.tagline {
+.hero h1 {
   font-size: 28px;
   margin-bottom: 10px;
 }
 
-.subtitle {
-  font-size: 18px;
+.hero p {
+  font-size: 16px;
   margin-bottom: 20px;
 }
 
-.cta-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 30px;
-  font-size: 16px;
-  border-radius: 8px;
-  transition: background-color 0.3s;
+.btn-primary {
+  background-color: #6fcf97;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: bold;
 }
 
-.cta-button:hover {
-  background-color: #43a047;
+.btn-primary:hover {
+  background-color: #57b97e;
 }
 
-/* المنتجات */
-.products-list {
+.products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 50px 20px;
+  gap: 30px;
+  padding: 40px;
 }
 
 .product-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  text-align: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 20px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  text-align: center;
+  transition: transform 0.3s;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
 }
 
-.product-card h2 {
-  font-size: 20px;
-  margin-top: 15px;
+.product-img {
+  max-width: 100%;
+  height: 250px;
+  object-fit: contain;
+  margin-bottom: 15px;
 }
 
-.details-button {
-  display: inline-block;
-  margin-top: 15px;
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.details-button:hover {
-  background-color: #388e3c;
-}
-
-/* قسم لماذا تختاري NaturaQ */
-.why-natura {
-  background: #e8f5e9;
-  padding: 50px 20px;
-  text-align: center;
-}
-
-.why-natura h2 {
-  margin-bottom: 20px;
-  font-size: 26px;
-}
-
-.why-natura ul {
-  list-style: none;
-  padding: 0;
-}
-
-.why-natura li {
+.product-card h3 {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-/* قسم التواصل */
-.contact-section {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.contact-section h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-/* الفوتر */
-.footer {
-  background: #f8f8f8;
-  text-align: center;
-  padding: 15px;
+.btn-secondary {
+  background-color: #6fcf97;
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 20px;
   font-size: 14px;
-  color: #666;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero {
-    padding: 30px 15px;
-  }
-  .tagline {
-    font-size: 24px;
-  }
+.btn-secondary:hover {
+  background-color: #57b97e;
 }
 
-/* ========== حركات AOS ========== */
-[data-aos] {
-  opacity: 0;
-  transition-property: opacity, transform;
-  transition-duration: 0.8s;
-  transition-timing-function: ease-out;
-}
-
-[data-aos].aos-animate {
-  opacity: 1;
-  transform: none;
-}
-
-[data-aos="fade-up"] {
-  transform: translateY(20px);
-}
-
-[data-aos="fade-down"] {
-  transform: translateY(-20px);
-}
-
-[data-aos="fade-right"] {
-  transform: translateX(20px);
-}
-
-[data-aos="fade-left"] {
-  transform: translateX(-20px);
+.footer {
+  background-color: #e8f5e9;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: 50px;
 }
