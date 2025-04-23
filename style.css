@@ -118,3 +118,68 @@ html[lang="en"] body { direction: ltr; /* انجليزي */ }
 
 .btn-primary, .btn-secondary, .cart-button { width: 90%; } }
 
+/* ===== نموذج تسجيل الدخول والتسجيل ===== */
+.auth-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-container h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #A8D5BA;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 10px auto;
+}
+
+.auth-container button:hover {
+  background-color: #82cdb0;
+}
+
+.auth-container p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.auth-container a {
+  color: #009688;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ===== دعم RTL تلقائي ===== */
+html[lang="ar"] body {
+  direction: rtl;
+  text-align: right;
+}
+
