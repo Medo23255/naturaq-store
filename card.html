@@ -1,27 +1,45 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سلة المشتريات - NaturaQ</title>
+  <title>سلة التسوق - NaturaQ</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- الشعار والرأس -->
-  <header class="header">
+  <div class="header">
     <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-    <h1>سلة المشتريات</h1>
-  </header>
+  </div>  <section class="product-page">
+    <h1 id="cart-title">سلة التسوق الخاصة بك</h1>
+    <div id="cart-items"></div><p id="cart-total" style="font-weight:bold; margin-top:20px;">الإجمالي: <span id="cart-total-amount">0</span> ر.ق</p>
 
-  <!-- منطقة عرض السلة -->
-  <section class="product-page">
-    <div id="cart-items"></div>
-    <p id="cart-total">الإجمالي: 0 ر.ق</p>
-    <a href="https://wa.me/97470948788" target="_blank" class="btn-primary">إتمام الطلب عبر واتساب</a>
-    <a href="index.html" class="btn-secondary">الرجوع للصفحة الرئيسية</a>
-  </section>
+<a href="https://wa.me/97400000000" class="btn-primary" id="checkout-btn">إتمام الطلب عبر واتساب</a>
+<a href="index.html" class="btn-secondary">رجوع إلى التسوق</a>
 
-  <!-- سكريبت جافاسكريبت لتحميل المنتجات -->
-  <script src="script.js"></script>
-</body>
+  </section>  <script>
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalAmountSpan = document.getElementById('cart-total-amount');
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let total = 0;
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = '<p>سلة التسوق فارغة.</p>';
+      document.getElementById('checkout-btn').style.display = 'none';
+    } else {
+      cart.forEach(product => {
+        const item = document.createElement('div');
+        item.style.margin = '20px 0';
+        item.innerHTML = `
+          <img src="${product.image}" style="width: 100px; border-radius: 10px;"><br>
+          <strong>${product.name}</strong><br>
+          الكمية: ${product.quantity}<br>
+          السعر: ${product.price} ر.ق
+        `;
+        cartItemsContainer.appendChild(item);
+        total += product.price * product.quantity;
+      });
+      totalAmountSpan.textContent = total;
+    }
+  </script></body>
 </html>
