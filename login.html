@@ -1,39 +1,39 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل الدخول - NaturaQ</title>
+  <title>تسجيل الدخول</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="firebase-config.js"></script>
 </head>
 <body>
   <div class="login-box">
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-    <h2>تسجيل الدخول إلى حسابك</h2>
+    <h2>تسجيل الدخول</h2>
     <input type="email" id="email" placeholder="البريد الإلكتروني" required />
     <input type="password" id="password" placeholder="كلمة المرور" required />
-    <button onclick="login()">تسجيل الدخول</button>
-    <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
+    <button onclick="login()">دخول</button>
+    <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a></p>
   </div>
 
-  <script>
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
     function login() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          localStorage.setItem("user", JSON.stringify(userCredential.user));
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("تم تسجيل الدخول");
           window.location.href = "index.html";
         })
-        .catch((error) => {
+        .catch(error => {
           alert("خطأ: " + error.message);
         });
     }
+
+    window.login = login;
   </script>
 </body>
 </html>
