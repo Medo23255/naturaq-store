@@ -5,8 +5,6 @@
   <title>NaturaQ - العناية الطبيعية بجمالك</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 </head>
 <body><!-- مبدل اللغة --><div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
@@ -23,32 +21,27 @@
   <div class="product-card">
     <img src="images/soap.png" alt="Natural Handmade Soap" class="product-img">
     <h3 id="product1-name">صابونة طبيعية يدوية</h3>
-    <a href="#" class="btn-secondary" onclick="checkAuth('products/natural-handmade-soap.html')">عرض التفاصيل</a>
-  </div>
-  <div class="product-card">
+    <a href="products/natural-handmade-soap.html" class="btn-secondary">عرض التفاصيل</a>
+  </div>  <div class="product-card">
     <img src="images/rice_serum.png" alt="Fermented Rice Serum" class="product-img">
     <h3 id="product2-name">سيروم الأرز المخمر</h3>
-    <a href="#" class="btn-secondary" onclick="checkAuth('products/fermented-rice-serum.html')">عرض التفاصيل</a>
-  </div>
-  <div class="product-card">
+    <a href="products/fermented-rice-serum.html" class="btn-secondary">عرض التفاصيل</a>
+  </div>  <div class="product-card">
     <img src="images/dead_sea.png" alt="Dead Sea Mud Mask" class="product-img">
     <h3 id="product3-name">قناع طين البحر الميت</h3>
-    <a href="#" class="btn-secondary" onclick="checkAuth('products/dead-sea-mud-mask.html')">عرض التفاصيل</a>
-  </div>
-  <div class="product-card">
+    <a href="products/dead-sea-mud-mask.html" class="btn-secondary">عرض التفاصيل</a>
+  </div>  <div class="product-card">
     <img src="images/pure_argan_Oil.png" alt="Pure Argan Oil" class="product-img">
     <h3 id="product4-name">زيت الأرغان النقي</h3>
-    <a href="#" class="btn-secondary" onclick="checkAuth('products/pure-argan-oil.html')">عرض التفاصيل</a>
-  </div>
-  <div class="product-card">
+    <a href="products/pure-argan-oil.html" class="btn-secondary">عرض التفاصيل</a>
+  </div>  <div class="product-card">
     <img src="images/deep-cleanse-kit.png" alt="Deep Cleanse Kit" class="product-img">
     <h3 id="product5-name">مجموعة تنظيف عميق</h3>
-    <a href="#" class="btn-secondary" onclick="checkAuth('products/deep-cleanse-kit.html')">عرض التفاصيل</a>
-  </div>
-  <div class="product-card">
+    <a href="products/deep-cleanse-kit.html" class="btn-secondary">عرض التفاصيل</a>
+  </div>  <div class="product-card">
     <img src="images/rose_water_toner.png" alt="Rose Water Toner" class="product-img">
     <h3 id="product6-name">تونر ماء الورد</h3>
-    <a href="#" class="btn-secondary" onclick="checkAuth('products/rose-water-toner.html')">عرض التفاصيل</a>
+    <a href="products/rose-water-toner.html" class="btn-secondary">عرض التفاصيل</a>
   </div>
 </section><!-- لماذا تختارنا --><section class="why-us">
   <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
@@ -72,24 +65,49 @@
   </div>
 </section><!-- الفوتر --><footer class="footer">
   © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer><!-- سكريبت اللغة --><script src="script.js"></script><script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyA-dummy",
-    authDomain: "naturaq-store.firebaseapp.com",
-    projectId: "naturaq-store",
-  };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
-  function checkAuth(url) {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        window.location.href = url;
-      } else {
-        alert('يجب تسجيل الدخول أولاً');
-        window.location.href = 'login.html';
+</footer><!-- حماية عرض التفاصيل --><script>
+  document.querySelectorAll(".btn-secondary").forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      const user = localStorage.getItem("userLoggedIn");
+      if (!user) {
+        e.preventDefault();
+        window.location.href = "login.html";
       }
     });
-  }
-</script></body>
+  });
+</script><!-- بوت الذكاء الاصطناعي --><script>
+(function() {
+  window.chatbaseConfig = {
+    chatbotId: "QyA3pZTR2k1v9jspuzdAs",
+    openOnLoad: false,
+    autoShow: false,
+    disableSessionStorage: true,
+    showLauncher: true,
+    launcherTitle: "مساعد NaturaQ",
+    launcherPosition: "bottom-right",
+    theme: {
+      launcherButtonColor: "#A8D5BA",
+      primaryColor: "#A8D5BA",
+      chatBackground: "#ffffff"
+    },
+    iframeProps: {
+      style: {
+        width: "350px",
+        height: "500px",
+        maxWidth: "90%",
+        borderRadius: "20px",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+        position: "fixed",
+        bottom: "80px",
+        right: "20px",
+        zIndex: "9999"
+      }
+    }
+  };
+  const script = document.createElement("script");
+  script.src = "https://www.chatbase.co/embed.min.js";
+  script.async = true;
+  document.body.appendChild(script);
+})();
+</script><!-- سكريبت اللغة --><script src="script.js"></script></body>
 </html>
