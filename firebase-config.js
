@@ -1,0 +1,21 @@
+// firebase-config.js
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+  authDomain: "naturaq-store.firebaseapp.com",
+  projectId: "naturaq-store",
+  storageBucket: "naturaq-store.appspot.com",
+  messagingSenderId: "638923298702",
+  appId: "1:638923298702:web:8ed219547236362048b6df",
+  measurementId: "G-0M5XJKM3RJ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+export { app, auth, db };
