@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "naturaq-store",
   storageBucket: "naturaq-store.appspot.com",
   messagingSenderId: "638923298702",
-  appId: "1:638923298702:web:8ed21954723632048b6df",
+  appId: "1:638923298702:web:8ed21954723632048b6df"
 };
 
 const app = initializeApp(firebaseConfig);
