@@ -24,6 +24,7 @@
 <header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
   <p id="user-name" style="margin-top: 10px; font-weight: bold;"></p>
+  <button onclick="logout()" class="btn-secondary" style="margin-top: 5px;">تسجيل الخروج</button>
   <a href="cart.html" class="cart-button">السلة <span id="cart-count">0</span></a>
 </header>
 
@@ -48,8 +49,6 @@
     <h3 id="product2-name">سيروم الأرز</h3>
     <a href="#" class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</a>
   </div>
-
-  <!-- أضف مزيد من المنتجات بنفس النمط -->
 
 </section>
 
@@ -119,6 +118,7 @@
     messagingSenderId: "638923298702",
     appId: "1:638923298702:web:8ed21954723632048b6df"
   };
+
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
 
@@ -130,14 +130,25 @@
     }
   });
 
+  function logout() {
+    auth.signOut().then(() => {
+      window.location.href = "login.html";
+    });
+  }
+
   function goToProduct(link) {
-    const user = firebase.auth().currentUser;
+    const user = auth.currentUser;
     if (user) {
       window.location.href = link;
     } else {
       alert("يُرجى تسجيل الدخول أولاً");
       window.location.href = "login.html";
     }
+  }
+
+  function setLanguage(lang) {
+    localStorage.setItem("selectedLanguage", lang);
+    location.reload();
   }
 </script>
 
