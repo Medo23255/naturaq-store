@@ -1,44 +1,31 @@
-<!-- register.html -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>إنشاء حساب - NaturaQ</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إنشاء حساب جديد</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="login-box">
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo" style="max-width: 150px;">
     <h2>إنشاء حساب جديد</h2>
-    <input type="text" id="name" placeholder="الاسم الكامل" required />
+    <input type="text" id="name" placeholder="اسم الكامل" required />
     <input type="email" id="email" placeholder="البريد الإلكتروني" required />
     <input type="password" id="password" placeholder="كلمة المرور" required />
-    <button onclick="register()" class="btn-primary">تسجيل</button>
+    <button onclick="register()">تسجيل</button>
     <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
   </div>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="firebase-config.js"></script>
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-  <script>
     function register() {
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
+      const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      if (!name || !email || !password) {
-        alert("الرجاء ملء جميع الحقول.");
-        return;
-      }
-
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          const user = userCredential.user;
-          return user.updateProfile({ displayName: name });
-        })
+      createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
           alert("تم إنشاء الحساب بنجاح");
           window.location.href = "index.html";
@@ -47,6 +34,8 @@
           alert("خطأ: " + error.message);
         });
     }
+
+    window.register = register;
   </script>
 </body>
 </html>
