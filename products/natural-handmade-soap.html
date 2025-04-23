@@ -1,83 +1,58 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaturaQ - تفاصيل المنتج</title>
-  <link rel="stylesheet" href="../style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Firebase Scripts -->
+  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script src="../firebase-config.js"></script>
+  <script src="../addToCart.js" defer></script>
 </head>
-<body><!-- مبدل اللغة --><div class="language-switcher">
+<body><div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
   <button onclick="setLanguage('en')">English</button>
-</div><!-- إشعار الذكاء الاصطناعي --><div class="ai-banner" id="ai-message">
+</div><div class="ai-banner" id="ai-message">
   هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!
-</div><!-- الشعار --><header class="header">
+</div><header class="header">
   <img src="../images/logo.png" alt="NaturaQ Logo" class="logo">
-</header><!-- تفاصيل المنتج --><section class="product-page">
-  <img src="../images/soap.png" alt="Natural Handmade Soap" class="product-image">  <p id="product-title" style="font-size: 18px; margin: 10px 0;">Natural Handmade Soap</p>  <h1 id="product-title-big">Natural Handmade Soap</h1>  <p id="product-description">A handmade natural soap crafted from the finest organic ingredients to gently cleanse and hydrate your skin.</p>  <div class="quantity-control">
+</header><section class="product-page">
+  <img src="../images/soap.png" alt="Natural Handmade Soap" class="product-image">
+  <p id="product-title" style="font-size: 18px; margin: 10px 0;">Natural Handmade Soap</p>
+  <h1 id="product-title-big">Natural Handmade Soap</h1>
+  <p id="product-description">A handmade natural soap crafted from the finest organic ingredients to gently cleanse and hydrate your skin.</p>  <div class="quantity-control">
     <button onclick="decreaseQuantity()">-</button>
     <input type="text" id="quantity" value="1" readonly>
     <button onclick="increaseQuantity()">+</button>
-  </div>  <p><span id="price-label">Price:</span> 45 QAR</p>  <p id="total-price"><span id="total-label">Total:</span> 45 QAR</p><button id="confirm-btn" class="btn-primary" onclick="confirmOrder()">Confirm Order on WhatsApp</button>
+  </div>  <p><span id="price-label">Price:</span> 45 QAR</p>
+  <p id="total-price"><span id="total-label">Total:</span> 45 QAR</p><button class="btn-primary" onclick="addToCart('Natural Handmade Soap', 45, '../images/soap.png')">أضف إلى السلة</button> <a href="../cart.html" class="btn-secondary">اذهب إلى السلة</a> <a href="../index.html" id="back-btn" class="btn-secondary">رجوع إلى الرئيسية</a>
 
-<a href="../index.html" id="back-btn" class="btn-secondary">Back to Home</a>
-
-</section><!-- الفوتر --><footer class="footer">
+</section><footer class="footer">
   © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer><!-- Firebase Configuration --><script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-</script><!-- التحكم في الكمية --><script>
+</footer><script>
 function increaseQuantity() {
-  const quantityInput = document.getElementById('quantity');
-  let quantity = parseInt(quantityInput.value);
-  quantityInput.value = quantity + 1;
+  const input = document.getElementById('quantity');
+  let val = parseInt(input.value);
+  input.value = val + 1;
   updateTotalPrice();
 }
 
 function decreaseQuantity() {
-  const quantityInput = document.getElementById('quantity');
-  let quantity = parseInt(quantityInput.value);
-  if (quantity > 1) {
-    quantityInput.value = quantity - 1;
+  const input = document.getElementById('quantity');
+  let val = parseInt(input.value);
+  if (val > 1) {
+    input.value = val - 1;
     updateTotalPrice();
   }
 }
 
 function updateTotalPrice() {
   const quantity = parseInt(document.getElementById('quantity').value);
-  const totalPrice = 45 * quantity;
-  const totalLabel = localStorage.getItem('selectedLanguage') === 'en' ? 'Total:' : 'الإجمالي:';
-  document.getElementById('total-price').innerHTML = `<span id="total-label">${totalLabel}</span> ${totalPrice} QAR`;
-}
-</script><!-- تأكيد الطلب --><script>
-function confirmOrder() {
-  const quantity = parseInt(document.getElementById('quantity').value);
   const total = 45 * quantity;
-
-  const orderData = {
-    product: 'Natural Handmade Soap',
-    price: 45,
-    quantity: quantity,
-    total: total,
-    createdAt: new Date().toISOString()
-  };
-
-  db.collection("orders").add(orderData)
-    .then(() => {
-      alert("تم تسجيل الطلب بنجاح! سيتم التواصل معك.");
-    })
-    .catch(error => {
-      alert("حدث خطأ أثناء إرسال الطلب: " + error.message);
-    });
+  const label = localStorage.getItem('selectedLanguage') === 'en' ? 'Total:' : 'الإجمالي:';
+  document.getElementById('total-price').innerHTML = `<span id="total-label">${label}</span> ${total} QAR`;
 }
-</script><!-- سكريبت اللغة --><script src="../script.js"></script></body>
+</script><script src="../script.js"></script></body>
 </html>
