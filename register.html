@@ -1,99 +1,47 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل حساب جديد - NaturaQ</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #f8f8f2;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .register-box {
-      background: #fff;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-    }
-    .register-box h2 {
-      margin-bottom: 20px;
-    }
-    .register-box input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    .register-box button {
-      background-color: #A8D5BA;
-      color: white;
-      padding: 12px;
-      width: 100%;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .register-box button:hover {
-      background-color: #82cdb0;
-    }
-    .register-box .link {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-    .register-box .link a {
-      color: #00796b;
-      text-decoration: none;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل حساب جديد</title>
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-  <div class="register-box">
-    <img src="images/logo.png" alt="NaturaQ Logo" style="width: 80px; margin-bottom: 10px;">
-    <h2>إنشاء حساب جديد</h2>
-    <input type="text" id="name" placeholder="الاسم الكامل">
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
-    <button onclick="registerUser()">تسجيل الحساب</button>
-    <div class="link">
-      لديك حساب؟ <a href="login.html">تسجيل الدخول</a>
-    </div>
-  </div>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>  <script src="firebase-config.js"></script>  <script>
-    const auth = firebase.auth();
+  <div class="login-container">
+    <img src="../images/logo.png" alt="NaturaQ Logo" class="logo" />
+    <h1>إنشاء حساب جديد</h1>
+    <input type="text" id="name" placeholder="الاسم الكامل" />
+    <input type="email" id="email" placeholder="البريد الإلكتروني" />
+    <input type="password" id="password" placeholder="كلمة المرور" />
+    <button id="register-btn" class="btn-primary">تسجيل الحساب</button>
+    <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
+    <p class="footer">.NaturaQ © 2025 جميع الحقوق محفوظة.</p>
+  </div>
 
-    function registerUser() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      if (!name || !email || !password) {
-        alert('يرجى ملء جميع الحقول');
-        return;
-      }
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="../firebase-config.js"></script>
+  <script>
+    document.getElementById("register-btn").addEventListener("click", function () {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
       auth.createUserWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          return userCredential.user.updateProfile({ displayName: name });
+        .then((userCredential) => {
+          return userCredential.user.updateProfile({
+            displayName: name
+          });
         })
         .then(() => {
-          alert('تم إنشاء الحساب بنجاح');
-          window.location.href = 'index.html';
+          alert("تم إنشاء الحساب بنجاح!");
+          window.location.href = "index.html";
         })
-        .catch(error => {
-          alert(error.message);
+        .catch((error) => {
+          alert("حدث خطأ: " + error.message);
         });
-    }
-  </script></body>
+    });
+  </script>
+</body>
 </html>
