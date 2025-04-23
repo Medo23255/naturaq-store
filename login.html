@@ -4,49 +4,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول - NaturaQ</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="login.js"></script>
 </head>
-<body><div class="form-container">
-  <h1>تسجيل الدخول</h1>
-  <form id="login-form">
-    <input type="email" id="login-email" placeholder="البريد الإلكتروني" required>
-    <input type="password" id="login-password" placeholder="كلمة المرور" required>
-    <button type="submit">دخول</button>
-  </form>
-  <p>ليس لديك حساب؟ <a href="register.html">أنشئ حساب</a></p>
-</div><script>
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+<body>
+  <div class="form-container">
+    <h1>تسجيل الدخول</h1>
+    <form id="login-form">
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" required><label for="password">كلمة المرور</label>
+  <input type="password" id="password" required>
 
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
+  <button type="submit">تسجيل الدخول</button>
+</form>
+<p>ليس لديك حساب؟ <a href="register.html">سجل الآن</a></p>
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
-
-  document.getElementById('login-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        localStorage.setItem("userId", user.uid);
-        alert("تم تسجيل الدخول بنجاح!");
-        window.location.href = "index.html";
-      })
-      .catch((error) => {
-        alert("خطأ في تسجيل الدخول: " + error.message);
-      });
-  });
-</script></body>
+  </div>
+</body>
 </html>
