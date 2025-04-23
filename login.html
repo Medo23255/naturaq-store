@@ -1,77 +1,52 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول - NaturaQ</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    .login-container {
-      max-width: 400px;
-      margin: 60px auto;
-      padding: 30px;
-      background-color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .login-container h2 {
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-    .login-container input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    .login-container button {
-      background-color: #A8D5BA;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      font-size: 16px;
-    }
-    .login-container button:hover {
-      background-color: #82cdb0;
-    }
-  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
 </head>
-<body>
-  <div class="login-container">
-    <h2>تسجيل الدخول</h2>
-    <input type="email" id="email" placeholder="البريد الإلكتروني" required />
-    <input type="password" id="password" placeholder="كلمة المرور" required />
-    <button onclick="loginUser()">دخول</button>
-  </div>  <!-- Firebase SDK -->  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>  <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "...",
-      appId: "..."
-    };
-    firebase.initializeApp(firebaseConfig);
+<body><div class="form-container">
+  <h1>تسجيل الدخول</h1>
+  <form id="login-form">
+    <input type="email" id="login-email" placeholder="البريد الإلكتروني" required>
+    <input type="password" id="login-password" placeholder="كلمة المرور" required>
+    <button type="submit">دخول</button>
+  </form>
+  <p>ليس لديك حساب؟ <a href="register.html">أنشئ حساب</a></p>
+</div><script>
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-    function loginUser() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => {
-          localStorage.setItem('userEmail', email);
-          window.location.href = 'cart.html';
-        })
-        .catch((error) => {
-          alert('خطأ في تسجيل الدخول: ' + error.message);
-        });
-    }
-  </script></body>
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+
+  document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        localStorage.setItem("userId", user.uid);
+        alert("تم تسجيل الدخول بنجاح!");
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        alert("خطأ في تسجيل الدخول: " + error.message);
+      });
+  });
+</script></body>
 </html>
