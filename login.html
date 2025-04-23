@@ -3,37 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل الدخول</title>
+  <title>تسجيل الدخول - NaturaQ</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="login-box">
-    <h2>تسجيل الدخول</h2>
+    <h2>تسجيل الدخول إلى حسابك</h2>
     <input type="email" id="email" placeholder="البريد الإلكتروني" required />
     <input type="password" id="password" placeholder="كلمة المرور" required />
-    <button onclick="login()">دخول</button>
-    <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a></p>
+    <button onclick="login()">تسجيل الدخول</button>
+    <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
   </div>
 
   <script type="module">
-    import { auth } from './firebase-config.js';
-    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-    function login() {
-      const email = document.getElementById("email").value;
+    const firebaseConfig = {
+      apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+      authDomain: "naturaq-store.firebaseapp.com",
+      projectId: "naturaq-store",
+      storageBucket: "naturaq-store.appspot.com",
+      messagingSenderId: "638923298702",
+      appId: "1:638923298702:web:8ed21954723632048b6df"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.login = function () {
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
+      if (!email || !password) {
+        alert("يرجى إدخال البريد الإلكتروني وكلمة المرور.");
+        return;
+      }
+
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          alert("تم تسجيل الدخول");
+        .then((userCredential) => {
+          localStorage.setItem("user", JSON.stringify(userCredential.user));
+          alert("تم تسجيل الدخول بنجاح!");
           window.location.href = "index.html";
         })
-        .catch(error => {
-          alert("خطأ: " + error.message);
+        .catch((error) => {
+          if (error.code === "auth/user-not-found") {
+            alert("المستخدم غير موجود. يرجى التحقق من البريد.");
+          } else if (error.code === "auth/wrong-password") {
+            alert("كلمة المرور غير صحيحة.");
+          } else {
+            alert("خطأ: " + error.message);
+          }
         });
-    }
-
-    window.login = login;
+    };
   </script>
 </body>
 </html>
