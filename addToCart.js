@@ -1,24 +1,27 @@
-// ملف addToCart.js import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"; import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+// addToCart.js import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"; import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-const firebaseConfig = { apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI", authDomain: "naturaq-store.firebaseapp.com", projectId: "naturaq-store", storageBucket: "naturaq-store.appspot.com", messagingSenderId: "638923298702", appId: "1:638923298702:web:8ed219547236362048b6df" };
+const firebaseConfig = { apiKey: "AlzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI", authDomain: "naturaQ-store.firebaseapp.com", projectId: "naturaQ-store", storageBucket: "naturaQ-store.appspot.com", messagingSenderId: "638923298702", appId: "1:638923298702:web:8ed219547236362048b6df" };
 
-const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app);
+const app = initializeApp(firebaseConfig); const db = getFirestore(app); const auth = getAuth(app);
 
-export function addToCart(product) { onAuthStateChanged(auth, async (user) => { if (!user) { alert("يجب تسجيل الدخول أولاً!"); window.location.href = "../login.html"; return; }
+export async function addToCart(product) { onAuthStateChanged(auth, async (user) => { if (user) { const cartRef = doc(db, "carts", user.uid, "items", product.id); const itemSnap = await getDoc(cartRef);
 
-const itemRef = doc(db, "carts", user.uid, "items", product.id);
+if (itemSnap.exists()) {
+    await updateDoc(cartRef, {
+      quantity: itemSnap.data().quantity + 1
+    });
+  } else {
+    await setDoc(cartRef, {
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      quantity: 1
+    });
+  }
 
-try {
-  await setDoc(itemRef, {
-    name: product.name,
-    price: product.price,
-    image: product.image,
-    quantity: product.quantity
-  });
-  alert("تمت إضافة المنتج إلى السلة!");
-} catch (e) {
-  console.error("خطأ أثناء الإضافة للسلة: ", e);
-  alert("حدث خطأ، حاول مرة أخرى.");
+  alert("تمت إضافة المنتج إلى السلة بنجاح!");
+} else {
+  window.location.href = "../login.html";
 }
 
 }); }
