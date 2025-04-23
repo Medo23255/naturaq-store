@@ -6,73 +6,39 @@
   <title>تسجيل حساب جديد - NaturaQ</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #fdfaf6;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
+    body { font-family: 'Cairo', sans-serif; background: #f7f8f5; }
     .login-box {
-      background-color: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 30px 25px;
-      width: 100%;
       max-width: 400px;
-      box-sizing: border-box;
+      margin: 60px auto;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
     }
-
-    .login-box h2 {
-      margin-bottom: 20px;
-      color: #333;
-    }
-
+    .login-box h2 { margin-bottom: 20px; }
     .login-box input {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      font-size: 15px;
+      font-size: 16px;
     }
-
     .login-box button {
-      background-color: #A8D5BA;
+      background: #8fc7a8;
       color: white;
-      font-weight: bold;
       border: none;
       padding: 12px;
+      font-size: 18px;
       width: 100%;
-      border-radius: 30px;
-      font-size: 16px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: 0.3s;
     }
-
-    .login-box button:hover {
-      background-color: #82cdb0;
-    }
-
-    .login-box p {
-      font-size: 14px;
-      color: #555;
-    }
-
-    .login-box a {
-      color: #00796b;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .login-box a:hover {
-      text-decoration: underline;
-    }
+    .login-box button:hover { background: #74b38d; }
+    .login-box p { margin-top: 15px; }
+    .login-box a { color: #009688; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -105,10 +71,15 @@
     const db = getFirestore(app);
 
     window.register = async function () {
-      const fullName = document.getElementById("fullname").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const phone = document.getElementById("phone").value;
+      const fullName = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      if (!fullName || !email || !password || !phone) {
+        alert("يرجى تعبئة جميع الحقول.");
+        return;
+      }
 
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -122,10 +93,10 @@
           phone
         });
 
-        alert("تم إنشاء الحساب بنجاح!");
+        alert("تم إنشاء الحساب بنجاح! سيتم توجيهك للصفحة الرئيسية.");
         window.location.href = "index.html";
       } catch (error) {
-        alert("خطأ: " + error.message);
+        alert("حدث خطأ: " + error.message);
       }
     };
   </script>
