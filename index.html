@@ -1,71 +1,95 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NaturaQ - الرئيسية</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaturaQ - العناية الطبيعية بجمالك</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="firebase-config.js"></script>
 </head>
-<body>
-  <!-- شاشة التحميل -->
-  <div id="loading-screen" style="text-align:center; padding:100px; font-size: 20px; color:#333">يتم تسجيل الدخول ...</div>  <!-- المحتوى الرئيسي -->  <div id="main-content" style="display:none">
-    <!-- اللغة -->
-    <div class="language-switcher">
-      <button onclick="setLanguage('ar')">العربية</button>
-      <button onclick="setLanguage('en')">English</button>
-    </div><!-- إشعار الذكاء الاصطناعي -->
-<div class="ai-banner" id="ai-message">هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!</div>
-
-<!-- الشعار -->
-<header class="header">
+<body><!-- مبدل اللغة --><div class="language-switcher">
+  <button onclick="setLanguage('ar')">العربية</button>
+  <button onclick="setLanguage('en')">English</button>
+</div><!-- إشعار الذكاء الاصطناعي --><div class="ai-banner" id="ai-message">
+  هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!
+</div><!-- الشعار --><header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-</header>
-
-<!-- بانر ترحيبي -->
-<section class="hero">
+</header><!-- بانر رئيسي --><section class="hero">
   <h1 id="hero-title">اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ</h1>
   <p id="hero-description">منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.</p>
   <a href="#products" class="btn-primary" id="shop-now-btn">تسوقي الآن</a>
-</section>
-
-<!-- المنتجات -->
-<section id="products" class="products-grid">
+</section><!-- المنتجات --><section id="products" class="products-grid">
   <div class="product-card">
-    <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
+    <img src="images/soap.png" alt="Natural Handmade Soap" class="product-img">
     <h3 id="product1-name">صابونة طبيعية يدوية</h3>
-    <a href="products/natural-handmade-soap.html" class="btn-secondary">عرض التفاصيل</a>
+    <a href="#" class="btn-secondary" onclick="checkAuth('products/natural-handmade-soap.html')">عرض التفاصيل</a>
   </div>
-  <!-- أضف المزيد من المنتجات هنا -->
-</section>
-
-<!-- لماذا تختارنا -->
-<section class="why-us">
+  <div class="product-card">
+    <img src="images/rice_serum.png" alt="Fermented Rice Serum" class="product-img">
+    <h3 id="product2-name">سيروم الأرز المخمر</h3>
+    <a href="#" class="btn-secondary" onclick="checkAuth('products/fermented-rice-serum.html')">عرض التفاصيل</a>
+  </div>
+  <div class="product-card">
+    <img src="images/dead_sea.png" alt="Dead Sea Mud Mask" class="product-img">
+    <h3 id="product3-name">قناع طين البحر الميت</h3>
+    <a href="#" class="btn-secondary" onclick="checkAuth('products/dead-sea-mud-mask.html')">عرض التفاصيل</a>
+  </div>
+  <div class="product-card">
+    <img src="images/pure_argan_Oil.png" alt="Pure Argan Oil" class="product-img">
+    <h3 id="product4-name">زيت الأرغان النقي</h3>
+    <a href="#" class="btn-secondary" onclick="checkAuth('products/pure-argan-oil.html')">عرض التفاصيل</a>
+  </div>
+  <div class="product-card">
+    <img src="images/deep-cleanse-kit.png" alt="Deep Cleanse Kit" class="product-img">
+    <h3 id="product5-name">مجموعة تنظيف عميق</h3>
+    <a href="#" class="btn-secondary" onclick="checkAuth('products/deep-cleanse-kit.html')">عرض التفاصيل</a>
+  </div>
+  <div class="product-card">
+    <img src="images/rose_water_toner.png" alt="Rose Water Toner" class="product-img">
+    <h3 id="product6-name">تونر ماء الورد</h3>
+    <a href="#" class="btn-secondary" onclick="checkAuth('products/rose-water-toner.html')">عرض التفاصيل</a>
+  </div>
+</section><!-- لماذا تختارنا --><section class="why-us">
   <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
   <div class="reasons">
     <div class="reason">
       <h3 id="reason1-title">مكونات طبيعية 100%</h3>
       <p id="reason1-desc">منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية الفائقة ببشرتكِ.</p>
     </div>
-    <!-- المزيد من الأسباب هنا -->
+    <div class="reason">
+      <h3 id="reason2-title">شحن سريع وآمن</h3>
+      <p id="reason2-desc">نضمن توصيل آمن لمنتجاتك بأعلى جودة وفي أسرع وقت.</p>
+    </div>
+    <div class="reason">
+      <h3 id="reason3-title">دعم متواصل للعملاء</h3>
+      <p id="reason3-desc">فريق دعم متوفر دائمًا للرد على استفساراتك بكل احترافية.</p>
+    </div>
+    <div class="reason">
+      <h3 id="reason4-title">رضاكِ أولويتنا</h3>
+      <p id="reason4-desc">نضمن لكِ تجربة تسوق فريدة وجودة تليق بجمالكِ.</p>
+    </div>
   </div>
-</section>
-
-<!-- الفوتر -->
-<footer class="footer">
+</section><!-- الفوتر --><footer class="footer">
   © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer>
+</footer><!-- سكريبت اللغة --><script src="script.js"></script><script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyA-dummy",
+    authDomain: "naturaq-store.firebaseapp.com",
+    projectId: "naturaq-store",
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 
-  </div>  <script>
-    firebase.auth().onAuthStateChanged(user => {
+  function checkAuth(url) {
+    auth.onAuthStateChanged(user => {
       if (user) {
-        document.getElementById('main-content').style.display = 'block';
-        document.getElementById('loading-screen').style.display = 'none';
+        window.location.href = url;
       } else {
-        window.location.href = "login.html";
+        alert('يجب تسجيل الدخول أولاً');
+        window.location.href = 'login.html';
       }
     });
-  </script>  <script src="script.js"></script></body>
+  }
+</script></body>
 </html>
