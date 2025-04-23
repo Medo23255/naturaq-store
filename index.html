@@ -6,95 +6,68 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-<!-- مبدل اللغة -->
-<div class="language-switcher">
-  <button onclick="setLanguage('ar')">العربية</button>
-  <button onclick="setLanguage('en')">English</button>
-</div>
-
-<!-- إشعار الذكاء الاصطناعي -->
-<div class="ai-banner" id="ai-message">
-  هل تحتاج مساعدة؟ تحدث مع خدمة العملاء الآن!
-</div>
-
-<!-- الشعار والهيدر -->
-<header class="header">
+<body><!-- رأس الموقع --><header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-  <div class="user-info">
-    <p id="user-name" class="username"></p>
-    <div id="auth-buttons" style="display: none;">
-      <button onclick="logout()" class="btn-secondary">تسجيل الخروج</button>
-      <a href="cart.html" class="cart-button">السلة <span id="cart-count">0</span></a>
-    </div>
+  <nav class="nav">
+    <a href="index.html" class="nav-link">الرئيسية</a>
+    <a href="card.html" class="nav-link">السلة</a>
+    <a href="user.html" class="nav-link">صفحتي</a>
+    <button id="logout-btn" class="btn-secondary" style="display:none;">تسجيل الخروج</button>
+  </nav>
+</header><!-- بانر ترحيبي --><section class="hero">
+  <div class="hero-text">
+    <h1>اكتشفي الجمال الطبيعي</h1>
+    <p>منتجات طبيعية 100% للعناية بجمالك وصحتك</p>
+    <a href="#products" class="btn-primary">تسوقي الآن</a>
   </div>
-</header>
-
-<!-- بانر -->
-<section class="hero">
-  <h1>اكتشفي الجمال الطبيعي مع NaturaQ</h1>
-  <p>منتجات طبيعية للعناية ببشرتكِ من أفضل المكونات.</p>
-  <a href="#products" class="btn-primary">تسوقي الآن</a>
-</section>
-
-<!-- عرض اليوم -->
-<section class="daily-offer">
+</section><!-- عرض اليوم --><section class="daily-offer">
   <h2>عرض اليوم</h2>
-  <p>خصم 25% على سيروم الأرز لمدة محدودة!</p>
+  <p>خصم 25% على سيروم الأرز لفترة محدودة!</p>
   <div id="countdown"></div>
-</section>
-
-<!-- المنتجات -->
-<section id="products" class="products-grid">
+</section><!-- المنتجات --><section id="products" class="products-grid">
   <div class="product-card">
     <img src="images/soap.png" alt="صابونة" class="product-img">
     <h3>صابونة طبيعية</h3>
-    <a href="#" class="btn-secondary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</a>
+    <p>ر.ق 25</p>
+    <button class="btn-secondary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</button>
   </div>
   <div class="product-card">
-    <img src="images/rice_serum.png" alt="سيروم" class="product-img">
+    <img src="images/rice_serum.png" alt="سيروم الأرز" class="product-img">
     <h3>سيروم الأرز</h3>
-    <a href="#" class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</a>
+    <p>ر.ق 60</p>
+    <button class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</button>
   </div>
-</section>
-
-<!-- لماذا تختارنا -->
-<section class="why-us">
+</section><!-- لماذا نحن؟ --><section class="why-us">
   <h2>لماذا تختارين NaturaQ؟</h2>
   <div class="reasons">
     <div class="reason">
-      <h3>طبيعي 100%</h3>
-      <p>منتجات عضوية للعناية بجمالكِ.</p>
+      <h3>مكونات طبيعية</h3>
+      <p>نستخدم فقط أفضل المكونات العضوية.</p>
     </div>
     <div class="reason">
-      <h3>شحن سريع</h3>
-      <p>توصيل آمن وسريع.</p>
+      <h3>توصيل سريع</h3>
+      <p>توصيل سريع وآمن لجميع أنحاء قطر.</p>
+    </div>
+    <div class="reason">
+      <h3>ثقة العملاء</h3>
+      <p>آلاف العملاء السعداء بمنتجاتنا الطبيعية.</p>
     </div>
   </div>
-</section>
-
-<!-- قسم آراء العملاء -->
-<section class="reviews">
-  <h2>آراء العملاء</h2>
+</section><!-- آراء العملاء --><section class="reviews">
+  <h2>ماذا يقول عملاؤنا؟</h2>
   <div class="review">
     <p class="reviewer">سارة محمد</p>
     <p class="stars">★★★★★</p>
-    <p class="comment">منتجات رائعة وبجودة عالية، شعرت بفرق بعد الاستخدام!</p>
+    <p class="comment">منتجات ممتازة وشحن سريع! شكراً NaturaQ.</p>
   </div>
   <div class="review">
     <p class="reviewer">ريم أحمد</p>
     <p class="stars">★★★★☆</p>
-    <p class="comment">الخدمة ممتازة والتوصيل كان سريع، سأطلب مرة أخرى.</p>
+    <p class="comment">أحببت السيروم جداً. سأجرب باقي المنتجات!</p>
   </div>
-</section>
-
-<!-- الفوتر -->
-<footer class="footer">
-  © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer>
-
-<!-- بوت دردشة -->
-<script>
+</section><!-- الفوتر --><footer class="footer">
+  <p>© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
+</footer><!-- بوت الذكاء الاصطناعي (Chatbase) --><script>
   window.chatbaseConfig = {
     chatbotId: "QyA3pZTR2k1v9jspuzdAs",
     showLauncher: true,
@@ -104,72 +77,44 @@
   script.src = "https://www.chatbase.co/embed.min.js";
   script.async = true;
   document.body.appendChild(script);
-</script>
+</script><!-- Firebase و السكريبتات --><script type="module">
+  import { auth } from './firebase-config.js';
 
-<!-- Firebase إعداد -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
-    authDomain: "naturaq-store.firebaseapp.com",
-    projectId: "naturaq-store",
-    storageBucket: "naturaq-store.appspot.com",
-    messagingSenderId: "638923298702",
-    appId: "1:638923298702:web:8ed21954723632048b6df"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
+  const logoutBtn = document.getElementById("logout-btn");
   auth.onAuthStateChanged(user => {
-    const userNameElem = document.getElementById("user-name");
-    const authButtons = document.getElementById("auth-buttons");
-
     if (user) {
-      userNameElem.textContent = `مرحبًا، ${user.displayName || user.email}`;
-      authButtons.style.display = "flex";
+      logoutBtn.style.display = "inline-block";
     } else {
       window.location.href = "login.html";
     }
   });
 
-  function logout() {
-    auth.signOut().then(() => {
-      window.location.href = "login.html";
-    });
-  }
+  logoutBtn.addEventListener("click", () => {
+    auth.signOut().then(() => window.location.href = "login.html");
+  });
 
-  function goToProduct(link) {
+  window.goToProduct = function(link) {
     if (auth.currentUser) {
       window.location.href = link;
     } else {
-      alert("يُرجى تسجيل الدخول أولاً");
+      alert("يرجى تسجيل الدخول أولاً");
     }
-  }
+  };
 
-  function setLanguage(lang) {
-    localStorage.setItem("selectedLanguage", lang);
-    location.reload();
-  }
-</script>
-
-<!-- عداد عرض اليوم -->
-<script>
+  // عداد العرض
   const end = new Date();
   end.setHours(end.getHours() + 4);
-  function updateCountdown() {
+  setInterval(() => {
     const now = new Date();
     const diff = end - now;
     if (diff <= 0) {
       document.getElementById("countdown").innerText = "انتهى العرض!";
       return;
     }
-    const hours = Math.floor(diff / 1000 / 60 / 60);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    document.getElementById("countdown").innerText = `${hours} س ${minutes} د ${seconds} ث`;
-  }
-  setInterval(updateCountdown, 1000);
-</script>
-</body>
+    const h = Math.floor(diff / 1000 / 60 / 60);
+    const m = Math.floor((diff / 1000 / 60) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById("countdown").innerText = `${h} س ${m} د ${s} ث`;
+  }, 1000);
+</script></body>
 </html>
