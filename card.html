@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,18 +12,24 @@
 <body>
   <div class="header">
     <h1>سلة مشترياتك</h1>
-    <button onclick="logout()">تسجيل الخروج</button>
-  </div>  <div id="cart-items" class="products-grid"></div>  <div class="footer">
+    <button class="btn-secondary" onclick="logout()">تسجيل الخروج</button>
+  </div>
+
+  <div id="cart-items" class="products-grid"></div>
+
+  <div class="footer">
     <p id="total-price">الإجمالي: 0 ر.ق</p>
     <button class="btn-primary" onclick="confirmOrder()">تأكيد الطلب</button>
-  </div>  <script>
+  </div>
+
+  <script>
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_BUCKET",
-      messagingSenderId: "YOUR_MSG_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyD9...تكميل بياناتك",
+      authDomain: "naturaqstore.firebaseapp.com",
+      projectId: "naturaqstore",
+      storageBucket: "naturaqstore.appspot.com",
+      messagingSenderId: "1234567890",
+      appId: "1:1234567890:web:abcdef"
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
@@ -66,7 +73,6 @@
 
     function confirmOrder() {
       alert("تم إرسال الطلب. سيتم التواصل معك قريبًا.");
-      // من هنا يمكن إرسال بيانات الطلب لواتساب أو بريد إلكتروني
     }
 
     function logout() {
@@ -74,5 +80,6 @@
         window.location.href = "login.html";
       });
     }
-  </script></body>
+  </script>
+</body>
 </html>
