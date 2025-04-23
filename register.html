@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>إنشاء حساب - NaturaQ</title>
+  <title>تسجيل حساب جديد - NaturaQ</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="login-box">
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo" />
     <h2>إنشاء حساب جديد</h2>
-    <input type="text" id="name" placeholder="اسمك الكامل" required />
+    <input type="text" id="fullname" placeholder="الاسم الكامل" required />
     <input type="email" id="email" placeholder="البريد الإلكتروني" required />
     <input type="password" id="password" placeholder="كلمة المرور" required />
+    <input type="tel" id="phone" placeholder="رقم الهاتف" required />
     <button onclick="register()">تسجيل</button>
     <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
-    <p class="footer">© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
@@ -33,23 +33,31 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    window.register = function () {
+    window.register = async function () {
+      const fullName = document.getElementById("fullname").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
+      const phone = document.getElementById("phone").value;
 
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          alert("تم إنشاء الحساب بنجاح!");
-          window.location.href = "index.html";
-        })
-        .catch((error) => {
-          if (error.code === "auth/email-already-in-use") {
-            alert("البريد الإلكتروني مسجل مسبقًا.");
-          } else {
-            alert("حدث خطأ: " + error.message);
-          }
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await updateProfile(user, { displayName: fullName });
+
+        await setDoc(doc(db, "users", user.uid), {
+          fullName,
+          email,
+          phone
         });
+
+        alert("تم إنشاء الحساب بنجاح!");
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("خطأ: " + error.message);
+      }
     };
   </script>
 </body>
