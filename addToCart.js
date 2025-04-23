@@ -1,28 +1,25 @@
-// addToCart.js import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"; import { getFirestore, doc, setDoc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+// addToCart.js - إضافة المنتجات إلى السلة في Firestore حسب المستخدم
 
-const firebaseConfig = { apiKey: "AlzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI", authDomain: "naturaQ-store.firebaseapp.com", projectId: "naturaQ-store", storageBucket: "naturaQ-store.appspot.com", messagingSenderId: "638923298702", appId: "1:638923298702:web:8ed219547236362048b6df" };
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"; import { getFirestore, doc, setDoc, getDoc, updateDoc, increment, collection } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"; import { app } from "./firebase-config.js";
 
-const app = initializeApp(firebaseConfig); const db = getFirestore(app); const auth = getAuth(app);
+const auth = getAuth(app); const db = getFirestore(app);
 
-export async function addToCart(product) { onAuthStateChanged(auth, async (user) => { if (user) { const cartRef = doc(db, "carts", user.uid, "items", product.id); const itemSnap = await getDoc(cartRef);
+export async function addToCart(product) { onAuthStateChanged(auth, async (user) => { if (user) { const cartRef = doc(collection(db, "carts", user.uid, "items"), product.id); const cartSnap = await getDoc(cartRef);
 
-if (itemSnap.exists()) {
+if (cartSnap.exists()) {
     await updateDoc(cartRef, {
-      quantity: itemSnap.data().quantity + 1
+      quantity: increment(product.quantity)
     });
   } else {
-    await setDoc(cartRef, {
-      name: product.name,
-      image: product.image,
-      price: product.price,
-      quantity: 1
-    });
+    await setDoc(cartRef, product);
   }
 
-  alert("تمت إضافة المنتج إلى السلة بنجاح!");
+  alert("تمت إضافة المنتج إلى السلة.");
 } else {
-  window.location.href = "../login.html";
+  window.location.href = "login.html";
 }
 
 }); }
+
+// مثال للاستخدام: // const product = { //   id: "soap001", //   name: "صابونة طبيعية يدوية", //   price: 45, //   quantity: 1, //   image: "../images/soap.png" // }; // addToCart(product);
 
