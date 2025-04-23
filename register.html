@@ -1,50 +1,94 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول - NaturaQ</title>
-  <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إنشاء حساب - NaturaQ</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_BUCKET",
-      messagingSenderId: "YOUR_MSG_ID",
-      appId: "YOUR_APP_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f8f9f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .register-box {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+    .register-box img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #A8D5BA;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #82cdb0;
+    }
+    .footer {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #666;
+    }
+    .footer a {
+      color: #1c7c64;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <div class="header">
-    <img src="../images/logo.png" alt="NaturaQ Logo" class="logo">
-    <h1>تسجيل الدخول إلى حسابك</h1>
-  </div>  <section class="product-page">
-    <form onsubmit="loginUser(event)" class="form-card">
-      <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-      <input type="password" id="password" placeholder="كلمة المرور" required>
-      <button type="submit" class="btn-primary">تسجيل الدخول</button>
-    </form>
-    <p style="text-align:center; margin-top:10px;">ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a></p>
-  </section>  <footer class="footer">
-    © 2025 NaturaQ. جميع الحقوق محفوظة.
-  </footer>  <script>
-    function loginUser(e) {
-      e.preventDefault();
+  <div class="register-box">
+    <img src="../images/logo.png" alt="NaturaQ Logo">
+    <h2>إنشاء حساب جديد</h2>
+    <input type="text" placeholder="الاسم الكامل" id="name" required>
+    <input type="email" placeholder="البريد الإلكتروني" id="email" required>
+    <input type="password" placeholder="كلمة المرور" id="password" required>
+    <button onclick="register()">تسجيل</button>
+    <div class="footer">
+      لديك حساب بالفعل؟ <a href="../login.html">تسجيل الدخول</a>
+    </div>
+  </div>  <script>
+    function register() {
+      // الكود الخاص بالتسجيل عبر Firebase Authentication سيتم إدراجه هنا
+      const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.href = '../index.html';
-        })
-        .catch(error => {
-          alert("حدث خطأ: " + error.message);
-        });
+      // validation simple
+      if (!name || !email || !password) {
+        alert("يرجى ملء جميع الحقول");
+        return;
+      }
+      // Firebase register function (placeholder)
+      alert("تم تسجيل الحساب بنجاح (نموذج وهمي)");
     }
   </script></body>
 </html>
