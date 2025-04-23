@@ -1,45 +1,78 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سلة التسوق - NaturaQ</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سلة المشتريات - NaturaQ</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <div class="header">
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-  </div>  <section class="product-page">
-    <h1 id="cart-title">سلة التسوق الخاصة بك</h1>
-    <div id="cart-items"></div><p id="cart-total" style="font-weight:bold; margin-top:20px;">الإجمالي: <span id="cart-total-amount">0</span> ر.ق</p>
+    <h1>سلة مشترياتك</h1>
+    <button onclick="logout()">تسجيل الخروج</button>
+  </div>  <div id="cart-items" class="products-grid"></div>  <div class="footer">
+    <p id="total-price">الإجمالي: 0 ر.ق</p>
+    <button class="btn-primary" onclick="confirmOrder()">تأكيد الطلب</button>
+  </div>  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_BUCKET",
+      messagingSenderId: "YOUR_MSG_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
 
-<a href="https://wa.me/97400000000" class="btn-primary" id="checkout-btn">إتمام الطلب عبر واتساب</a>
-<a href="index.html" class="btn-secondary">رجوع إلى التسوق</a>
-
-  </section>  <script>
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalAmountSpan = document.getElementById('cart-total-amount');
-
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    let userId = null;
     let total = 0;
-    if (cart.length === 0) {
-      cartItemsContainer.innerHTML = '<p>سلة التسوق فارغة.</p>';
-      document.getElementById('checkout-btn').style.display = 'none';
-    } else {
-      cart.forEach(product => {
-        const item = document.createElement('div');
-        item.style.margin = '20px 0';
-        item.innerHTML = `
-          <img src="${product.image}" style="width: 100px; border-radius: 10px;"><br>
-          <strong>${product.name}</strong><br>
-          الكمية: ${product.quantity}<br>
-          السعر: ${product.price} ر.ق
-        `;
-        cartItemsContainer.appendChild(item);
-        total += product.price * product.quantity;
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        userId = user.uid;
+        loadCart();
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+
+    function loadCart() {
+      db.collection("carts").doc(userId).collection("items").get()
+        .then(snapshot => {
+          const container = document.getElementById("cart-items");
+          container.innerHTML = "";
+          total = 0;
+
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            total += data.price * data.quantity;
+            container.innerHTML += `
+              <div class="product-card">
+                <img src="${data.image}" class="product-img" />
+                <h3>${data.name}</h3>
+                <p>الكمية: ${data.quantity}</p>
+                <p>السعر: ${data.price} ر.ق</p>
+              </div>
+            `;
+          });
+
+          document.getElementById("total-price").textContent = `الإجمالي: ${total} ر.ق`;
+        });
+    }
+
+    function confirmOrder() {
+      alert("تم إرسال الطلب. سيتم التواصل معك قريبًا.");
+      // من هنا يمكن إرسال بيانات الطلب لواتساب أو بريد إلكتروني
+    }
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = "login.html";
       });
-      totalAmountSpan.textContent = total;
     }
   </script></body>
 </html>
