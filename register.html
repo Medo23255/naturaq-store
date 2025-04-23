@@ -33,8 +33,14 @@
     const auth = getAuth(app);
 
     window.register = function () {
-      const email = document.getElementById("email").value;
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
+
+      if (!name || !email || !password) {
+        alert("يرجى تعبئة جميع الحقول.");
+        return;
+      }
 
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
@@ -42,7 +48,11 @@
           window.location.href = "index.html";
         })
         .catch((error) => {
-          alert("خطأ: " + error.message);
+          if (error.code === "auth/email-already-in-use") {
+            alert("هذا البريد الإلكتروني مسجل بالفعل. الرجاء تسجيل الدخول.");
+          } else {
+            alert("خطأ: " + error.message);
+          }
         });
     };
   </script>
