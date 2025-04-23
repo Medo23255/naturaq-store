@@ -1,37 +1,34 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>إنشاء حساب - NaturaQ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل حساب جديد - NaturaQ</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #f8f9f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      background-color: #f8f8f2;
       margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
     .register-box {
-      background-color: #ffffff;
+      background: #fff;
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 90%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       text-align: center;
+      width: 90%;
+      max-width: 400px;
     }
-    .register-box img {
-      max-width: 100px;
-      margin-bottom: 10px;
-    }
-    h2 {
+    .register-box h2 {
       margin-bottom: 20px;
-      font-size: 24px;
     }
-    input {
+    .register-box input {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
@@ -39,56 +36,64 @@
       border-radius: 10px;
       font-size: 16px;
     }
-    button {
-      width: 100%;
-      padding: 12px;
+    .register-box button {
       background-color: #A8D5BA;
       color: white;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
       border: none;
       border-radius: 10px;
-      font-size: 18px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
-    button:hover {
+    .register-box button:hover {
       background-color: #82cdb0;
     }
-    .footer {
+    .register-box .link {
+      margin-top: 15px;
       font-size: 14px;
-      margin-top: 10px;
-      color: #666;
     }
-    .footer a {
-      color: #1c7c64;
+    .register-box .link a {
+      color: #00796b;
       text-decoration: none;
-      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="register-box">
-    <img src="../images/logo.png" alt="NaturaQ Logo">
+    <img src="images/logo.png" alt="NaturaQ Logo" style="width: 80px; margin-bottom: 10px;">
     <h2>إنشاء حساب جديد</h2>
-    <input type="text" placeholder="الاسم الكامل" id="name" required>
-    <input type="email" placeholder="البريد الإلكتروني" id="email" required>
-    <input type="password" placeholder="كلمة المرور" id="password" required>
-    <button onclick="register()">تسجيل</button>
-    <div class="footer">
-      لديك حساب بالفعل؟ <a href="../login.html">تسجيل الدخول</a>
+    <input type="text" id="name" placeholder="الاسم الكامل">
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="registerUser()">تسجيل الحساب</button>
+    <div class="link">
+      لديك حساب؟ <a href="login.html">تسجيل الدخول</a>
     </div>
-  </div>  <script>
-    function register() {
-      // الكود الخاص بالتسجيل عبر Firebase Authentication سيتم إدراجه هنا
+  </div>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>  <script src="firebase-config.js"></script>  <script>
+    const auth = firebase.auth();
+
+    function registerUser() {
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-      // validation simple
+
       if (!name || !email || !password) {
-        alert("يرجى ملء جميع الحقول");
+        alert('يرجى ملء جميع الحقول');
         return;
       }
-      // Firebase register function (placeholder)
-      alert("تم تسجيل الحساب بنجاح (نموذج وهمي)");
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          return userCredential.user.updateProfile({ displayName: name });
+        })
+        .then(() => {
+          alert('تم إنشاء الحساب بنجاح');
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          alert(error.message);
+        });
     }
   </script></body>
 </html>
