@@ -1,10 +1,13 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - العناية الطبيعية بجمالك</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NaturaQ - الرئيسية</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 </head>
 <body><!-- مبدل اللغة --><div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
@@ -18,61 +21,72 @@
   <p id="hero-description">منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.</p>
   <a href="#products" class="btn-primary" id="shop-now-btn">تسوقي الآن</a>
 </section><!-- المنتجات --><section id="products" class="products-grid">
-  <!-- كل كارت منتج -->
+  <!-- منتج -->
   <div class="product-card">
-    <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
+    <img src="images/soap.png" alt="صابونة" class="product-img">
     <h3 id="product1-name">صابونة طبيعية يدوية</h3>
-    <a href="products/natural-handmade-soap.html" class="btn-secondary">عرض التفاصيل</a>
+    <button class="btn-secondary" onclick="addToCart('صابونة طبيعية يدوية', 45, 'images/soap.png')">أضف إلى السلة</button>
   </div>
-  <!-- أضف بقية المنتجات بنفس الشكل -->
-</section><!-- لماذا تختارنا --><section class="why-us">
+  <!-- أضف باقي المنتجات هنا بنفس النموذج -->
+</section><!-- زر السلة العائم --><div id="cart-icon" onclick="goToCart()">
+  <img src="images/cart.png" alt="السلة" style="width: 40px;">
+  <span id="cart-count">0</span>
+</div><!-- لماذا تختارنا --><section class="why-us">
   <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
   <div class="reasons">
     <div class="reason">
       <h3 id="reason1-title">مكونات طبيعية 100%</h3>
-      <p id="reason1-desc">منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية الفائقة ببشرتكِ.</p>
+      <p id="reason1-desc">منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية ببشرتكِ.</p>
     </div>
-    <!-- أضف الأسباب المتبقية -->
+    <!-- باقي الأسباب -->
   </div>
-</section><!-- رابط إلى السلة --><div style="text-align:center; margin: 30px 0;">
-  <a href="cart.html" class="btn-primary">عرض سلة المشتريات</a>
-</div><!-- الفوتر --><footer class="footer">
+</section><!-- الفوتر --><footer class="footer">
   © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer><!-- سكريبت اللغة --><script src="script.js"></script><!-- سكريبت خدمة العملاء بالذكاء الاصطناعي --><script>
-(function() {
-  window.chatbaseConfig = {
-    chatbotId: "QyA3pZTR2k1v9jspuzdAs",
-    openOnLoad: false,
-    autoShow: false,
-    disableSessionStorage: true,
-    showLauncher: true,
-    launcherTitle: "خدمة العملاء",
-    launcherPosition: "bottom-right",
-    theme: {
-      launcherButtonColor: "#A8D5BA",
-      primaryColor: "#A8D5BA",
-      chatBackground: "#ffffff"
-    },
-    iframeProps: {
-      style: {
-        width: "350px",
-        height: "500px",
-        maxWidth: "90%",
-        borderRadius: "20px",
-        overflow: "hidden",
-        position: "fixed",
-        bottom: "80px",
-        right: "20px",
-        zIndex: "9999",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-        display: "none"
-      }
-    }
-  };
-  const script = document.createElement("script");
-  script.src = "https://www.chatbase.co/embed.min.js";
-  script.async = true;
-  document.body.appendChild(script);
-})();
-</script></body>
+</footer><!-- سكريبتات --><script src="script.js"></script><script>
+function addToCart(name, price, image) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let item = cart.find(i => i.name === name);
+  if (item) item.quantity += 1;
+  else cart.push({ name, price, quantity: 1, image });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+}
+
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let count = cart.reduce((acc, item) => acc + item.quantity, 0);
+  document.getElementById("cart-count").textContent = count;
+}
+
+function goToCart() {
+  window.location.href = "cart.html";
+}
+
+window.onload = updateCartCount;
+</script><style>
+#cart-icon {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #A8D5BA;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+#cart-count {
+  position: absolute;
+  top: 0;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style></body>
 </html>
