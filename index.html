@@ -1,57 +1,68 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - الصفحة الرئيسية</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NaturaQ - الرئيسية</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>
 </head>
 <body>
-  <!-- شاشة انتظار تسجيل الدخول -->
-  <div id="auth-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center">
-    <p style="font-size:18px">يتم تسجيل الدخول ...</p>
-  </div>  <!-- شريط اللغة والسلة -->  <div class="language-switcher">
-    <button onclick="setLanguage('ar')">العربية</button>
-    <button onclick="setLanguage('en')">English</button>
-    <button onclick="location.href='cart.html'" style="position: relative;">
-      السلة <span id="cart-count" style="position: absolute; top: -10px; left: -10px; background: red; color: white; border-radius: 50%; padding: 0 6px; font-size: 12px;">0</span>
-    </button>
-  </div>  <!-- شعار وعبارة ترحيبية -->  <header class="header">
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-  </header>  <!-- بانر ترحيبي -->  <section class="hero">
-    <h1 id="hero-title">اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ</h1>
-    <p id="hero-description">منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.</p>
-    <a href="#products" class="btn-primary" id="shop-now-btn">تسوقي الآن</a>
-  </section>  <!-- المنتجات -->  <section id="products" class="products-grid">
-    <div class="product-card">
-      <img src="images/soap.png" alt="صابونة طبيعية يدوية" class="product-img">
-      <h3 id="product1-name">صابونة طبيعية يدوية</h3>
-      <a href="products/natural-handmade-soap.html" class="btn-secondary">عرض التفاصيل</a>
-    </div>
-    <!-- باقي المنتجات تُضاف بنفس الشكل -->
-  </section>  <!-- لماذا تختارين NaturaQ -->  <section class="why-us">
-    <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
-    <div class="reasons">
-      <div class="reason">
-        <h3 id="reason1-title">مكونات طبيعية 100%</h3>
-        <p id="reason1-desc">منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية الفائقة ببشرتكِ.</p>
-      </div>
-      <!-- باقي الأسباب تُضاف هنا -->
-    </div>
-  </section>  <!-- الفوتر -->  <footer class="footer">
-    © 2025 NaturaQ. جميع الحقوق محفوظة.
-  </footer>  <script>
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+  <!-- شاشة التحميل -->
+  <div id="loading-screen" style="text-align:center; padding:100px; font-size: 20px; color:#333">يتم تسجيل الدخول ...</div>  <!-- المحتوى الرئيسي -->  <div id="main-content" style="display:none">
+    <!-- اللغة -->
+    <div class="language-switcher">
+      <button onclick="setLanguage('ar')">العربية</button>
+      <button onclick="setLanguage('en')">English</button>
+    </div><!-- إشعار الذكاء الاصطناعي -->
+<div class="ai-banner" id="ai-message">هل تحتاج مساعدة؟ تحدث مع الذكاء الاصطناعي لمساعدتك الآن!</div>
 
-    auth.onAuthStateChanged(user => {
+<!-- الشعار -->
+<header class="header">
+  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+</header>
+
+<!-- بانر ترحيبي -->
+<section class="hero">
+  <h1 id="hero-title">اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ</h1>
+  <p id="hero-description">منتجات طبيعية للعناية ببشرتكِ مصنوعة من أفضل المكونات العضوية.</p>
+  <a href="#products" class="btn-primary" id="shop-now-btn">تسوقي الآن</a>
+</section>
+
+<!-- المنتجات -->
+<section id="products" class="products-grid">
+  <div class="product-card">
+    <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
+    <h3 id="product1-name">صابونة طبيعية يدوية</h3>
+    <a href="products/natural-handmade-soap.html" class="btn-secondary">عرض التفاصيل</a>
+  </div>
+  <!-- أضف المزيد من المنتجات هنا -->
+</section>
+
+<!-- لماذا تختارنا -->
+<section class="why-us">
+  <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
+  <div class="reasons">
+    <div class="reason">
+      <h3 id="reason1-title">مكونات طبيعية 100%</h3>
+      <p id="reason1-desc">منتجاتنا مصنوعة من أفضل المكونات العضوية للعناية الفائقة ببشرتكِ.</p>
+    </div>
+    <!-- المزيد من الأسباب هنا -->
+  </div>
+</section>
+
+<!-- الفوتر -->
+<footer class="footer">
+  © 2025 NaturaQ. جميع الحقوق محفوظة.
+</footer>
+
+  </div>  <script>
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        document.getElementById('auth-overlay').style.display = 'none';
-        // يمكنك هنا تحميل بيانات السلة لهذا المستخدم من Firestore
+        document.getElementById('main-content').style.display = 'block';
+        document.getElementById('loading-screen').style.display = 'none';
       } else {
         window.location.href = "login.html";
       }
