@@ -3,95 +3,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول - NaturaQ</title>
+  <link rel="stylesheet" href="../style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #fdfaf6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    .login-container {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 30px 25px;
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-    }
-    .login-container img {
-      max-width: 120px;
-      margin-bottom: 20px;
-    }
-    .login-container h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    .login-container input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    .login-container button {
-      width: 100%;
-      padding: 12px;
-      background-color: #A8D5BA;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .login-container button:hover {
-      background-color: #82cdb0;
-    }
-    .login-container p {
-      font-size: 14px;
-      margin-top: 15px;
-    }
-    .login-container a {
-      color: #00796b;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
 </head>
-<body>
-  <div class="login-container">
-    <img src="../images/logo.png" alt="NaturaQ Logo">
-    <h1>تسجيل الدخول إلى حسابك</h1>
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
-    <button onclick="loginUser()">تسجيل الدخول</button>
-    <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
-    <p style="margin-top: 30px; font-size: 12px; color: #888">© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
-  </div>
-  <script src="../firebase-config.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script>
-    const auth = firebase.auth();function loginUser() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+<body style="background-color: #fdfaf6; font-family: 'Cairo', sans-serif;">  <section style="max-width: 420px; margin: 80px auto; padding: 30px; background-color: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+    <img src="../images/logo.png" alt="NaturaQ Logo" style="width: 100px; margin-bottom: 20px;">
+    <h2 style="font-size: 22px; margin-bottom: 20px; color: #333;">تسجيل الدخول إلى حسابك</h2><input type="email" id="login-email" placeholder="البريد الإلكتروني" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 15px; font-size: 16px;">
+<input type="password" id="login-password" placeholder="كلمة المرور" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 20px; font-size: 16px;">
 
-  auth.signInWithEmailAndPassword(email, password)
-    .then(() => {
-      window.location.href = "index.html";
-    })
-    .catch(error => {
-      alert("حدث خطأ في تسجيل الدخول: " + error.message);
-    });
-}
+<button onclick="login()" style="background-color: #A8D5BA; color: white; padding: 12px; width: 100%; border: none; border-radius: 8px; font-size: 16px; font-weight: bold;">تسجيل الدخول</button>
 
-  </script>
-</body>
+<p style="margin-top: 15px; font-size: 14px;">ليس لديك حساب؟ <a href="register.html" style="color: #009688; font-weight: bold; text-decoration: none;">إنشاء حساب جديد</a></p>
+
+<p style="font-size: 12px; color: #777; margin-top: 20px;">© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
+
+  </section>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>  <script src="../firebase-config.js"></script>  <script>
+    const auth = firebase.auth();
+
+    function login() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(user => {
+          window.location.href = '../index.html';
+        })
+        .catch(error => {
+          alert("فشل تسجيل الدخول: " + error.message);
+        });
+    }
+  </script></body>
 </html>
