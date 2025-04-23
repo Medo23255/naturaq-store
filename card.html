@@ -3,83 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>سلة المشتريات - NaturaQ</title>
+  <title>السلة - NaturaQ</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="header">
-    <h1>سلة مشترياتك</h1>
-    <button class="btn-secondary" onclick="logout()">تسجيل الخروج</button>
-  </div>
 
-  <div id="cart-items" class="products-grid"></div>
+<header class="header">
+  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+</header>
 
-  <div class="footer">
-    <p id="total-price">الإجمالي: 0 ر.ق</p>
+<section class="cart-page">
+  <h1>سلة التسوق</h1>
+  <div id="cart-items" class="cart-items"></div>
+  <div class="cart-summary">
+    <p><strong>الإجمالي:</strong> <span id="total-price">0</span> ر.ق</p>
     <button class="btn-primary" onclick="confirmOrder()">تأكيد الطلب</button>
   </div>
+</section>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyD9...تكميل بياناتك",
-      authDomain: "naturaqstore.firebaseapp.com",
-      projectId: "naturaqstore",
-      storageBucket: "naturaqstore.appspot.com",
-      messagingSenderId: "1234567890",
-      appId: "1:1234567890:web:abcdef"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const auth = firebase.auth();
+<footer class="footer">
+  جميع الحقوق محفوظة © NaturaQ 2025
+</footer>
 
-    let userId = null;
-    let total = 0;
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
 
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        userId = user.uid;
-        loadCart();
-      } else {
-        window.location.href = "login.html";
-      }
-    });
+<script>
+  const auth = firebase.auth();
+  const db = firebase.firestore();
 
-    function loadCart() {
-      db.collection("carts").doc(userId).collection("items").get()
-        .then(snapshot => {
-          const container = document.getElementById("cart-items");
-          container.innerHTML = "";
-          total = 0;
+  let totalPrice = 0;
 
-          snapshot.forEach(doc => {
-            const data = doc.data();
-            total += data.price * data.quantity;
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      const userId = user.uid;
+      db.collection("carts").doc(userId).get().then(doc => {
+        const items = doc.exists ? doc.data().items || [] : [];
+        const container = document.getElementById("cart-items");
+        container.innerHTML = "";
+
+        if (items.length === 0) {
+          container.innerHTML = "<p>السلة فارغة حالياً.</p>";
+        } else {
+          items.forEach(item => {
+            totalPrice += item.price;
             container.innerHTML += `
-              <div class="product-card">
-                <img src="${data.image}" class="product-img" />
-                <h3>${data.name}</h3>
-                <p>الكمية: ${data.quantity}</p>
-                <p>السعر: ${data.price} ر.ق</p>
+              <div class="cart-item">
+                <img src="${item.image}" class="item-img">
+                <div>
+                  <h3>${item.name}</h3>
+                  <p>${item.price} ر.ق</p>
+                </div>
               </div>
             `;
           });
+        }
 
-          document.getElementById("total-price").textContent = `الإجمالي: ${total} ر.ق`;
-        });
-    }
-
-    function confirmOrder() {
-      alert("تم إرسال الطلب. سيتم التواصل معك قريبًا.");
-    }
-
-    function logout() {
-      auth.signOut().then(() => {
-        window.location.href = "login.html";
+        document.getElementById("total-price").textContent = totalPrice;
       });
+    } else {
+      window.location.href = "login.html";
     }
-  </script>
+  });
+
+  function confirmOrder() {
+    alert("تم تأكيد الطلب! سيتم التواصل معك قريباً.");
+    // هنا ممكن تحفظ الطلب في Collection جديدة مثلاً orders
+  }
+</script>
+
+<style>
+  body {
+    font-family: 'Cairo', sans-serif;
+    padding: 20px;
+    background-color: #f6f6f6;
+  }
+
+  .cart-page {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .cart-items {
+    margin-top: 30px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #ddd;
+  }
+
+  .item-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-left: 15px;
+  }
+
+  .cart-summary {
+    margin-top: 30px;
+    font-size: 18px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #ddd;
+  }
+
+  .btn-primary {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #86c0b0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: #6bb49c;
+  }
+</style>
+
 </body>
 </html>
