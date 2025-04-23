@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,53 +6,31 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-
-<!-- مبدل اللغة -->
-<div class="language-switcher">
+<body><!-- مبدل اللغة --><div class="language-switcher">
   <button onclick="setLanguage('ar')">العربية</button>
   <button onclick="setLanguage('en')">English</button>
-</div>
-
-<!-- إشعار الذكاء الاصطناعي -->
-<div class="ai-banner" id="ai-message">
+</div><!-- إشعار الذكاء الاصطناعي --><div class="ai-banner" id="ai-message">
   هل تحتاج مساعدة؟ تحدث مع خدمة العملاء الآن!
-</div>
-
-<!-- الشعار -->
-<header class="header">
+</div><!-- الشعار --><header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
   <p id="user-name" style="margin-top: 10px; font-weight: bold;"></p>
   <button onclick="logout()" class="btn-secondary" style="margin-top: 5px;">تسجيل الخروج</button>
   <a href="cart.html" class="cart-button">السلة <span id="cart-count">0</span></a>
-</header>
-
-<!-- بانر -->
-<section class="hero">
+</header><!-- بانر --><section class="hero">
   <h1 id="hero-title">اكتشفي الجمال الطبيعي مع NaturaQ</h1>
   <p id="hero-description">منتجات طبيعية للعناية ببشرتكِ من أفضل المكونات.</p>
   <a href="#products" class="btn-primary" id="shop-now-btn">تسوقي الآن</a>
-</section>
-
-<!-- المنتجات -->
-<section id="products" class="products-grid">
-
+</section><!-- المنتجات --><section id="products" class="products-grid">
   <div class="product-card">
     <img src="images/soap.png" alt="صابونة" class="product-img">
     <h3 id="product1-name">صابونة طبيعية</h3>
     <a href="#" class="btn-secondary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</a>
-  </div>
-
-  <div class="product-card">
+  </div>  <div class="product-card">
     <img src="images/rice_serum.png" alt="سيروم" class="product-img">
     <h3 id="product2-name">سيروم الأرز</h3>
     <a href="#" class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</a>
   </div>
-
-</section>
-
-<!-- لماذا تختارنا -->
-<section class="why-us">
+</section><!-- قسم لماذا تختارنا --><section class="why-us">
   <h2 id="why-choose-title">لماذا تختارين NaturaQ؟</h2>
   <div class="reasons">
     <div class="reason">
@@ -65,15 +42,21 @@
       <p id="reason2-desc">توصيل آمن وسريع.</p>
     </div>
   </div>
-</section>
-
-<!-- الفوتر -->
-<footer class="footer">
+</section><!-- قسم التقييمات --><section class="reviews">
+  <h2>آراء العملاء</h2>
+  <div class="review">
+    <p class="reviewer">سارة محمد</p>
+    <p class="stars">★★★★★</p>
+    <p class="comment">منتجات رائعة وبجودة عالية، شعرت بفرق بعد الاستخدام!</p>
+  </div>
+  <div class="review">
+    <p class="reviewer">ريم أحمد</p>
+    <p class="stars">★★★★☆</p>
+    <p class="comment">الخدمة ممتازة والتوصيل كان سريع، سأطلب مرة أخرى.</p>
+  </div>
+</section><!-- الفوتر --><footer class="footer">
   © 2025 NaturaQ. جميع الحقوق محفوظة.
-</footer>
-
-<!-- زر البوت الذكي -->
-<script>
+</footer><!-- بوت الذكاء الاصطناعي --><script>
   window.chatbaseConfig = {
     chatbotId: "QyA3pZTR2k1v9jspuzdAs",
     openOnLoad: false,
@@ -104,12 +87,7 @@
   script.src = "https://www.chatbase.co/embed.min.js";
   script.async = true;
   document.body.appendChild(script);
-</script>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script>
+</script><script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script><script>
   const firebaseConfig = {
     apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
     authDomain: "naturaq-store.firebaseapp.com",
@@ -118,13 +96,12 @@
     messagingSenderId: "638923298702",
     appId: "1:638923298702:web:8ed21954723632048b6df"
   };
-
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
 
   auth.onAuthStateChanged(user => {
     if (user) {
-      document.getElementById("user-name").textContent = `مرحبًا، ${user.email}`;
+      document.getElementById("user-name").textContent = `مرحبًا، ${user.displayName || user.email}`;
     } else {
       window.location.href = "login.html";
     }
@@ -150,9 +127,5 @@
     localStorage.setItem("selectedLanguage", lang);
     location.reload();
   }
-</script>
-
-<!-- سكريبت اللغة -->
-<script src="script.js"></script>
-</body>
+</script><script src="script.js"></script></body>
 </html>
