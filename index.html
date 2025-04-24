@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+8<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -126,6 +126,34 @@
   </script>
 
 <script type="module" src="auth-check.js"></script>
+<!-- في نهاية body -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+    authDomain: "naturaq-store.firebaseapp.com",
+    projectId: "naturaq-store",
+    storageBucket: "naturaq-store.appspot.com",
+    messagingSenderId: "638923298702",
+    appId: "1:638923298702:web:8ed21954723632048b6df"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user && user.email === "admin@naturaq.com") {
+      const adminBtn = document.createElement("button");
+      adminBtn.textContent = "لوحة الإدارة";
+      adminBtn.style.cssText = "position:fixed;bottom:20px;left:20px;background:#2e7d32;color:#fff;padding:10px 15px;border:none;border-radius:8px;cursor:pointer;z-index:1000;";
+      adminBtn.onclick = () => window.location.href = "admin.html";
+      document.body.appendChild(adminBtn);
+    }
+  });
+</script>
+
 
 </body>
 </html>
