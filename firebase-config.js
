@@ -14,21 +14,27 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // التحقق من تسجيل الدخول
+  // التحقق من تسجيل الدخول لأي صفحة
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      document.getElementById("user-email").innerText = `مرحباً، ${user.email}`;
+    if (!user) {
+      window.location.href = "login.html";
     } else {
-      window.location.href = "../login.html";
+      const logoutBtn = document.getElementById("logout-btn");
+      if (logoutBtn) {
+        logoutBtn.style.display = "inline-block";
+        logoutBtn.addEventListener("click", () => {
+          signOut(auth).then(() => window.location.href = "login.html");
+        });
+      }
     }
   });
 
-  // تسجيل الخروج
-  window.logout = function () {
-    signOut(auth).then(() => {
-      window.location.href = "../login.html";
-    }).catch((error) => {
-      alert("حدث خطأ أثناء تسجيل الخروج: " + error.message);
-    });
+  // دالة عامة لتحويل المستخدم للمنتج
+  window.goToProduct = function(link) {
+    if (auth.currentUser) {
+      window.location.href = link;
+    } else {
+      alert("يرجى تسجيل الدخول أولاً");
+    }
   };
 </script>
