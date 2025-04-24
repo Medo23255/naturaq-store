@@ -1,159 +1,117 @@
-8<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NaturaQ - الرئيسية</title>
+  <title>NaturaQ - اكتشفي الجمال الطبيعي</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      background-color: #f8fdf9;
+      color: #2e7d32;
+    }
+    header {
+      background-color: #388e3c;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hero {
+      text-align: center;
+      background-image: url('images/hero-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 20px;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .btn-primary {
+      padding: 12px 24px;
+      background-color: #66bb6a;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .product-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .reviews {
+      background-color: #e8f5e9;
+      padding: 30px 20px;
+    }
+    footer {
+      background-color: #1b5e20;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-    <nav class="nav">
-      <a href="index.html" class="nav-link">الرئيسية</a>
-      <a href="card.html" class="nav-link">السلة</a>
-      <a href="user.html" class="nav-link">صفحتي</a>
-      <button id="logout-btn" class="btn-secondary" style="display:none;">تسجيل الخروج</button>
+  <header>
+    <h2>NaturaQ</h2>
+    <nav>
+      <a href="#products" style="color:white; margin-left: 20px;">المنتجات</a>
+      <a href="#about" style="color:white; margin-left: 20px;">لماذا نحن؟</a>
+      <a href="#reviews" style="color:white">آراء العملاء</a>
     </nav>
   </header>  <section class="hero">
-    <div class="hero-text">
-      <h1>اكتشفي الجمال الطبيعي</h1>
-      <p>منتجات طبيعية 100% للعناية بجمالك وصحتك</p>
-      <a href="#products" class="btn-primary">تسوقي الآن</a>
+    <h1>اكتشفي الجمال الطبيعي</h1>
+    <p>منتجات طبيعية 100% للعناية ببشرتك</p>
+    <a href="#products" class="btn-primary">تسوقي الآن</a>
+  </section>  <section class="section" id="products">
+    <h2>منتجاتنا</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="images/soap.png" alt="صابونة طبيعية">
+        <h3>صابونة طبيعية</h3>
+        <button class="btn-primary">عرض التفاصيل</button>
+      </div>
+      <div class="product-card">
+        <img src="images/rice_serum.png" alt="سيروم الأرز">
+        <h3>سيروم الأرز</h3>
+        <button class="btn-primary">عرض التفاصيل</button>
+      </div>
     </div>
-  </section>  <section class="daily-offer">
-    <h2>عرض اليوم</h2>
-    <p>خصم 25% على سيروم الأرز لفترة محدودة!</p>
-    <div id="countdown"></div>
-  </section>  <section id="products" class="products-grid">
-    <div class="product-card">
-      <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
-      <h3>صابونة طبيعية</h3>
-      <button class="btn-secondary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</button>
-    </div>
-    <div class="product-card">
-      <img src="images/rice_serum.png" alt="سيروم الأرز" class="product-img">
-      <h3>سيروم الأرز</h3>
-      <button class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</button>
-    </div>
-    <div class="product-card">
-      <img src="images/rose_water.png" alt="ماء الورد الطبيعي" class="product-img">
-      <h3>ماء الورد الطبيعي</h3>
-      <button class="btn-secondary" onclick="goToProduct('products/rose-water.html')">عرض التفاصيل</button>
-    </div>
-  </section>  <section class="why-us">
+  </section>  <section class="section" id="about">
     <h2>لماذا تختارين NaturaQ؟</h2>
-    <div class="reasons">
-      <div class="reason">
-        <h3>مكونات طبيعية</h3>
-        <p>نستخدم فقط أفضل المكونات العضوية.</p>
-      </div>
-      <div class="reason">
-        <h3>توصيل سريع</h3>
-        <p>توصيل سريع وآمن لجميع أنحاء قطر.</p>
-      </div>
-      <div class="reason">
-        <h3>ثقة العملاء</h3>
-        <p>آلاف العملاء السعداء بمنتجاتنا الطبيعية.</p>
-      </div>
-    </div>
-  </section>  <section class="reviews">
-    <h2>ماذا يقول عملاؤنا؟</h2>
-    <div class="review">
-      <p class="reviewer">سارة محمد</p>
-      <p class="stars">★★★★★</p>
-      <p class="comment">منتجات ممتازة وشحن سريع! شكراً NaturaQ.</p>
-    </div>
-    <div class="review">
-      <p class="reviewer">ريم أحمد</p>
-      <p class="stars">★★★★☆</p>
-      <p class="comment">أحببت السيروم جداً. سأجرب باقي المنتجات!</p>
-    </div>
-  </section>  <footer class="footer">
-    <p>© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
-  </footer>  <script>
-    window.chatbaseConfig = {
-      chatbotId: "QyA3pZTR2k1v9jspuzdAs",
-      showLauncher: true,
-      launcherTitle: "مساعد NaturaQ"
-    };
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.async = true;
-    document.body.appendChild(script);
-  </script>  <script type="module">
-    import { auth } from './firebase-config.js';
-    import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
-
-    const logoutBtn = document.getElementById("logout-btn");
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        logoutBtn.style.display = "inline-block";
-      } else {
-        window.location.href = "login.html";
-      }
-    });
-
-    logoutBtn.addEventListener("click", () => {
-      signOut(auth).then(() => window.location.href = "login.html");
-    });
-
-    window.goToProduct = function(link) {
-      if (auth.currentUser) {
-        window.location.href = link;
-      } else {
-        alert("يرجى تسجيل الدخول أولاً");
-      }
-    };
-
-    const end = new Date();
-    end.setHours(end.getHours() + 4);
-    setInterval(() => {
-      const now = new Date();
-      const diff = end - now;
-      const el = document.getElementById("countdown");
-      if (!el) return;
-      if (diff <= 0) {
-        el.innerText = "انتهى العرض!";
-        return;
-      }
-      const h = Math.floor(diff / 1000 / 60 / 60);
-      const m = Math.floor((diff / 1000 / 60) % 60);
-      const s = Math.floor((diff / 1000) % 60);
-      el.innerText = `${h} س ${m} د ${s} ث`;
-    }, 1000);
-
-  </script>
-
-<script type="module" src="auth-check.js"></script>
-<!-- في نهاية body -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
-    authDomain: "naturaq-store.firebaseapp.com",
-    projectId: "naturaq-store",
-    storageBucket: "naturaq-store.appspot.com",
-    messagingSenderId: "638923298702",
-    appId: "1:638923298702:web:8ed21954723632048b6df"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  onAuthStateChanged(auth, (user) => {
-    if (user && user.email === "admin@naturaq.com") {
-      const adminBtn = document.createElement("button");
-      adminBtn.textContent = "لوحة الإدارة";
-      adminBtn.style.cssText = "position:fixed;bottom:20px;left:20px;background:#2e7d32;color:#fff;padding:10px 15px;border:none;border-radius:8px;cursor:pointer;z-index:1000;";
-      adminBtn.onclick = () => window.location.href = "admin.html";
-      document.body.appendChild(adminBtn);
-    }
-  });
-</script>
-
-
+    <p>نحن نقدم منتجات عضوية، آمنة وفعالة. رضا العملاء هو أولويتنا.</p>
+  </section>  <section class="reviews" id="reviews">
+    <h2>آراء العملاء</h2>
+    <p>"أفضل منتجات طبيعية جربتها على الإطلاق!" – سارة</p>
+    <p>"خدمة رائعة وتوصيل سريع. أنصح الجميع!" – ريم</p>
+  </section>  <footer>
+    <p>جميع الحقوق محفوظة &copy; 2025 NaturaQ</p>
+  </footer>
 </body>
 </html>
