@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تعديل البيانات - NaturaQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f1f8e9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .edit-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+    h2 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #66bb6a;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <div class="edit-box">
+    <h2>تعديل بيانات الحساب</h2>
+    <input type="text" id="fullname" placeholder="الاسم الكامل">
+    <input type="tel" id="phone" placeholder="رقم الهاتف">
+    <button onclick="updateProfile()">حفظ التعديلات</button>
+  </div>  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+      authDomain: "naturaq-store.firebaseapp.com",
+      projectId: "naturaq-store",
+      storageBucket: "naturaq-store.appspot.com",
+      messagingSenderId: "638923298702",
+      appId: "1:638923298702:web:8ed21954723632048b6df"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById("fullname").value = data.fullName;
+        document.getElementById("phone").value = data.phone;
+      }
+    });
+
+    window.updateProfile = async function () {
+      const fullName = document.getElementById("fullname").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      const user = auth.currentUser;
+      if (!user) return;
+
+      try {
+        await updateProfile(user, { displayName: fullName });
+        await updateDoc(doc(db, "users", user.uid), { fullName, phone });
+        alert("تم تحديث البيانات بنجاح.");
+        window.location.href = "user.html";
+      } catch (error) {
+        alert("حدث خطأ: " + error.message);
+      }
+    }
+  </script></body>
+</html>
