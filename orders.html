@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>طلباتي - NaturaQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f9fbe7;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2e7d32;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .order {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+    .order:last-child {
+      border: none;
+    }
+    .order h4 {
+      margin: 0 0 5px;
+      color: #4caf50;
+    }
+    .order p {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+    }
+    .empty {
+      text-align: center;
+      color: #888;
+      margin-top: 50px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>طلباتي السابقة</h2>
+    <div id="orders"></div>
+  </div>  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+      authDomain: "naturaq-store.firebaseapp.com",
+      projectId: "naturaq-store",
+      storageBucket: "naturaq-store.appspot.com",
+      messagingSenderId: "638923298702",
+      appId: "1:638923298702:web:8ed21954723632048b6df"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const ordersContainer = document.getElementById("orders");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      const q = query(collection(db, "orders"), where("userId", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        ordersContainer.innerHTML = '<div class="empty">لا توجد طلبات حتى الآن.</div>';
+        return;
+      }
+
+      querySnapshot.forEach((doc) => {
+        const order = doc.data();
+        const orderDiv = document.createElement("div");
+        orderDiv.classList.add("order");
+        orderDiv.innerHTML = `
+          <h4>رقم الطلب: ${doc.id}</h4>
+          <p>المنتجات: ${order.items.join(", ")}</p>
+          <p>الإجمالي: ${order.total} ر.ق</p>
+          <p>تاريخ الطلب: ${new Date(order.date).toLocaleDateString()}</p>
+        `;
+        ordersContainer.appendChild(orderDiv);
+      });
+    });
+  </script></body>
+</html>
