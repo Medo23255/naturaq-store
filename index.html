@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body><!-- رأس الموقع --><header class="header">
+<body>
+<!-- رأس الموقع -->
+<header class="header">
   <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
   <nav class="nav">
     <a href="index.html" class="nav-link">الرئيسية</a>
@@ -28,13 +30,11 @@
   <div class="product-card">
     <img src="images/soap.png" alt="صابونة" class="product-img">
     <h3>صابونة طبيعية</h3>
-    <p>ر.ق 25</p>
     <button class="btn-secondary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</button>
   </div>
   <div class="product-card">
     <img src="images/rice_serum.png" alt="سيروم الأرز" class="product-img">
     <h3>سيروم الأرز</h3>
-    <p>ر.ق 60</p>
     <button class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</button>
   </div>
 </section><!-- لماذا نحن؟ --><section class="why-us">
@@ -77,11 +77,13 @@
   script.src = "https://www.chatbase.co/embed.min.js";
   script.async = true;
   document.body.appendChild(script);
-</script><!-- Firebase و السكريبتات --><script type="module">
+</script><!-- Firebase والتحقق --><script type="module">
   import { auth } from './firebase-config.js';
+  import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
   const logoutBtn = document.getElementById("logout-btn");
-  auth.onAuthStateChanged(user => {
+
+  onAuthStateChanged(auth, (user) => {
     if (user) {
       logoutBtn.style.display = "inline-block";
     } else {
@@ -90,7 +92,7 @@
   });
 
   logoutBtn.addEventListener("click", () => {
-    auth.signOut().then(() => window.location.href = "login.html");
+    signOut(auth).then(() => window.location.href = "login.html");
   });
 
   window.goToProduct = function(link) {
@@ -107,14 +109,16 @@
   setInterval(() => {
     const now = new Date();
     const diff = end - now;
+    const el = document.getElementById("countdown");
+    if (!el) return;
     if (diff <= 0) {
-      document.getElementById("countdown").innerText = "انتهى العرض!";
+      el.innerText = "انتهى العرض!";
       return;
     }
     const h = Math.floor(diff / 1000 / 60 / 60);
     const m = Math.floor((diff / 1000 / 60) % 60);
     const s = Math.floor((diff / 1000) % 60);
-    document.getElementById("countdown").innerText = `${h} س ${m} د ${s} ث`;
+    el.innerText = `${h} س ${m} د ${s} ث`;
   }, 1000);
 </script></body>
 </html>
