@@ -18,7 +18,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// عرض اسم المستخدم وتأكيد أنه Admin
+// تحقق من الأدمن فقط
 onAuthStateChanged(auth, async (user) => {
   if (!user || user.email !== "admin@naturaq.com") {
     alert("هذه الصفحة مخصصة للإدارة فقط.");
@@ -29,33 +29,19 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// تسجيل الخروج
+// زر تسجيل الخروج
 window.logout = function () {
   signOut(auth).then(() => window.location.href = "login.html");
 };
 
-// عرض الصورة المرفوعة مؤقتًا
-const productImageInput = document.getElementById("product-image");
-productImageInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      document.getElementById("image-preview").src = reader.result;
-      document.getElementById("image-preview").style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-// إضافة منتج جديد
+// إضافة منتج
 window.addProduct = async function () {
   const name = document.getElementById("product-name").value;
   const desc = document.getElementById("product-desc").value;
   const price = document.getElementById("product-price").value;
   const file = document.getElementById("product-image").files[0];
 
-  if (!name || !desc || !price || !file) return alert("يرجى ملء كل البيانات واختيار صورة.");
+  if (!name || !desc || !price || !file) return alert("املأ كل البيانات.");
 
   const imageRef = ref(storage, `products/${Date.now()}_${file.name}`);
   await uploadBytes(imageRef, file);
@@ -65,44 +51,41 @@ window.addProduct = async function () {
     name, desc, price, imageURL
   });
 
-  alert("تمت الإضافة بنجاح");
+  alert("تمت إضافة المنتج.");
   location.reload();
 };
 
-// تحميل المنتجات
+// عرض المنتجات
 async function loadProducts() {
-  const productList = document.getElementById("product-list");
-  const querySnapshot = await getDocs(collection(db, "products"));
-  productList.innerHTML = "";
-  querySnapshot.forEach(doc => {
-    const data = doc.data();
-    productList.innerHTML += `
+  const container = document.getElementById("product-list");
+  const snapshot = await getDocs(collection(db, "products"));
+  container.innerHTML = "";
+  snapshot.forEach(doc => {
+    const p = doc.data();
+    container.innerHTML += `
       <div class="product-card">
-        <h3>${data.name}</h3>
-        <p>${data.desc}</p>
-        <p>ر.ق ${data.price}</p>
-        <img src="${data.imageURL}" style="max-width:100px;">
+        <img src="${p.imageURL}" width="100"><br>
+        <strong>${p.name}</strong><br>
+        ${p.desc}<br>
+        <span>ر.ق ${p.price}</span>
       </div>
     `;
   });
 }
 
-// تحميل المستخدمين
+// عرض المستخدمين
 async function loadUsers() {
-  const userList = document.getElementById("user-list");
-  const usersRef = collection(db, "users");
-  const snapshot = await getDocs(usersRef);
-  userList.innerHTML = "";
+  const container = document.getElementById("user-list");
+  const snapshot = await getDocs(collection(db, "users"));
+  container.innerHTML = "";
   snapshot.forEach(doc => {
     const u = doc.data();
-    userList.innerHTML += `
+    container.innerHTML += `
       <div class="user-card">
         <strong>${u.fullName}</strong><br>
-        البريد: ${u.email}<br>
-        الهاتف: ${u.phone}<br>
-        تم التسجيل: ${u.createdAt}
+        ${u.email} - ${u.phone}<br>
+        سجل في: ${u.createdAt}
       </div>
     `;
   });
 }
-
