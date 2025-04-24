@@ -3,71 +3,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تسجيل حساب جديد - NaturaQ</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #fafdf8;
+      background: linear-gradient(to bottom right, #e8f5e9, #f1f8e9);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
     }
-    .login-box {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      max-width: 400px;
+    .register-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       width: 100%;
+      max-width: 450px;
     }
-    .login-box h2 {
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #2e7d32;
+    .register-box h2 {
       text-align: center;
+      color: #2e7d32;
+      margin-bottom: 25px;
     }
-    .login-box input {
+    .register-box input {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-size: 16px;
     }
-    .login-box button {
+    .register-box button {
       width: 100%;
-      padding: 12px;
-      background-color: #81c784;
+      padding: 14px;
+      background-color: #66bb6a;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 18px;
       cursor: pointer;
-    }
-    .login-box button:hover {
-      background-color: #66bb6a;
-    }
-    .login-box p {
-      text-align: center;
       margin-top: 10px;
     }
-    .login-box a {
+    .register-box button:hover {
+      background-color: #4caf50;
+    }
+    .register-box p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .register-box a {
       color: #2e7d32;
       text-decoration: none;
       font-weight: bold;
     }
+    .note {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-  <div class="login-box">
+  <div class="register-box">
     <h2>إنشاء حساب جديد</h2>
     <input type="text" id="fullname" placeholder="الاسم الكامل" required />
     <input type="email" id="email" placeholder="البريد الإلكتروني" required />
     <input type="password" id="password" placeholder="كلمة المرور" required />
+    <input type="password" id="confirm" placeholder="تأكيد كلمة المرور" required />
     <input type="tel" id="phone" placeholder="رقم الهاتف" required />
     <button onclick="register()">تسجيل</button>
     <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
+    <p class="note">نضمن لك سرية معلوماتك واستخدامها فقط لخدمتك داخل NaturaQ</p>
   </div>  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
@@ -90,10 +100,16 @@
       const fullName = document.getElementById("fullname").value.trim();
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
+      const confirm = document.getElementById("confirm").value.trim();
       const phone = document.getElementById("phone").value.trim();
 
-      if (!fullName || !email || !password || !phone) {
+      if (!fullName || !email || !password || !confirm || !phone) {
         alert("يرجى ملء جميع الحقول.");
+        return;
+      }
+
+      if (password !== confirm) {
+        alert("كلمة المرور وتأكيدها غير متطابقين.");
         return;
       }
 
