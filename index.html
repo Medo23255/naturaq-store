@@ -7,118 +7,115 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- رأس الموقع -->
-<header class="header">
-  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-  <nav class="nav">
-    <a href="index.html" class="nav-link">الرئيسية</a>
-    <a href="card.html" class="nav-link">السلة</a>
-    <a href="user.html" class="nav-link">صفحتي</a>
-    <button id="logout-btn" class="btn-secondary" style="display:none;">تسجيل الخروج</button>
-  </nav>
-</header><!-- بانر ترحيبي --><section class="hero">
-  <div class="hero-text">
-    <h1>اكتشفي الجمال الطبيعي</h1>
-    <p>منتجات طبيعية 100% للعناية بجمالك وصحتك</p>
-    <a href="#products" class="btn-primary">تسوقي الآن</a>
-  </div>
-</section><!-- عرض اليوم --><section class="daily-offer">
-  <h2>عرض اليوم</h2>
-  <p>خصم 25% على سيروم الأرز لفترة محدودة!</p>
-  <div id="countdown"></div>
-</section><!-- المنتجات --><section id="products" class="products-grid">
-  <div class="product-card">
-    <img src="images/soap.png" alt="صابونة" class="product-img">
-    <h3>صابونة طبيعية</h3>
-    <button class="btn-secondary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</button>
-  </div>
-  <div class="product-card">
-    <img src="images/rice_serum.png" alt="سيروم الأرز" class="product-img">
-    <h3>سيروم الأرز</h3>
-    <button class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</button>
-  </div>
-</section><!-- لماذا نحن؟ --><section class="why-us">
-  <h2>لماذا تختارين NaturaQ؟</h2>
-  <div class="reasons">
-    <div class="reason">
-      <h3>مكونات طبيعية</h3>
-      <p>نستخدم فقط أفضل المكونات العضوية.</p>
+  <header class="header">
+    <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+    <nav class="nav">
+      <a href="index.html" class="nav-link">الرئيسية</a>
+      <a href="card.html" class="nav-link">السلة</a>
+      <a href="user.html" class="nav-link">صفحتي</a>
+      <button id="logout-btn" class="btn-secondary" style="display:none;">تسجيل الخروج</button>
+    </nav>
+  </header>  <section class="hero">
+    <div class="hero-text">
+      <h1>اكتشفي الجمال الطبيعي</h1>
+      <p>منتجات طبيعية 100% للعناية بجمالك وصحتك</p>
+      <a href="#products" class="btn-primary">تسوقي الآن</a>
     </div>
-    <div class="reason">
-      <h3>توصيل سريع</h3>
-      <p>توصيل سريع وآمن لجميع أنحاء قطر.</p>
+  </section>  <section class="daily-offer">
+    <h2>عرض اليوم</h2>
+    <p>خصم 25% على سيروم الأرز لفترة محدودة!</p>
+    <div id="countdown"></div>
+  </section>  <section id="products" class="products-grid">
+    <div class="product-card">
+      <img src="images/soap.png" alt="صابونة طبيعية" class="product-img">
+      <h3>صابونة طبيعية</h3>
+      <button class="btn-secondary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</button>
     </div>
-    <div class="reason">
-      <h3>ثقة العملاء</h3>
-      <p>آلاف العملاء السعداء بمنتجاتنا الطبيعية.</p>
+    <div class="product-card">
+      <img src="images/rice_serum.png" alt="سيروم الأرز" class="product-img">
+      <h3>سيروم الأرز</h3>
+      <button class="btn-secondary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</button>
     </div>
-  </div>
-</section><!-- آراء العملاء --><section class="reviews">
-  <h2>ماذا يقول عملاؤنا؟</h2>
-  <div class="review">
-    <p class="reviewer">سارة محمد</p>
-    <p class="stars">★★★★★</p>
-    <p class="comment">منتجات ممتازة وشحن سريع! شكراً NaturaQ.</p>
-  </div>
-  <div class="review">
-    <p class="reviewer">ريم أحمد</p>
-    <p class="stars">★★★★☆</p>
-    <p class="comment">أحببت السيروم جداً. سأجرب باقي المنتجات!</p>
-  </div>
-</section><!-- الفوتر --><footer class="footer">
-  <p>© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
-</footer><!-- بوت الذكاء الاصطناعي (Chatbase) --><script>
-  window.chatbaseConfig = {
-    chatbotId: "QyA3pZTR2k1v9jspuzdAs",
-    showLauncher: true,
-    launcherTitle: "مساعد NaturaQ"
-  };
-  const script = document.createElement("script");
-  script.src = "https://www.chatbase.co/embed.min.js";
-  script.async = true;
-  document.body.appendChild(script);
-</script><!-- Firebase والتحقق --><script type="module">
-  import { auth } from './firebase-config.js';
-  import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+  </section>  <section class="why-us">
+    <h2>لماذا تختارين NaturaQ؟</h2>
+    <div class="reasons">
+      <div class="reason">
+        <h3>مكونات طبيعية</h3>
+        <p>نستخدم فقط أفضل المكونات العضوية.</p>
+      </div>
+      <div class="reason">
+        <h3>توصيل سريع</h3>
+        <p>توصيل سريع وآمن لجميع أنحاء قطر.</p>
+      </div>
+      <div class="reason">
+        <h3>ثقة العملاء</h3>
+        <p>آلاف العملاء السعداء بمنتجاتنا الطبيعية.</p>
+      </div>
+    </div>
+  </section>  <section class="reviews">
+    <h2>ماذا يقول عملاؤنا؟</h2>
+    <div class="review">
+      <p class="reviewer">سارة محمد</p>
+      <p class="stars">★★★★★</p>
+      <p class="comment">منتجات ممتازة وشحن سريع! شكراً NaturaQ.</p>
+    </div>
+    <div class="review">
+      <p class="reviewer">ريم أحمد</p>
+      <p class="stars">★★★★☆</p>
+      <p class="comment">أحببت السيروم جداً. سأجرب باقي المنتجات!</p>
+    </div>
+  </section>  <footer class="footer">
+    <p>© 2025 NaturaQ. جميع الحقوق محفوظة.</p>
+  </footer>  <script>
+    window.chatbaseConfig = {
+      chatbotId: "QyA3pZTR2k1v9jspuzdAs",
+      showLauncher: true,
+      launcherTitle: "مساعد NaturaQ"
+    };
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.async = true;
+    document.body.appendChild(script);
+  </script>  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
-  const logoutBtn = document.getElementById("logout-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        logoutBtn.style.display = "inline-block";
+      } else {
+        window.location.href = "login.html";
+      }
+    });
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      logoutBtn.style.display = "inline-block";
-    } else {
-      window.location.href = "login.html";
-    }
-  });
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth).then(() => window.location.href = "login.html");
+    });
 
-  logoutBtn.addEventListener("click", () => {
-    signOut(auth).then(() => window.location.href = "login.html");
-  });
+    window.goToProduct = function(link) {
+      if (auth.currentUser) {
+        window.location.href = link;
+      } else {
+        alert("يرجى تسجيل الدخول أولاً");
+      }
+    };
 
-  window.goToProduct = function(link) {
-    if (auth.currentUser) {
-      window.location.href = link;
-    } else {
-      alert("يرجى تسجيل الدخول أولاً");
-    }
-  };
-
-  // عداد العرض
-  const end = new Date();
-  end.setHours(end.getHours() + 4);
-  setInterval(() => {
-    const now = new Date();
-    const diff = end - now;
-    const el = document.getElementById("countdown");
-    if (!el) return;
-    if (diff <= 0) {
-      el.innerText = "انتهى العرض!";
-      return;
-    }
-    const h = Math.floor(diff / 1000 / 60 / 60);
-    const m = Math.floor((diff / 1000 / 60) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-    el.innerText = `${h} س ${m} د ${s} ث`;
-  }, 1000);
-</script></body>
+    const end = new Date();
+    end.setHours(end.getHours() + 4);
+    setInterval(() => {
+      const now = new Date();
+      const diff = end - now;
+      const el = document.getElementById("countdown");
+      if (!el) return;
+      if (diff <= 0) {
+        el.innerText = "انتهى العرض!";
+        return;
+      }
+      const h = Math.floor(diff / 1000 / 60 / 60);
+      const m = Math.floor((diff / 1000 / 60) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      el.innerText = `${h} س ${m} د ${s} ث`;
+    }, 1000);
+  </script></body>
 </html>
