@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم - NaturaQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      background: #f3f5f7;
+    }
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 { margin: 0; font-size: 22px; }
+    .container {
+      padding: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: #388e3c;
+    }
+    .row-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 15px;
+    }
+    .box {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    .box input, .box textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .box img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 5px;
+    }
+    .btn {
+      background-color: #2e7d32;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    .btn-danger { background: #d32f2f; }
+    .add-form input, .add-form textarea {
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .order-box, .user-box {
+      font-size: 14px;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .order-box:last-child, .user-box:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>لوحة تحكم الإدارة - NaturaQ</h1>
+    <button class="btn" onclick="logout()">تسجيل الخروج</button>
+  </header>
+  <div class="container"><!-- إدارة المنتجات -->
+<div class="card">
+  <h2>إضافة منتج جديد</h2>
+  <div class="add-form">
+    <input type="text" id="new-name" placeholder="اسم المنتج">
+    <textarea id="new-desc" placeholder="وصف المنتج"></textarea>
+    <input type="number" id="new-price" placeholder="السعر">
+    <input type="text" id="new-img" placeholder="رابط الصورة (URL)">
+    <button class="btn" onclick="addProduct()">إضافة</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>كل المنتجات</h2>
+  <div class="row-grid" id="products-list">جار التحميل...</div>
+</div>
+
+<!-- إدارة الطلبات -->
+<div class="card">
+  <h2>الطلبات</h2>
+  <div id="orders-list">جار التحميل...</div>
+</div>
+
+<!-- إدارة المستخدمين -->
+<div class="card">
+  <h2>المستخدمون</h2>
+  <div id="users-list">جار التحميل...</div>
+</div>
+
+  </div>  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import {
+      getFirestore, collection, getDocs, addDoc, doc, updateDoc, deleteDoc
+    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+    import {
+      getAuth, onAuthStateChanged, signOut
+    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+      authDomain: "naturaq-store.firebaseapp.com",
+      projectId: "naturaq-store",
+      storageBucket: "naturaq-store.appspot.com",
+      messagingSenderId: "638923298702",
+      appId: "1:638923298702:web:8ed21954723632048b6df"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    const listContainer = document.getElementById("products-list");
+    const ordersList = document.getElementById("orders-list");
+    const usersList = document.getElementById("users-list");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user || user.email !== "admin@naturaq.com") {
+        alert("هذه الصفحة مخصصة للإدارة فقط.");
+        window.location.href = "login.html";
+        return;
+      }
+      loadProducts();
+      loadOrders();
+      loadUsers();
+    });
+
+    async function loadProducts() {
+      const snapshot = await getDocs(collection(db, "products"));
+      listContainer.innerHTML = "";
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        const box = document.createElement("div");
+        box.className = "box";
+        box.innerHTML = `
+          <img src="${data.image}" alt="product">
+          <input type="text" value="${data.name}" id="name-${docSnap.id}">
+          <textarea id="desc-${docSnap.id}">${data.description}</textarea><input type="number" value="${data.price}" id="price-${docSnap.id}">
+      <button class="btn" onclick="updateProduct('${docSnap.id}')">تعديل</button>
+      <button class="btn btn-danger" onclick="deleteProduct('${docSnap.id}')">حذف</button>
+    `;
+    listContainer.appendChild(box);
+  });
+}
+
+window.addProduct = async function () {
+  const name = document.getElementById("new-name").value;
+  const description = document.getElementById("new-desc").value;
+  const price = +document.getElementById("new-price").value;
+  const image = document.getElementById("new-img").value;
+  if (name && description && price && image) {
+    await addDoc(collection(db, "products"), { name, description, price, image });
+    loadProducts();
+    alert("تمت الإضافة");
+  } else {
+    alert("يرجى تعبئة كل الحقول");
+  }
+}
+
+window.updateProduct = async function (id) {
+  const name = document.getElementById("name-"+id).value;
+  const description = document.getElementById("desc-"+id).value;
+  const price = +document.getElementById("price-"+id).value;
+  await updateDoc(doc(db, "products", id), { name, description, price });
+  alert("تم التحديث");
+}
+
+window.deleteProduct = async function (id) {
+  if (confirm("هل أنت متأكد من الحذف؟")) {
+    await deleteDoc(doc(db, "products", id));
+    loadProducts();
+  }
+}
+
+async function loadOrders() {
+  const snapshot = await getDocs(collection(db, "orders"));
+  ordersList.innerHTML = "";
+  snapshot.forEach(docSnap => {
+    const order = docSnap.data();
+    const div = document.createElement("div");
+    div.className = "order-box";
+    div.innerHTML = `<b>طلب:</b> ${order.items.join(", ")} | <b>السعر:</b> ${order.total} ر.ق | <b>بتاريخ:</b> ${new Date(order.date).toLocaleDateString()}`;
+    ordersList.appendChild(div);
+  });
+}
+
+async function loadUsers() {
+  const snapshot = await getDocs(collection(db, "users"));
+  usersList.innerHTML = "";
+  snapshot.forEach(docSnap => {
+    const user = docSnap.data();
+    const div = document.createElement("div");
+    div.className = "user-box";
+    div.innerHTML = `<b>${user.fullName}</b> | ${user.email} | ${user.phone}`;
+    usersList.appendChild(div);
+  });
+}
+
+window.logout = function () {
+  signOut(auth).then(() => window.location.href = "login.html");
+}
+
+  </script>
+</body>
+</html>
