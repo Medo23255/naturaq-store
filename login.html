@@ -3,66 +3,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تسجيل الدخول - NaturaQ</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #fdfaf6;
+      background: linear-gradient(to bottom right, #e8f5e9, #f1f8e9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
     }
     .login-box {
-      max-width: 400px;
-      margin: 60px auto;
-      background: white;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
       border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
     }
-    input {
+    .login-box h2 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 25px;
+    }
+    .login-box input {
       width: 100%;
       padding: 12px;
-      margin-bottom: 15px;
+      margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 10px;
       font-size: 16px;
     }
-    button {
-      background-color: #A8D5BA;
-      color: white;
-      font-weight: bold;
-      padding: 12px 20px;
+    .login-box button {
       width: 100%;
+      padding: 14px;
+      background-color: #66bb6a;
+      color: white;
       border: none;
-      border-radius: 30px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 18px;
       cursor: pointer;
+      margin-top: 10px;
     }
-    button:hover {
-      background-color: #82cdb0;
+    .login-box button:hover {
+      background-color: #4caf50;
     }
-    a {
-      color: #5a7d6f;
+    .google-btn {
+      background-color: #fff;
+      color: #444;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+    }
+    .login-box p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .login-box a {
+      color: #2e7d32;
       text-decoration: none;
       font-weight: bold;
-    }
-    a:hover {
-      text-decoration: underline;
+      display: block;
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <div class="login-box">
-    <h2>تسجيل الدخول إلى حسابك</h2>
+    <h2>تسجيل الدخول</h2>
     <input type="email" id="email" placeholder="البريد الإلكتروني" required />
     <input type="password" id="password" placeholder="كلمة المرور" required />
-    <button onclick="login()">تسجيل الدخول</button>
+    <button onclick="login()">دخول</button>
+    <button class="google-btn" onclick="loginWithGoogle()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Icon"> دخول باستخدام Google
+    </button>
+    <a href="#" onclick="resetPassword()">نسيت كلمة المرور؟</a>
     <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
-    <p><a href="#" onclick="resetPassword()">نسيت كلمة المرور؟</a></p>
   </div>  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
@@ -76,45 +104,45 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    window.login = function () {
+    window.login = async function () {
       const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+      const password = document.getElementById("password").value.trim();
 
       if (!email || !password) {
-        Swal.fire("تنبيه", "يرجى ملء جميع الحقول.", "warning");
+        alert("يرجى إدخال البريد وكلمة المرور.");
         return;
       }
 
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          Swal.fire({
-            icon: 'success',
-            title: 'تم تسجيل الدخول بنجاح',
-            timer: 1500,
-            showConfirmButton: false
-          }).then(() => {
-            window.location.href = "index.html";
-          });
-        })
-        .catch((error) => {
-          Swal.fire("خطأ", error.message, "error");
-        });
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("فشل تسجيل الدخول: " + error.message);
+      }
+    };
+
+    window.loginWithGoogle = async function () {
+      const provider = new GoogleAuthProvider();
+      try {
+        await signInWithPopup(auth, provider);
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("فشل تسجيل الدخول عبر Google: " + error.message);
+      }
     }
 
-    window.resetPassword = function () {
+    window.resetPassword = async function () {
       const email = document.getElementById("email").value.trim();
       if (!email) {
-        Swal.fire("تنبيه", "يرجى إدخال البريد الإلكتروني أولاً.", "info");
+        alert("يرجى إدخال البريد الإلكتروني أولاً.");
         return;
       }
-
-      sendPasswordResetEmail(auth, email)
-        .then(() => {
-          Swal.fire("تم الإرسال", "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك.", "success");
-        })
-        .catch((error) => {
-          Swal.fire("خطأ", error.message, "error");
-        });
+      try {
+        await sendPasswordResetEmail(auth, email);
+        alert("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.");
+      } catch (error) {
+        alert("حدث خطأ: " + error.message);
+      }
     }
   </script></body>
 </html>
