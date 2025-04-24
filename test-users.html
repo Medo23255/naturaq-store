@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>اختبار المستخدمين - NaturaQ</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      padding: 30px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
+    .user-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px auto;
+      max-width: 500px;
+      box-shadow: 0 0 6px #ccc;
+    }
+    .user-card strong {
+      display: inline-block;
+      width: 120px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>قائمة المستخدمين في قاعدة البيانات</h1>
+<div id="users-container"></div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+    authDomain: "naturaq-store.firebaseapp.com",
+    projectId: "naturaq-store",
+    storageBucket: "naturaq-store.appspot.com",
+    messagingSenderId: "638923298702",
+    appId: "1:638923298702:web:8ed21954723632048b6df"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const usersContainer = document.getElementById("users-container");
+
+  async function loadUsers() {
+    const usersSnapshot = await getDocs(collection(db, "users"));
+    if (usersSnapshot.empty) {
+      usersContainer.innerHTML = "<p>لا يوجد مستخدمين مسجلين.</p>";
+    } else {
+      usersSnapshot.forEach(doc => {
+        const data = doc.data();
+        usersContainer.innerHTML += `
+          <div class="user-card">
+            <p><strong>الاسم:</strong> ${data.fullName || '---'}</p>
+            <p><strong>البريد:</strong> ${data.email || '---'}</p>
+            <p><strong>الهاتف:</strong> ${data.phone || '---'}</p>
+            <p><strong>التسجيل:</strong> ${data.createdAt || '---'}</p>
+          </div>
+        `;
+      });
+    }
+  }
+
+  loadUsers();
+</script>
+
+</body>
+</html>
