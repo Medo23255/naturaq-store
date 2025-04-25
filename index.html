@@ -5,7 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaturaQ - الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Tajawal', sans-serif; background-color: #fdf9f5; color: #333; }
+    header { background-color: #fff; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .logo { height: 60px; }
+    .nav-icons a { margin-left: 15px; text-decoration: none; color: #3a6b5e; font-weight: bold; }
+    .cart-icon { height: 28px; }
+    .hero { background: url('images/hero-placeholder.jpg') no-repeat center center/cover; padding: 60px 20px; text-align: center; color: #fff; }
+    .hero h1 { background-color: rgba(0,0,0,0.5); display: inline-block; padding: 10px 20px; border-radius: 10px; }
+    .products-section { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; padding: 30px; }
+    .product-card { background: #fff; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .product-card img { width: 100%; border-radius: 8px; }
+    .reviews-section { padding: 40px 20px; background-color: #fff; text-align: center; }
+    .review-card { background: #fdf9f5; padding: 20px; border-radius: 10px; width: 240px; margin: 10px auto; }
+    .review-card img { width: 60px; height: 60px; border-radius: 50%; }
+    footer { background-color: #eee; text-align: center; padding: 15px; font-size: 14px; color: #777; }
+    .chat-box { position: fixed; bottom: 80px; left: 20px; background: #fff; border: 1px solid #ccc; padding: 10px; width: 260px; display: none; }
+    .ai-button { position: fixed; bottom: 20px; left: 20px; background-color: #3a6b5e; color: #fff; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; }
+  </style>
 </head>
 <body>
 
@@ -13,6 +31,10 @@
   <header>
     <img src="images/logo.png" alt="NaturaQ Logo" class="logo" />
     <div class="nav-icons">
+      <a href="index.html">الرئيسية</a>
+      <a href="products.html">منتجاتنا</a>
+      <a href="about.html">من نحن</a>
+      <a href="contact.html">تواصل معنا</a>
       <a href="user.html">حسابي</a>
       <a href="login.html" id="login-link">دخول</a>
       <a href="register.html" id="register-link">تسجيل</a>
@@ -20,9 +42,9 @@
     </div>
   </header>
 
-  <!-- بانر رئيسي -->
+  <!-- بانر -->
   <div class="hero">
-    <h1 id="hero-title">استمتعي بجمال طبيعي خالص مع NaturaQ</h1>
+    <h1>استمتعي بجمال طبيعي خالص مع NaturaQ</h1>
   </div>
 
   <!-- المنتجات -->
@@ -44,7 +66,7 @@
     </div>
     <div class="product-card">
       <img src="images/soap.png" alt="soap" />
-      <h3>صابون طبيعي يدوي الصنع</h3>
+      <h3>صابون طبيعي يدوي</h3>
       <a href="products/natural-handmade-soap.html"><button>عرض التفاصيل</button></a>
     </div>
     <div class="product-card">
@@ -62,21 +84,19 @@
   <!-- آراء العملاء -->
   <section class="reviews-section">
     <h2>آراء عملائنا</h2>
-    <div class="review-cards">
-      <div class="review-card">
-        <img src="images/customer1.jpg" alt="عميل" />
-        <h4>سارة محمود</h4>
-        <p>منتجات رائعة! بشرتي تحسنت بشكل ملحوظ.</p>
-      </div>
-      <div class="review-card">
-        <img src="images/customer2.jpg" alt="عميل" />
-        <h4>ليلى أحمد</h4>
-        <p>خدمة ممتازة وجودة عالية. أنصح الجميع!</p>
-      </div>
+    <div class="review-card">
+      <img src="images/customer1.jpg" alt="عميل">
+      <h4>سارة محمود</h4>
+      <p>منتجات رائعة! بشرتي تحسنت بشكل ملحوظ.</p>
+    </div>
+    <div class="review-card">
+      <img src="images/customer2.jpg" alt="عميل">
+      <h4>ليلى أحمد</h4>
+      <p>جودة ممتازة وتوصيل سريع. تجربة رائعة!</p>
     </div>
   </section>
 
-  <!-- بوت الذكاء الاصطناعي -->
+  <!-- البوت الذكي -->
   <div class="chat-box" id="chat-box">
     <p>مرحبًا! كيف يمكنني مساعدتك اليوم؟</p>
     <input type="text" placeholder="اكتب سؤالك هنا..." />
@@ -86,13 +106,31 @@
 
   <!-- الفوتر -->
   <footer>
-    جميع الحقوق محفوظة &copy; NaturaQ 2025 |
-    <a href="#">سياسة الخصوصية</a> |
-    <a href="#">تواصل معنا</a>
+    جميع الحقوق محفوظة &copy; NaturaQ 2025 | <a href="#">سياسة الخصوصية</a> | <a href="#">تواصل معنا</a>
   </footer>
 
-  <!-- سكريبتات -->
-  <script src="script.js"></script>
+  <!-- سكريبت تسجيل الدخول والخروج + البوت -->
+  <script>
+    function toggleChat() {
+      const box = document.getElementById('chat-box');
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    window.onload = () => {
+      const userName = localStorage.getItem('userName');
+      const loginLink = document.getElementById('login-link');
+      const registerLink = document.getElementById('register-link');
+      if (userName) {
+        loginLink.style.display = 'none';
+        registerLink.textContent = 'خروج';
+        registerLink.href = '#';
+        registerLink.onclick = () => {
+          localStorage.removeItem('userName');
+          location.reload();
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>
