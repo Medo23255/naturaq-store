@@ -1,243 +1,98 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaturaQ - الرئيسية</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Tajawal', sans-serif;
-      background-color: #fdf9f5;
-      color: #333;
-    }
-    header {
-      background-color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .logo {
-      height: 60px;
-    }
-    .nav-icons {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .nav-icons a {
-      text-decoration: none;
-      color: #3a6b5e;
-      font-weight: bold;
-      font-size: 14px;
-    }
-    .cart-icon {
-      height: 28px;
-    }
-    .hero {
-      background-image: url('images/hero-placeholder.jpg'); /* غيّر الصورة لو عايز */
-      background-size: cover;
-      background-position: center;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-    }
-    .hero h1 {
-      font-size: 30px;
-      background-color: rgba(0,0,0,0.4);
-      padding: 10px 20px;
-      border-radius: 8px;
-    }
-    .products-section {
-      padding: 30px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 20px;
-    }
-    .product-card {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-    .product-card img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .product-card h3 {
-      font-size: 16px;
-      margin: 10px 0;
-    }
-    .product-card a button {
-      background-color: #3a6b5e;
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .reviews-section {
-      background-color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .reviews-section h2 {
-      margin-bottom: 30px;
-      color: #3a6b5e;
-    }
-    .review-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .review-card {
-      background: #fdf9f5;
-      border-radius: 10px;
-      padding: 15px;
-      width: 250px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: 0.3s;
-    }
-    .review-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .review-card img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-    .ai-button {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: #3a6b5e;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    .chat-box {
-      position: fixed;
-      bottom: 80px;
-      left: 20px;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-      width: 260px;
-      height: 200px;
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-      color: #777;
-      margin-top: 30px;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- Header -->
+  <!-- الهيدر -->
   <header>
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+    <img src="images/logo.png" alt="NaturaQ Logo" class="logo" />
     <div class="nav-icons">
       <a href="user.html">حسابي</a>
       <a href="login.html" id="login-link">دخول</a>
       <a href="register.html" id="register-link">تسجيل</a>
-      <a href="card.html"><img src="images/cart-icon.png" alt="سلة" class="cart-icon"></a>
+      <a href="card.html"><img src="images/cart-icon.png" alt="سلة" class="cart-icon" /></a>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- بانر رئيسي -->
   <div class="hero">
     <h1 id="hero-title">استمتعي بجمال طبيعي خالص مع NaturaQ</h1>
   </div>
 
-  <!-- Products -->
+  <!-- المنتجات -->
   <section class="products-section">
-    <!-- Add your products here -->
-    <!-- نفس المنتجات اللي كنا ضايفينها -->
+    <div class="product-card">
+      <img src="images/deep-cleanse-kit.png" alt="deep cleanse" />
+      <h3>مجموعة تنظيف البشرة العميقة</h3>
+      <a href="products/deep-cleanse-kit.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/dead_sea.png" alt="dead sea" />
+      <h3>طين البحر الميت الطبيعي</h3>
+      <a href="products/dead-sea-mud-mask.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/rice_serum.png" alt="rice serum" />
+      <h3>سيروم الأرز المتخمر</h3>
+      <a href="products/fermented-rice-serum.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/soap.png" alt="soap" />
+      <h3>صابون طبيعي يدوي الصنع</h3>
+      <a href="products/natural-handmade-soap.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/pure_argan_Oil.png" alt="argan oil" />
+      <h3>زيت الأرجان النقي</h3>
+      <a href="products/pure-argan-oil.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/rose_water_toner.png" alt="rose toner" />
+      <h3>تونر ماء الورد الطبيعي</h3>
+      <a href="products/rose_water_toner.html"><button>عرض التفاصيل</button></a>
+    </div>
   </section>
 
-  <!-- Reviews -->
+  <!-- آراء العملاء -->
   <section class="reviews-section">
     <h2>آراء عملائنا</h2>
     <div class="review-cards">
       <div class="review-card">
-        <img src="images/customer1.jpg" alt="عميل">
+        <img src="images/customer1.jpg" alt="عميل" />
         <h4>سارة محمود</h4>
         <p>منتجات رائعة! بشرتي تحسنت بشكل ملحوظ.</p>
       </div>
       <div class="review-card">
-        <img src="images/customer2.jpg" alt="عميل">
+        <img src="images/customer2.jpg" alt="عميل" />
         <h4>ليلى أحمد</h4>
         <p>خدمة ممتازة وجودة عالية. أنصح الجميع!</p>
-      </div>
-      <div class="review-card">
-        <img src="images/customer3.jpg" alt="عميل">
-        <h4>نور سالم</h4>
-        <p>أعشق طبيعية المنتجات ورائحتها الجميلة.</p>
       </div>
     </div>
   </section>
 
-  <!-- AI Support Chat -->
+  <!-- بوت الذكاء الاصطناعي -->
   <div class="chat-box" id="chat-box">
     <p>مرحبًا! كيف يمكنني مساعدتك اليوم؟</p>
-    <input type="text" placeholder="اكتب سؤالك هنا...">
+    <input type="text" placeholder="اكتب سؤالك هنا..." />
     <button onclick="document.getElementById('chat-box').style.display='none'">إغلاق</button>
   </div>
   <button class="ai-button" onclick="toggleChat()">؟</button>
 
-  <!-- Footer -->
+  <!-- الفوتر -->
   <footer>
-    جميع الحقوق محفوظة &copy; NaturaQ 2025 | سياسة الخصوصية | تواصل معنا
+    جميع الحقوق محفوظة &copy; NaturaQ 2025 |
+    <a href="#">سياسة الخصوصية</a> |
+    <a href="#">تواصل معنا</a>
   </footer>
 
-  <!-- Scripts -->
-  <script>
-    function toggleChat() {
-      const box = document.getElementById('chat-box');
-      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    window.onload = () => {
-      const userName = localStorage.getItem('userName');
-      const loginLink = document.getElementById('login-link');
-      const registerLink = document.getElementById('register-link');
-
-      if (userName) {
-        loginLink.style.display = 'none';
-        registerLink.textContent = 'خروج';
-        registerLink.href = '#';
-        registerLink.onclick = () => {
-          localStorage.removeItem('userName');
-          location.reload();
-        }
-      }
-    }
-  </script>
+  <!-- سكريبتات -->
+  <script src="script.js"></script>
 
 </body>
 </html>
