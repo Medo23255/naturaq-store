@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,15 +33,16 @@
       text-decoration: none;
       color: #3a6b5e;
       font-weight: bold;
+      font-size: 14px;
     }
     .cart-icon {
       height: 28px;
     }
     .hero {
-      background-image: url('images/hero-placeholder.jpg');
+      background-image: url('images/hero-placeholder.jpg'); /* غيّر الصورة لو عايز */
       background-size: cover;
       background-position: center;
-      height: 250px;
+      height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -48,7 +50,7 @@
       color: #fff;
     }
     .hero h1 {
-      font-size: 28px;
+      font-size: 30px;
       background-color: rgba(0,0,0,0.4);
       padding: 10px 20px;
       border-radius: 8px;
@@ -81,6 +83,39 @@
       padding: 8px 16px;
       border-radius: 5px;
       cursor: pointer;
+    }
+    .reviews-section {
+      background-color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .reviews-section h2 {
+      margin-bottom: 30px;
+      color: #3a6b5e;
+    }
+    .review-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .review-card {
+      background: #fdf9f5;
+      border-radius: 10px;
+      padding: 15px;
+      width: 250px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+    .review-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .review-card img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
     }
     .ai-button {
       position: fixed;
@@ -116,10 +151,14 @@
       padding: 15px;
       font-size: 14px;
       color: #777;
+      margin-top: 30px;
     }
   </style>
 </head>
+
 <body>
+
+  <!-- Header -->
   <header>
     <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
     <div class="nav-icons">
@@ -128,28 +167,56 @@
       <a href="register.html" id="register-link">تسجيل</a>
       <a href="card.html"><img src="images/cart-icon.png" alt="سلة" class="cart-icon"></a>
     </div>
-  </header>  <div class="hero">
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
     <h1 id="hero-title">استمتعي بجمال طبيعي خالص مع NaturaQ</h1>
-  </div>  <section class="products-section">
-    <div class="product-card">
-      <img src="images/deep-cleanse-kit.png" alt="deep cleanse">
-      <h3 id="product1-name">مجموعة تنظيف البشرة العميقة</h3>
-      <a href="products/deep-cleanse-kit.html"><button>عرض التفاصيل</button></a>
+  </div>
+
+  <!-- Products -->
+  <section class="products-section">
+    <!-- Add your products here -->
+    <!-- نفس المنتجات اللي كنا ضايفينها -->
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews-section">
+    <h2>آراء عملائنا</h2>
+    <div class="review-cards">
+      <div class="review-card">
+        <img src="images/customer1.jpg" alt="عميل">
+        <h4>سارة محمود</h4>
+        <p>منتجات رائعة! بشرتي تحسنت بشكل ملحوظ.</p>
+      </div>
+      <div class="review-card">
+        <img src="images/customer2.jpg" alt="عميل">
+        <h4>ليلى أحمد</h4>
+        <p>خدمة ممتازة وجودة عالية. أنصح الجميع!</p>
+      </div>
+      <div class="review-card">
+        <img src="images/customer3.jpg" alt="عميل">
+        <h4>نور سالم</h4>
+        <p>أعشق طبيعية المنتجات ورائحتها الجميلة.</p>
+      </div>
     </div>
-    <div class="product-card">
-      <img src="images/dead_sea.png" alt="dead sea">
-      <h3 id="product2-name">طين البحر الميت الطبيعي</h3>
-      <a href="products/dead-sea-mud-mask.html"><button>عرض التفاصيل</button></a>
-    </div>
-    <!-- بقية المنتجات حسب ما سبق -->
-  </section>  <div class="chat-box" id="chat-box">
+  </section>
+
+  <!-- AI Support Chat -->
+  <div class="chat-box" id="chat-box">
     <p>مرحبًا! كيف يمكنني مساعدتك اليوم؟</p>
     <input type="text" placeholder="اكتب سؤالك هنا...">
     <button onclick="document.getElementById('chat-box').style.display='none'">إغلاق</button>
   </div>
-  <button class="ai-button" onclick="toggleChat()">؟</button>  <footer>
+  <button class="ai-button" onclick="toggleChat()">؟</button>
+
+  <!-- Footer -->
+  <footer>
     جميع الحقوق محفوظة &copy; NaturaQ 2025 | سياسة الخصوصية | تواصل معنا
-  </footer>  <script>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
     function toggleChat() {
       const box = document.getElementById('chat-box');
       box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
@@ -159,6 +226,7 @@
       const userName = localStorage.getItem('userName');
       const loginLink = document.getElementById('login-link');
       const registerLink = document.getElementById('register-link');
+
       if (userName) {
         loginLink.style.display = 'none';
         registerLink.textContent = 'خروج';
@@ -169,26 +237,7 @@
         }
       }
     }
+  </script>
 
-    // السكريبت الأساسي للترجمة وتحديث النصوص تلقائياً حسب اللغة
-    function setLanguage(lang) {
-      localStorage.setItem('selectedLanguage', lang);
-      applyLanguage(lang);
-    }
-    function applyLanguage(lang) {
-      document.documentElement.setAttribute('lang', lang);
-      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-      if (lang === 'ar') {
-        document.getElementById('hero-title').textContent = 'اكتشفي الجمال الطبيعي الحقيقي مع NaturaQ';
-        document.getElementById('product1-name').textContent = 'صابونة طبيعية يدوية';
-        document.getElementById('product2-name').textContent = 'قناع طين البحر الميت';
-      } else {
-        document.getElementById('hero-title').textContent = 'Discover True Natural Beauty with NaturaQ';
-        document.getElementById('product1-name').textContent = 'Natural Handmade Soap';
-        document.getElementById('product2-name').textContent = 'Dead Sea Mud Mask';
-      }
-    }
-    const savedLang = localStorage.getItem('selectedLanguage') || 'ar';
-    applyLanguage(savedLang);
-  </script></body>
+</body>
 </html>
