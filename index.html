@@ -6,131 +6,106 @@
   <title>NaturaQ - الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Tajawal', sans-serif; background-color: #fdf9f5; color: #333; }
-    header { background-color: #fff; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    body { font-family: 'Tajawal', sans-serif; margin: 0; background: #fdf9f5; color: #333; }
+    header { background: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
     .logo { height: 60px; }
-    .nav-icons a { margin-left: 15px; text-decoration: none; color: #3a6b5e; font-weight: bold; }
-    .cart-icon { height: 28px; }
-    .hero { background: url('images/hero-placeholder.jpg') no-repeat center center/cover; padding: 60px 20px; text-align: center; color: #fff; }
-    .hero h1 { background-color: rgba(0,0,0,0.5); display: inline-block; padding: 10px 20px; border-radius: 10px; }
-    .products-section { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; padding: 30px; }
-    .product-card { background: #fff; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .product-card img { width: 100%; border-radius: 8px; }
-    .reviews-section { padding: 40px 20px; background-color: #fff; text-align: center; }
-    .review-card { background: #fdf9f5; padding: 20px; border-radius: 10px; width: 240px; margin: 10px auto; }
-    .review-card img { width: 60px; height: 60px; border-radius: 50%; }
-    footer { background-color: #eee; text-align: center; padding: 15px; font-size: 14px; color: #777; }
-    .chat-box { position: fixed; bottom: 80px; left: 20px; background: #fff; border: 1px solid #ccc; padding: 10px; width: 260px; display: none; }
-    .ai-button { position: fixed; bottom: 20px; left: 20px; background-color: #3a6b5e; color: #fff; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; }
+    nav a { margin-left: 15px; text-decoration: none; color: #3a6b5e; font-weight: bold; }
+    .hero { background: #e8efe3; padding: 50px; text-align: center; }
+    .hero h1 { font-size: 28px; margin: 0; }
+    .products-section { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 30px; }
+    .product-card { background: #fff; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .product-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+    .reviews-section { padding: 40px 20px; text-align: center; background: #fff; }
+    .review-card { background: #fdf9f5; padding: 15px; border-radius: 10px; margin: 10px auto; width: 240px; }
+    .review-card img { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 10px; }
+    footer { background: #eee; text-align: center; padding: 15px; font-size: 14px; color: #777; }
+
+    /* البوت */
+    #chatbot-container { position: fixed; bottom: 20px; left: 20px; z-index: 999; }
+    #chatbot-toggle { background-color: #3a6b5e; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; }
+    #chatbot-box { display: none; width: 300px; background: white; border: 1px solid #ccc; border-radius: 10px; padding: 10px; margin-top: 10px; }
+    #chatbot-log { height: 150px; overflow-y: auto; background: #f5f5f5; padding: 5px; font-size: 14px; border-radius: 5px; margin-bottom: 10px; }
+    #chatbot-input { width: 100%; padding: 5px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; }
   </style>
 </head>
 <body>
 
-  <!-- الهيدر -->
-  <header>
-    <img src="images/logo.png" alt="NaturaQ Logo" class="logo" />
-    <div class="nav-icons">
-      <a href="index.html">الرئيسية</a>
-      <a href="products.html">منتجاتنا</a>
-      <a href="about.html">من نحن</a>
-      <a href="contact.html">تواصل معنا</a>
-      <a href="user.html">حسابي</a>
-      <a href="login.html" id="login-link">دخول</a>
-      <a href="register.html" id="register-link">تسجيل</a>
-      <a href="card.html"><img src="images/cart-icon.png" alt="سلة" class="cart-icon" /></a>
-    </div>
-  </header>
+<header>
+  <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="products.html">منتجاتنا</a>
+    <a href="login.html" id="login-link">دخول</a>
+    <a href="register.html" id="register-link">تسجيل</a>
+    <a href="card.html">السلة</a>
+  </nav>
+</header>
 
-  <!-- بانر -->
-  <div class="hero">
-    <h1>استمتعي بجمال طبيعي خالص مع NaturaQ</h1>
+<div class="hero">
+  <h1>اكتشفي الجمال الطبيعي مع NaturaQ</h1>
+</div>
+
+<section class="products-section">
+  <div class="product-card"><img src="images/deep-cleanse-kit.png" alt=""><h3>مجموعة تنظيف البشرة</h3></div>
+  <div class="product-card"><img src="images/dead_sea.png" alt=""><h3>طين البحر الميت</h3></div>
+  <div class="product-card"><img src="images/rice_serum.png" alt=""><h3>سيروم الأرز</h3></div>
+  <div class="product-card"><img src="images/soap.png" alt=""><h3>صابون يدوي</h3></div>
+  <div class="product-card"><img src="images/pure_argan_Oil.png" alt=""><h3>زيت الأرجان</h3></div>
+  <div class="product-card"><img src="images/rose_water_toner.png" alt=""><h3>تونر ماء الورد</h3></div>
+</section>
+
+<section class="reviews-section">
+  <h2>آراء عملائنا</h2>
+  <div class="review-card"><img src="images/customer1.jpg" alt=""><h4>سارة</h4><p>منتجات ممتازة!</p></div>
+  <div class="review-card"><img src="images/customer2.jpg" alt=""><h4>ليلى</h4><p>توصيل سريع.</p></div>
+</section>
+
+<!-- البوت الذكي -->
+<div id="chatbot-container">
+  <button id="chatbot-toggle">؟</button>
+  <div id="chatbot-box">
+    <div style="font-weight: bold; margin-bottom: 10px;">NaturaQ بوت الدعم</div>
+    <div id="chatbot-log">
+      <div>مرحبًا! كيف يمكنني مساعدتك؟</div>
+    </div>
+    <input type="text" id="chatbot-input" placeholder="اكتب سؤالك...">
   </div>
+</div>
 
-  <!-- المنتجات -->
-  <section class="products-section">
-    <div class="product-card">
-      <img src="images/deep-cleanse-kit.png" alt="deep cleanse" />
-      <h3>مجموعة تنظيف البشرة العميقة</h3>
-      <a href="products/deep-cleanse-kit.html"><button>عرض التفاصيل</button></a>
-    </div>
-    <div class="product-card">
-      <img src="images/dead_sea.png" alt="dead sea" />
-      <h3>طين البحر الميت الطبيعي</h3>
-      <a href="products/dead-sea-mud-mask.html"><button>عرض التفاصيل</button></a>
-    </div>
-    <div class="product-card">
-      <img src="images/rice_serum.png" alt="rice serum" />
-      <h3>سيروم الأرز المتخمر</h3>
-      <a href="products/fermented-rice-serum.html"><button>عرض التفاصيل</button></a>
-    </div>
-    <div class="product-card">
-      <img src="images/soap.png" alt="soap" />
-      <h3>صابون طبيعي يدوي</h3>
-      <a href="products/natural-handmade-soap.html"><button>عرض التفاصيل</button></a>
-    </div>
-    <div class="product-card">
-      <img src="images/pure_argan_Oil.png" alt="argan oil" />
-      <h3>زيت الأرجان النقي</h3>
-      <a href="products/pure-argan-oil.html"><button>عرض التفاصيل</button></a>
-    </div>
-    <div class="product-card">
-      <img src="images/rose_water_toner.png" alt="rose toner" />
-      <h3>تونر ماء الورد الطبيعي</h3>
-      <a href="products/rose_water_toner.html"><button>عرض التفاصيل</button></a>
-    </div>
-  </section>
+<footer>
+  جميع الحقوق محفوظة &copy; NaturaQ 2025
+</footer>
 
-  <!-- آراء العملاء -->
-  <section class="reviews-section">
-    <h2>آراء عملائنا</h2>
-    <div class="review-card">
-      <img src="images/customer1.jpg" alt="عميل">
-      <h4>سارة محمود</h4>
-      <p>منتجات رائعة! بشرتي تحسنت بشكل ملحوظ.</p>
-    </div>
-    <div class="review-card">
-      <img src="images/customer2.jpg" alt="عميل">
-      <h4>ليلى أحمد</h4>
-      <p>جودة ممتازة وتوصيل سريع. تجربة رائعة!</p>
-    </div>
-  </section>
+<script>
+  const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotBox = document.getElementById("chatbot-box");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotLog = document.getElementById("chatbot-log");
 
-  <!-- البوت الذكي -->
-  <div class="chat-box" id="chat-box">
-    <p>مرحبًا! كيف يمكنني مساعدتك اليوم؟</p>
-    <input type="text" placeholder="اكتب سؤالك هنا..." />
-    <button onclick="document.getElementById('chat-box').style.display='none'">إغلاق</button>
-  </div>
-  <button class="ai-button" onclick="toggleChat()">؟</button>
+  chatbotToggle.onclick = () => {
+    chatbotBox.style.display = chatbotBox.style.display === "none" ? "block" : "none";
+  };
 
-  <!-- الفوتر -->
-  <footer>
-    جميع الحقوق محفوظة &copy; NaturaQ 2025 | <a href="#">سياسة الخصوصية</a> | <a href="#">تواصل معنا</a>
-  </footer>
-
-  <!-- سكريبت تسجيل الدخول والخروج + البوت -->
-  <script>
-    function toggleChat() {
-      const box = document.getElementById('chat-box');
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  chatbotInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter" && chatbotInput.value.trim() !== "") {
+      const userText = chatbotInput.value;
+      const reply = getBotReply(userText);
+      chatbotLog.innerHTML += "<div><b>أنت:</b> " + userText + "</div>";
+      chatbotLog.innerHTML += "<div><b>البوت:</b> " + reply + "</div>";
+      chatbotInput.value = "";
+      chatbotLog.scrollTop = chatbotLog.scrollHeight;
     }
+  });
 
-    window.onload = () => {
-      const userName = localStorage.getItem('userName');
-      const loginLink = document.getElementById('login-link');
-      const registerLink = document.getElementById('register-link');
-      if (userName) {
-        loginLink.style.display = 'none';
-        registerLink.textContent = 'خروج';
-        registerLink.href = '#';
-        registerLink.onclick = () => {
-          localStorage.removeItem('userName');
-          location.reload();
-        }
-      }
-    }
-  </script>
+  function getBotReply(input) {
+    input = input.toLowerCase();
+    if (input.includes("سعر") || input.includes("كم")) return "يمكنك معرفة السعر من صفحة المنتج.";
+    if (input.includes("توصيل")) return "نحن نوفر توصيل خلال 48 ساعة داخل الدولة.";
+    if (input.includes("دفع")) return "الدفع عند الاستلام متاح حاليًا.";
+    if (input.includes("عروض") || input.includes("خصم")) return "تابعينا، نقوم بتحديث العروض باستمرار.";
+    return "شكرًا لسؤالك! سنقوم بالرد عليك قريبًا.";
+  }
+</script>
 
 </body>
 </html>
