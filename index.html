@@ -1,55 +1,116 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NaturaQ - الرئيسية</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaturaQ | اكتشفي الجمال الطبيعي</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body { font-family: 'Cairo', sans-serif; margin: 0; background-color: #f9fdf9; color: #2e7d32; }
+    header {
+      background: #2e7d32; color: #fff; display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 30px; position: sticky; top: 0; z-index: 999;
+    }
+    header img { height: 50px; }
+    nav a {
+      color: white; margin-right: 15px; text-decoration: none; font-weight: bold;
+    }
+    .user-info {
+      display: inline-flex; align-items: center; gap: 8px; color: white; margin-right: 10px;
+    }
+    .user-avatar {
+      width: 35px; height: 35px; border-radius: 50%; display: none;
+    }
+    .hero {
+      background-image: url('images/hero.jpg'); background-size: cover; background-position: center;
+      text-align: center; color: white; padding: 100px 20px;
+    }
+    .hero h1 { font-size: 42px; }
+    .hero p { font-size: 20px; margin: 10px 0 20px; }
+    .btn {
+      background: #66bb6a; color: white; padding: 12px 24px; border: none;
+      border-radius: 6px; cursor: pointer; font-size: 16px;
+    }
+    .section {
+      padding: 50px 20px; text-align: center;
+    }
+    .products {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 0 20px;
+    }
+    .product-card {
+      background: white; border: 1px solid #eee; border-radius: 10px; padding: 15px; text-align: center;
+    }
+    .product-card img {
+      max-width: 100%; height: 200px; object-fit: cover; border-radius: 8px;
+    }
+    .why-us, .reviews, .newsletter { background: #e8f5e9; }
+    footer { background: #1b5e20; color: white; text-align: center; padding: 20px; }
+    .newsletter input {
+      padding: 10px; width: 250px; border-radius: 5px; border: 1px solid #ccc; margin-top: 10px;
+    }
+    #chatbase-button {
+      position: fixed; bottom: 20px; left: 20px; z-index: 9999;
+    }
+  </style>
 </head>
 <body>
-  <header class="main-header">
-    <div class="container header-content">
-      <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-      <nav class="main-nav">
-        <a href="index.html">الرئيسية</a>
-        <a href="card.html"><i class="fas fa-shopping-cart"></i></a>
-        <a href="user.html">صفحتي</a>
-        <div class="user-info">
-          <img id="user-avatar" src="images/default-avatar.png" alt="صورة المستخدم" class="user-avatar" style="display:none;">
-          <span id="user-name" class="user-name"></span>
-        </div>
-        <button id="logout-btn" class="btn-secondary" style="display:none;">تسجيل الخروج</button>
-      </nav>
+  <header>
+    <img src="images/logo.png" alt="NaturaQ Logo">
+    <nav>
+      <a href="#">الرئيسية</a>
+      <a href="#products">المنتجات</a>
+      <a href="#about">لماذا نحن؟</a>
+      <a href="#reviews">آراء</a>
+      <a href="card.html"><i class="fas fa-shopping-cart"></i></a>
+      <a href="user.html">صفحتي</a>
+      <span class="user-info">
+        <img id="user-avatar" src="images/default-avatar.png" alt="صورة المستخدم" class="user-avatar">
+        <span id="user-name"></span>
+      </span>
+      <button id="logout-btn" class="btn" style="display:none; background:#c62828;">تسجيل الخروج</button>
+    </nav>
+  </header>  <section class="hero">
+    <h1>اكتشفي الجمال الطبيعي</h1>
+    <p>منتجات طبيعية للعناية ببشرتكِ</p>
+    <button class="btn">تسوقي الآن</button>
+  </section>  <section class="section" id="products">
+    <h2>منتجاتنا المميزة</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="images/soap.png" alt="صابونة طبيعية">
+        <h3>صابونة طبيعية</h3>
+        <button class="btn" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</button>
+      </div>
+      <div class="product-card">
+        <img src="images/rice_serum.png" alt="سيروم الأرز">
+        <h3>سيروم الأرز</h3>
+        <button class="btn" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</button>
+      </div>
     </div>
-  </header>  <main class="dashboard">
-    <section class="admin-header">
-      <h1>لوحة تحكم الإدارة - <span>NaturaQ</span></h1>
-      <a href="#" onclick="logout()">تسجيل الخروج</a>
-    </section><section class="admin-section">
-  <h2>إضافة منتج جديد</h2>
-  <form id="product-form">
-    <input type="text" id="product-name" placeholder="اسم المنتج" required>
-    <input type="text" id="product-desc" placeholder="وصف المنتج" required>
-    <input type="number" id="product-price" placeholder="السعر" required>
-    <input type="file" id="product-image" accept="image/*" required>
-    <button type="submit" class="btn-primary">إضافة</button>
-  </form>
-</section>
-
-<section class="admin-section">
-  <h2>المنتجات الحالية</h2>
-  <div id="product-list"></div>
-</section>
-
-<section class="admin-section">
-  <h2>المستخدمون</h2>
-  <div id="user-list"></div>
-</section>
-
-  </main>  <footer class="footer">
-    <p>جميع الحقوق محفوظة © NaturaQ 2025</p>
-  </footer>  <script type="module">
+  </section>  <section class="section why-us" id="about">
+    <h2>لماذا تختارين NaturaQ؟</h2>
+    <p>نقدم لكِ مكونات طبيعية 100%، توصيل سريع، وثقة آلاف العملاء</p>
+  </section>  <section class="section reviews" id="reviews">
+    <h2>آراء العملاء</h2>
+    <p>"أفضل تجربة استخدمتها لبشرتي." – سارة</p>
+    <p>"خدمة رائعة وشحن سريع." – ريم</p>
+  </section>  <section class="section newsletter">
+    <h2>اشتركي في النشرة البريدية</h2>
+    <input type="email" placeholder="أدخلي بريدك الإلكتروني">
+    <button class="btn">اشتركي الآن</button>
+  </section>  <footer>
+    <p>© 2025 NaturaQ - جميع الحقوق محفوظة</p>
+  </footer>  <!-- بوت الذكاء الاصطناعي -->  <script>
+    window.chatbaseConfig = {
+      chatbotId: "QyA3pZTR2k1v9jspuzdAs",
+      showLauncher: true,
+      launcherTitle: "مساعد NaturaQ"
+    };
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.async = true;
+    document.body.appendChild(script);
+  </script>  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
@@ -85,5 +146,13 @@
     logoutBtn.addEventListener("click", () => {
       signOut(auth).then(() => window.location.href = "login.html");
     });
+
+    window.goToProduct = function(link) {
+      if (auth.currentUser) {
+        window.location.href = link;
+      } else {
+        alert("يرجى تسجيل الدخول أولاً");
+      }
+    };
   </script></body>
 </html>
