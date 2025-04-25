@@ -37,6 +37,17 @@
       padding: 8px;
       font-size: 14px;
     }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #d76d77;
+      font-weight: bold;
+      font-size: 14px;
+    }
     .products-section {
       padding: 20px;
       display: grid;
@@ -58,7 +69,7 @@
       font-size: 16px;
       color: #333;
     }
-    .product-card button {
+    .product-card a button {
       background-color: #d76d77;
       color: #fff;
       border: none;
@@ -79,24 +90,66 @@
 <body>
   <header>
     <img src="images/logo.png" alt="NaturaQ Logo" class="logo">
-    <p id="user-name">مرحبًا، [اسم المستخدم]</p>
-    <a href="card.html"><img src="images/cart-icon.png" alt="سلة المشتريات" class="cart-icon"></a>
+    <div class="nav-links">
+      <a href="user.html">حسابي</a>
+      <a href="login.html" id="login-link">تسجيل الدخول</a>
+      <a href="register.html" id="register-link">إنشاء حساب</a>
+      <a href="card.html"><img src="images/cart-icon.png" alt="سلة المشتريات" class="cart-icon"></a>
+    </div>
+    <p id="user-name"></p>
   </header>
   <div class="ai-banner">
     هل تحتاجين مساعدة؟ تواصلي مع الدعم الآن!
   </div>  <section class="products-section">
     <div class="product-card">
-      <img src="images/deep-cleanse-kit.png" alt="منتج">
+      <img src="images/deep-cleanse-kit.png" alt="deep cleanse">
       <h3>مجموعة تنظيف البشرة العميقة</h3>
-      <button onclick="location.href='product.html'">عرض التفاصيل</button>
+      <a href="products/deep-cleanse-kit.html"><button>عرض التفاصيل</button></a>
     </div>
     <div class="product-card">
-      <img src="images/dead_sea.png" alt="منتج">
+      <img src="images/dead_sea.png" alt="dead sea">
       <h3>طين البحر الميت الطبيعي</h3>
-      <button onclick="location.href='product.html'">عرض التفاصيل</button>
+      <a href="products/dead-sea-mud-mask.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/rice_serum.png" alt="rice serum">
+      <h3>سيروم الأرز المتخمر</h3>
+      <a href="products/fermented-rice-serum.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/soap.png" alt="soap">
+      <h3>صابون طبيعي يدوي الصنع</h3>
+      <a href="products/natural-handmade-soap.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/pure_argan_Oil.png" alt="argan oil">
+      <h3>زيت الأرجان النقي</h3>
+      <a href="products/pure-argan-oil.html"><button>عرض التفاصيل</button></a>
+    </div>
+    <div class="product-card">
+      <img src="images/rose_water_toner.png" alt="rose toner">
+      <h3>تونر ماء الورد الطبيعي</h3>
+      <a href="products/rose_water_toner.html"><button>عرض التفاصيل</button></a>
     </div>
   </section>  <footer>
     جميع الحقوق محفوظة &copy; NaturaQ 2025
-  </footer>
-</body>
+  </footer>  <script>
+    window.onload = () => {
+      const userName = localStorage.getItem('userName');
+      const userNameField = document.getElementById('user-name');
+      const loginLink = document.getElementById('login-link');
+      const registerLink = document.getElementById('register-link');
+
+      if (userName) {
+        userNameField.textContent = `مرحبًا، ${userName}`;
+        loginLink.style.display = 'none';
+        registerLink.textContent = 'تسجيل الخروج';
+        registerLink.href = '#';
+        registerLink.onclick = () => {
+          localStorage.removeItem('userName');
+          window.location.reload();
+        }
+      }
+    }
+  </script></body>
 </html>
