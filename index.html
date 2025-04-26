@@ -1,49 +1,38 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaturaQ - الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
-  <style>
-    body { margin: 0; font-family: 'Cairo', sans-serif; background: #fafafa; }
-    header { background: #7b4bc7; color: #fff; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 24px; font-weight: bold; }
-    .menu-toggle { font-size: 28px; background: none; border: none; color: #fff; cursor: pointer; }
-    .sidebar { position: fixed; top: 0; left: -260px; width: 250px; height: 100%; background: #7b4bc7; color: white; display: flex; flex-direction: column; padding: 20px; transition: 0.3s; z-index: 1000; }
-    .sidebar.active { left: 0; }
-    .sidebar a, .sidebar button { color: white; background: rgba(255,255,255,0.1); padding: 12px; margin-bottom: 10px; border-radius: 8px; text-align: center; text-decoration: none; font-size: 18px; }
-    .sidebar button { border: none; cursor: pointer; }
-    .hero { text-align: center; background: #f2f2f2; padding: 50px 20px; }
-    .hero h1 { margin-bottom: 10px; }
-    .hero p { margin-bottom: 20px; }
-    .btn-primary { background: #7b4bc7; color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-size: 18px; display: inline-block; margin-top: 10px; }
-    section { padding: 40px 20px; }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .product-card { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
-    .product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
-    .reasons, .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
-    footer { background: #7b4bc7; color: white; text-align: center; padding: 15px; font-size: 14px; margin-top: 20px; }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body><header>
+<body>
+
+<header>
   <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
   <div class="logo">NaturaQ</div>
-</header><div class="sidebar" id="sidebar">
-  <a href="#hero">الرئيسية</a>
-  <a href="#products">المنتجات</a>
-  <a href="#reasons">لماذا نحن؟</a>
-  <a href="#reviews">آراء العملاء</a>
-  <a href="cart.html">السلة</a>
-  <a href="user.html">صفحتي</a>
+</header>
+
+<div class="sidebar" id="sidebar">
+  <a href="#hero"><i class="bx bxs-home"></i> الرئيسية</a>
+  <a href="#products"><i class="bx bxs-store"></i> المنتجات</a>
+  <a href="#reasons"><i class="bx bxs-star"></i> لماذا نحن؟</a>
+  <a href="#reviews"><i class="bx bxs-user-voice"></i> آراء العملاء</a>
+  <a href="cart.html"><i class="bx bxs-cart"></i> السلة</a>
+  <a href="user.html"><i class="bx bxs-user"></i> صفحتي</a>
   <button onclick="logout()">تسجيل الخروج</button>
-  <div id="user-info" style="margin-top:10px; font-size:14px;"></div>
-</div><section id="hero" class="hero">
+  <div id="user-info" style="margin-top:10px; font-size:14px; color:white;"></div>
+</div>
+
+<section id="hero" class="hero">
   <h1>اكتشفي الجمال الطبيعي</h1>
   <p>منتجات طبيعية 100% لبشرة صحية ونقية</p>
   <a href="#products" class="btn-primary">تسوقي الآن</a>
-</section><section id="products">
+</section>
+
+<section id="products" class="products">
   <h2 style="text-align:center;">منتجاتنا المختارة</h2>
   <div class="products-grid">
     <div class="product-card">
@@ -77,40 +66,59 @@
       <a class="btn-primary" href="products/activated-charcoal-mask.html">عرض التفاصيل</a>
     </div>
   </div>
-</section><section id="reasons">
+</section>
+
+<section id="reasons" class="reasons">
   <h2 style="text-align:center;">لماذا تختارين NaturaQ؟</h2>
-  <div class="reasons">
+  <div class="cards">
     <div class="card">
       <h3>مكونات طبيعية</h3>
-      <p>منتجاتنا تحتوي فقط على أفضل المكونات العضوية.</p>
+      <p>منتجاتنا تحتوي على أفضل المواد الطبيعية.</p>
     </div>
     <div class="card">
       <h3>توصيل سريع</h3>
-      <p>توصيل آمن وسريع لجميع أنحاء قطر خلال 48 ساعة.</p>
+      <p>نوفر توصيل خلال 48 ساعة داخل قطر.</p>
     </div>
     <div class="card">
       <h3>ثقة العملاء</h3>
-      <p>آلاف العملاء يثقون بجودة منتجاتنا الطبيعية.</p>
+      <p>آلاف العملاء يثقون بجودة NaturaQ.</p>
     </div>
   </div>
-</section><section id="reviews">
+</section>
+
+<section id="reviews" class="reviews">
   <h2 style="text-align:center;">آراء عملائنا</h2>
-  <div class="reviews">
+  <div class="cards">
     <div class="card">
       <p><strong>سارة محمد</strong> ★★★★★</p>
-      <p>منتجات ممتازة وخدمة رائعة!</p>
+      <p>منتجات رائعة وشحن سريع وخدمة ممتازة.</p>
     </div>
     <div class="card">
       <p><strong>ريم أحمد</strong> ★★★★☆</p>
-      <p>أحببت السيروم وسرعة التوصيل!</p>
+      <p>جودة ممتازة وسرعة في التوصيل.</p>
     </div>
   </div>
-</section><footer>
+</section>
+
+<footer>
   جميع الحقوق محفوظة © NaturaQ 2025
-</footer><script>
-  function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('active');
-  }
+</footer>
+
+<!-- بوت الذكاء الاصطناعي -->
+<script>
+window.chatbaseConfig = {
+  chatbotId: "QyA3pZTR2k1v9jspuzdAs",
+  showLauncher: true,
+  launcherTitle: "مساعد NaturaQ"
+};
+const script = document.createElement("script");
+script.src = "https://www.chatbase.co/embed.min.js";
+script.async = true;
+document.body.appendChild(script);
+</script>
+
+<!-- السكربتات -->
+<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
@@ -122,13 +130,13 @@
     messagingSenderId: "638923298702",
     appId: "1:638923298702:web:8ed21954723632048b6df"
   };
-
+  
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      document.getElementById("user-info").innerText = `مرحباً ${user.displayName || user.email}`;
+      document.getElementById('user-info').innerText = `مرحباً ${user.displayName || user.email}`;
     } else {
       window.location.href = "login.html";
     }
@@ -139,15 +147,11 @@
       window.location.href = "login.html";
     });
   }
-</script><script>
-  window.chatbaseConfig = {
-    chatbotId: "QyA3pZTR2k1v9jspuzdAs",
-    showLauncher: true,
-    launcherTitle: "مساعد NaturaQ"
-  };
-  const script = document.createElement("script");
-  script.src = "https://www.chatbase.co/embed.min.js";
-  script.async = true;
-  document.body.appendChild(script);
-</script></body>
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+</script>
+
+</body>
 </html>
