@@ -1,102 +1,187 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NaturaQ - الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- أيقونات FontAwesome -->
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    header {
+      background-color: #7D3C98;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .menu-btn {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    nav {
+      background-color: #7D3C98;
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 200px;
+      height: 100%;
+      transition: right 0.3s ease;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+    nav a {
+      display: block;
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    nav a i {
+      margin-left: 8px;
+    }
+    nav.open {
+      right: 0;
+    }
+    .hero {
+      background-color: #eee;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .hero button {
+      background-color: #7D3C98;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .products, .why-us, .reviews {
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .product-card {
+      background: white;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      margin: 15px 0 10px;
+    }
+    .product-card button {
+      background-color: #7D3C98;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #7D3C98;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
   <div class="logo">NaturaQ</div>
+  <div id="username" style="font-size:14px;">مرحباً, زائر</div>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
 </header>
 
-<div class="sidebar" id="sidebar">
-  <a href="#hero"><i class="bx bxs-home"></i> الرئيسية</a>
-  <a href="#products"><i class="bx bxs-store"></i> المنتجات</a>
-  <a href="#reasons"><i class="bx bxs-star"></i> لماذا نحن؟</a>
-  <a href="#reviews"><i class="bx bxs-user-voice"></i> آراء العملاء</a>
-  <a href="cart.html"><i class="bx bxs-cart"></i> السلة</a>
-  <a href="user.html"><i class="bx bxs-user"></i> صفحتي</a>
-  <button onclick="logout()">تسجيل الخروج</button>
-  <div id="user-info" style="margin-top:10px; font-size:14px; color:white;"></div>
-</div>
+<nav id="nav">
+  <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+  <a href="products.html"><i class="fas fa-shopping-bag"></i> المنتجات</a>
+  <a href="reviews.html"><i class="fas fa-star"></i> الآراء</a>
+  <a href="profile.html"><i class="fas fa-user"></i> صفحتي</a>
+  <a href="cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
+  <a href="logout.html"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+</nav>
 
-<section id="hero" class="hero">
+<section class="hero">
   <h1>اكتشفي الجمال الطبيعي</h1>
   <p>منتجات طبيعية 100% لبشرة صحية ونقية</p>
-  <a href="#products" class="btn-primary">تسوقي الآن</a>
+  <button onclick="location.href='#products'">تسوقي الآن</button>
 </section>
 
 <section id="products" class="products">
-  <h2 style="text-align:center;">منتجاتنا المختارة</h2>
-  <div class="products-grid">
-    <div class="product-card">
-      <img src="images/soap.png" alt="صابونة طبيعية">
-      <h3>صابونة طبيعية</h3>
-      <a class="btn-primary" href="products/natural-handmade-soap.html">عرض التفاصيل</a>
-    </div>
-    <div class="product-card">
-      <img src="images/rice_serum.png" alt="سيروم الأرز">
-      <h3>سيروم الأرز</h3>
-      <a class="btn-primary" href="products/fermented-rice-serum.html">عرض التفاصيل</a>
-    </div>
-    <div class="product-card">
-      <img src="images/moisturizing_cream.png" alt="كريم ترطيب طبيعي">
-      <h3>كريم ترطيب طبيعي</h3>
-      <a class="btn-primary" href="products/natural-moisturizing-cream.html">عرض التفاصيل</a>
-    </div>
-    <div class="product-card">
-      <img src="images/brightening_serum.png" alt="سيروم تفتيح البشرة">
-      <h3>سيروم تفتيح البشرة</h3>
-      <a class="btn-primary" href="products/skin-brightening-serum.html">عرض التفاصيل</a>
-    </div>
-    <div class="product-card">
-      <img src="images/argan_oil.png" alt="زيت الأرغان الطبيعي">
-      <h3>زيت الأرغان الطبيعي</h3>
-      <a class="btn-primary" href="products/argan-oil.html">عرض التفاصيل</a>
-    </div>
-    <div class="product-card">
-      <img src="images/charcoal_mask.png" alt="ماسك الفحم النشط">
-      <h3>ماسك الفحم النشط</h3>
-      <a class="btn-primary" href="products/activated-charcoal-mask.html">عرض التفاصيل</a>
-    </div>
+  <h2>منتجاتنا المختارة</h2>
+  
+  <div class="product-card">
+    <img src="images/soap.png" alt="صابونة طبيعية">
+    <h3>صابونة طبيعية</h3>
+    <button onclick="location.href='products/natural-handmade-soap.html'">عرض التفاصيل</button>
+  </div>
+
+  <div class="product-card">
+    <img src="images/rice_serum.png" alt="سيروم الأرز">
+    <h3>سيروم الأرز</h3>
+    <button onclick="location.href='products/fermented-rice-serum.html'">عرض التفاصيل</button>
+  </div>
+
+</section>
+
+<section class="why-us">
+  <h2>لماذا تختارين NaturaQ؟</h2>
+  <div class="product-card">
+    <h3>مكونات طبيعية</h3>
+    <p>نستخدم أفضل المكونات العضوية الآمنة.</p>
+  </div>
+  <div class="product-card">
+    <h3>توصيل سريع</h3>
+    <p>خدمة توصيل سريعة وآمنة داخل قطر.</p>
+  </div>
+  <div class="product-card">
+    <h3>ثقة العملاء</h3>
+    <p>آلاف العملاء يثقون بمنتجاتنا الطبيعية.</p>
   </div>
 </section>
 
-<section id="reasons" class="reasons">
-  <h2 style="text-align:center;">لماذا تختارين NaturaQ؟</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>مكونات طبيعية</h3>
-      <p>منتجاتنا تحتوي على أفضل المواد الطبيعية.</p>
-    </div>
-    <div class="card">
-      <h3>توصيل سريع</h3>
-      <p>نوفر توصيل خلال 48 ساعة داخل قطر.</p>
-    </div>
-    <div class="card">
-      <h3>ثقة العملاء</h3>
-      <p>آلاف العملاء يثقون بجودة NaturaQ.</p>
-    </div>
+<section class="reviews">
+  <h2>آراء عملائنا</h2>
+  <div class="product-card">
+    <h3>سارة محمد</h3>
+    <p>★★★★★</p>
+    <p>منتجات رائعة وشحن سريع!</p>
   </div>
-</section>
-
-<section id="reviews" class="reviews">
-  <h2 style="text-align:center;">آراء عملائنا</h2>
-  <div class="cards">
-    <div class="card">
-      <p><strong>سارة محمد</strong> ★★★★★</p>
-      <p>منتجات رائعة وشحن سريع وخدمة ممتازة.</p>
-    </div>
-    <div class="card">
-      <p><strong>ريم أحمد</strong> ★★★★☆</p>
-      <p>جودة ممتازة وسرعة في التوصيل.</p>
-    </div>
+  <div class="product-card">
+    <h3>ريم أحمد</h3>
+    <p>★★★★☆</p>
+    <p>أحببت السيروم جداً، وسأكرر الشراء.</p>
   </div>
 </section>
 
@@ -104,23 +189,9 @@
   جميع الحقوق محفوظة © NaturaQ 2025
 </footer>
 
-<!-- بوت الذكاء الاصطناعي -->
-<script>
-window.chatbaseConfig = {
-  chatbotId: "QyA3pZTR2k1v9jspuzdAs",
-  showLauncher: true,
-  launcherTitle: "مساعد NaturaQ"
-};
-const script = document.createElement("script");
-script.src = "https://www.chatbase.co/embed.min.js";
-script.async = true;
-document.body.appendChild(script);
-</script>
-
-<!-- السكربتات -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
@@ -130,27 +201,35 @@ document.body.appendChild(script);
     messagingSenderId: "638923298702",
     appId: "1:638923298702:web:8ed21954723632048b6df"
   };
-  
+
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
   onAuthStateChanged(auth, (user) => {
+    const usernameDiv = document.getElementById("username");
     if (user) {
-      document.getElementById('user-info').innerText = `مرحباً ${user.displayName || user.email}`;
+      usernameDiv.innerText = `مرحباً, ${user.displayName || user.email}`;
     } else {
-      window.location.href = "login.html";
+      usernameDiv.innerText = "مرحباً, زائر";
     }
   });
 
-  window.logout = function() {
-    signOut(auth).then(() => {
-      window.location.href = "login.html";
-    });
+  function toggleMenu() {
+    document.getElementById('nav').classList.toggle('open');
   }
+</script>
 
-  function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('active');
-  }
+<!-- بوت الذكاء الاصطناعي -->
+<script>
+  window.chatbaseConfig = {
+    chatbotId: "QyA3pZTR2k1v9jspuzdAs",
+    showLauncher: true,
+    launcherTitle: "مساعد NaturaQ"
+  };
+  const script = document.createElement("script");
+  script.src = "https://www.chatbase.co/embed.min.js";
+  script.async = true;
+  document.body.appendChild(script);
 </script>
 
 </body>
