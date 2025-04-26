@@ -1,17 +1,15 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaturaQ - الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
+    body { font-family: 'Cairo', sans-serif; margin: 0; background: #fafafa; }
+    .top-bar { background: #e8f5e9; text-align: center; padding: 5px; color: #388e3c; font-size: 14px; }
     header {
       background-color: #2e7d32;
       color: white;
@@ -20,192 +18,220 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
-    header nav {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-    header nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+    .logo img { height: 40px; }
+    nav.nav-links { display: flex; gap: 15px; align-items: center; }
+    nav.nav-links a { color: white; text-decoration: none; font-weight: bold; font-size: 16px; }
+    nav.nav-links a:hover { text-decoration: underline; }
+    .user-info { display: flex; align-items: center; gap: 10px; }
     .logout-btn {
-      background-color: red;
+      background: red;
       border: none;
       padding: 5px 10px;
+      border-radius: 5px;
       color: white;
-      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
     }
+    /* منيو زر الموبايل */
+    .menu-icon { display: none; font-size: 28px; cursor: pointer; }
+    .mobile-menu { display: none; flex-direction: column; background: #2e7d32; width: 100%; text-align: center; }
+    .mobile-menu a { padding: 10px 0; border-top: 1px solid #4caf50; }
+
     .hero {
       background: url('images/hero.jpg') center/cover no-repeat;
-      height: 80vh;
+      height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
       text-align: center;
+      color: white;
+      position: relative;
     }
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
+    .hero h1 { font-size: 40px; margin-bottom: 10px; }
+    .hero p { font-size: 20px; margin-bottom: 20px; }
     .btn-primary {
       background-color: #66bb6a;
       color: white;
+      padding: 12px 24px;
       border: none;
-      padding: 12px 30px;
-      font-size: 18px;
       border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
       text-decoration: none;
     }
-    section {
-      padding: 40px 20px;
-    }
+    section { padding: 40px 20px; text-align: center; }
     .products-grid, .reasons, .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
-    .product-card, .reason-card, .review-card {
+    .card {
       background: white;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       padding: 20px;
-      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     footer {
-      background-color: #2e7d32;
+      background: #2e7d32;
       color: white;
       text-align: center;
       padding: 20px;
-      font-size: 14px;
+      margin-top: 50px;
+    }
+    /* استجابة الموبايل */
+    @media (max-width: 768px) {
+      nav.nav-links { display: none; }
+      .menu-icon { display: block; }
+      .mobile-menu.show { display: flex; }
     }
   </style>
 </head>
-<body><!-- الهيدر --><header>
-  <img src="images/logo.png" alt="NaturaQ Logo" style="height: 50px;">
-  <nav>
-    <a href="index.html">🏠 الرئيسية</a>
-    <a href="#products">🛍️ المنتجات</a>
-    <a href="#reviews">⭐ الآراء</a>
-    <a href="user.html">👤 صفحتي</a>
-    <a href="cart.html">🛒 السلة</a>
-  </nav>
-  <div style="text-align:right;">
-    <p id="user-email" style="margin: 5px 0;"></p>
-    <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+<body>
+
+<div class="top-bar">شحن مجاني للطلبات فوق 200 ر.ق | تواصل معنا عبر الموقع</div>
+
+<header>
+  <div class="logo">
+    <img src="images/logo.png" alt="NaturaQ Logo">
   </div>
-</header><!-- بانر --><section class="hero">
+  <nav class="nav-links">
+    <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+    <a href="#products"><i class="fas fa-store"></i> المنتجات</a>
+    <a href="#reviews"><i class="fas fa-star"></i> الآراء</a>
+    <a href="user.html"><i class="fas fa-user"></i> صفحتي</a>
+    <a href="cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
+  </nav>
+  <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+
+  <div class="user-info">
+    <span id="user-email">مرحباً</span>
+    <button class="logout-btn" onclick="logout()">خروج</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">الرئيسية</a>
+  <a href="#products">المنتجات</a>
+  <a href="#reviews">الآراء</a>
+  <a href="user.html">صفحتي</a>
+  <a href="cart.html">السلة</a>
+</div>
+
+<section class="hero">
   <h1>اكتشفي الجمال الطبيعي</h1>
   <p>منتجات طبيعية 100% لبشرة صحية ونقية</p>
   <a href="#products" class="btn-primary">تسوقي الآن</a>
-</section><!-- المنتجات --><section id="products">
+</section>
+
+<section id="products">
   <h2>منتجاتنا المختارة</h2>
   <div class="products-grid">
-    <div class="product-card">
+    <div class="card">
       <img src="images/soap.png" alt="صابونة طبيعية" style="width:100%; height:200px; object-fit:cover;">
       <h3>صابونة طبيعية</h3>
       <button class="btn-primary" onclick="goToProduct('products/natural-handmade-soap.html')">عرض التفاصيل</button>
     </div>
-    <div class="product-card">
+    <div class="card">
       <img src="images/rice_serum.png" alt="سيروم الأرز" style="width:100%; height:200px; object-fit:cover;">
       <h3>سيروم الأرز</h3>
       <button class="btn-primary" onclick="goToProduct('products/fermented-rice-serum.html')">عرض التفاصيل</button>
     </div>
   </div>
-</section><!-- لماذا تختارينا --><section>
+</section>
+
+<section id="why">
   <h2>لماذا تختارين NaturaQ؟</h2>
   <div class="reasons">
-    <div class="reason-card">
-      🌿
+    <div class="card">
       <h3>مكونات طبيعية</h3>
-      <p>أفضل المكونات العضوية لبشرتك.</p>
+      <p>نستخدم أفضل المكونات العضوية الآمنة.</p>
     </div>
-    <div class="reason-card">
-      🚚
+    <div class="card">
       <h3>توصيل سريع</h3>
-      <p>خدمة توصيل سريعة وآمنة.</p>
+      <p>توصيل سريع وآمن لجميع مناطق قطر.</p>
     </div>
-    <div class="reason-card">
-      ⭐
+    <div class="card">
       <h3>ثقة العملاء</h3>
-      <p>آلاف العملاء يثقون بمنتجاتنا.</p>
+      <p>آلاف العملاء السعداء بثقتهم في NaturaQ.</p>
     </div>
   </div>
-</section><!-- آراء العملاء --><section id="reviews">
-  <h2>ماذا يقول عملاؤنا؟</h2>
+</section>
+
+<section id="reviews">
+  <h2>آراء عملائنا</h2>
   <div class="reviews-grid">
-    <div class="review-card">
-      <p>👤 سارة محمد</p>
-      <p>⭐⭐⭐⭐⭐</p>
+    <div class="card">
+      <h3>سارة محمد</h3>
+      <p>★★★★★</p>
       <p>منتجات رائعة وشحن سريع!</p>
     </div>
-    <div class="review-card">
-      <p>👤 ريم أحمد</p>
-      <p>⭐⭐⭐⭐</p>
-      <p>أحببت السيروم جداً.</p>
+    <div class="card">
+      <h3>ريم أحمد</h3>
+      <p>★★★★☆</p>
+      <p>أحببت السيروم جداً وخدمة ممتازة.</p>
     </div>
   </div>
-</section><!-- الفوتر --><footer>
-  جميع الحقوق محفوظة © NaturaQ 2025 | سياسة الخصوصية | شروط الاستخدام
-</footer><!-- بوت الذكاء الاصطناعي --><script>
-  window.chatbaseConfig = {
-    chatbotId: "QyA3pZTR2k1v9jspuzdAs",
-    showLauncher: true,
-    launcherTitle: "مساعد NaturaQ"
-  };
-  const script = document.createElement("script");
-  script.src = "https://www.chatbase.co/embed.min.js";
-  script.async = true;
-  document.body.appendChild(script);
-</script><!-- Firebase تحقق من تسجيل الدخول --><script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+</section>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
-    authDomain: "naturaq-store.firebaseapp.com",
-    projectId: "naturaq-store",
-    storageBucket: "naturaq-store.appspot.com",
-    messagingSenderId: "638923298702",
-    appId: "1:638923298702:web:8ed21954723632048b6df"
-  };
+<footer>
+  جميع الحقوق محفوظة © 2025 NaturaQ | سياسة الخصوصية | شروط الاستخدام
+</footer>
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('show');
+}
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      document.getElementById("user-email").textContent = user.email;
-    } else {
-      window.location.href = "login.html";
-    }
+function goToProduct(link) {
+  window.location.href = link;
+}
+
+window.chatbaseConfig = {
+  chatbotId: "QyA3pZTR2k1v9jspuzdAs",
+  showLauncher: true,
+  launcherTitle: "مساعد NaturaQ"
+};
+const script = document.createElement('script');
+script.src = "https://www.chatbase.co/embed.min.js";
+script.async = true;
+document.body.appendChild(script);
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
+  authDomain: "naturaq-store.firebaseapp.com",
+  projectId: "naturaq-store",
+  storageBucket: "naturaq-store.appspot.com",
+  messagingSenderId: "638923298702",
+  appId: "1:638923298702:web:8ed21954723632048b6df"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById('user-email').textContent = `مرحباً، ${user.email}`;
+  } else {
+    window.location.href = "login.html";
+  }
+});
+
+window.logout = function() {
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
   });
+}
+</script>
 
-  window.logout = function() {
-    signOut(auth).then(() => {
-      window.location.href = "login.html";
-    });
-  }
-
-  window.goToProduct = function(link) {
-    if (auth.currentUser) {
-      window.location.href = link;
-    } else {
-      alert("يجب تسجيل الدخول أولاً");
-    }
-  }
-</script></body>
+</body>
 </html>
