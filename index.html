@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NaturaQ - الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body { font-family: 'Cairo', sans-serif; margin: 0; background: #fafafa; }
@@ -36,11 +35,9 @@
       font-weight: bold;
       cursor: pointer;
     }
-    /* منيو زر الموبايل */
     .menu-icon { display: none; font-size: 28px; cursor: pointer; }
     .mobile-menu { display: none; flex-direction: column; background: #2e7d32; width: 100%; text-align: center; }
     .mobile-menu a { padding: 10px 0; border-top: 1px solid #4caf50; }
-
     .hero {
       background: url('images/hero.jpg') center/cover no-repeat;
       height: 90vh;
@@ -50,7 +47,6 @@
       align-items: center;
       text-align: center;
       color: white;
-      position: relative;
     }
     .hero h1 { font-size: 40px; margin-bottom: 10px; }
     .hero p { font-size: 20px; margin-bottom: 20px; }
@@ -83,7 +79,6 @@
       padding: 20px;
       margin-top: 50px;
     }
-    /* استجابة الموبايل */
     @media (max-width: 768px) {
       nav.nav-links { display: none; }
       .menu-icon { display: block; }
@@ -107,9 +102,8 @@
     <a href="cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
   </nav>
   <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
-
   <div class="user-info">
-    <span id="user-email">مرحباً</span>
+    <span id="user-name">مرحباً</span>
     <button class="logout-btn" onclick="logout()">خروج</button>
   </div>
 </header>
@@ -153,11 +147,11 @@
     </div>
     <div class="card">
       <h3>توصيل سريع</h3>
-      <p>توصيل سريع وآمن لجميع مناطق قطر.</p>
+      <p>خدمة سريعة لجميع مناطق قطر.</p>
     </div>
     <div class="card">
       <h3>ثقة العملاء</h3>
-      <p>آلاف العملاء السعداء بثقتهم في NaturaQ.</p>
+      <p>آلاف العملاء يثقون بمنتجاتنا.</p>
     </div>
   </div>
 </section>
@@ -220,7 +214,7 @@ const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    document.getElementById('user-email').textContent = `مرحباً، ${user.email}`;
+    document.getElementById('user-name').textContent = user.displayName ? `مرحباً، ${user.displayName}` : 'مرحباً بك!';
   } else {
     window.location.href = "login.html";
   }
