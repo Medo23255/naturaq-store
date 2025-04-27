@@ -30,11 +30,10 @@ header {
   cursor: pointer;
 }
 
-/* القائمة الجانبية */
 .sidebar {
   position: fixed;
   top: 0;
-  Right: -260px;
+  right: -260px; /* لاحظ الاتجاه هنا يمين */
   width: 250px;
   height: 100%;
   background: #7b4bc7;
@@ -42,27 +41,30 @@ header {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  transition: 0.3s;
+  transition: right 0.3s ease;
   z-index: 1000;
 }
 
-/* تفعيل القائمة */
 .sidebar.active {
-  Right : 0;
+  right: 0;
 }
 
-/* روابط وأزرار القائمة */
 .sidebar a, .sidebar button {
   color: white;
   background: rgba(255,255,255,0.1);
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 8px;
-  text-align: center;
+  text-align: right;
   text-decoration: none;
   font-size: 18px;
   cursor: pointer;
 }
+
+.sidebar i {
+  margin-left: 8px;
+}
+
 
 /* القسم الأول (الهيرو) */
 .hero {
