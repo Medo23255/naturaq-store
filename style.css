@@ -140,7 +140,7 @@ footer {
 #scrollTopBtn {
   position: fixed;
   bottom: 30px;
-  left: 20px; /* بدل right: خليه left عشان يظهر على اليسار */
+  right: 20px; /* بدل right: خليه left عشان يظهر على اليسار */
   z-index: 9999;
   background-color: #7D3C98;
   color: white;
