@@ -72,7 +72,31 @@ if (document.getElementById('back-btn')) document.getElementById('back-btn').tex
 if (document.getElementById('cart-title')) document.getElementById('cart-title').textContent = 'Shopping Cart';
 if (document.getElementById('checkout-btn')) document.getElementById('checkout-btn').textContent = 'Checkout';
 
-} }
+} 
+
+<script>
+  // إظهار الزر لما تنزل الصفحة
+  window.onscroll = function() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      btn.style.display = "flex";
+    } else {
+      btn.style.display = "none";
+    }
+  };
+
+  // ترجع لأعلى الصفحة بسلاسة
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+
+
+}
 
 // عند تحميل الصفحة document.addEventListener('DOMContentLoaded', () => { const savedLanguage = localStorage.getItem('selectedLanguage') || 'ar'; applyLanguage(savedLanguage); });
 
