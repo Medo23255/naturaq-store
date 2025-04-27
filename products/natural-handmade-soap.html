@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صابونة طبيعية - NaturaQ</title>
+  <title>منتج - NaturaQ</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -13,137 +13,157 @@
       background: #fafafa;
     }
     header {
-      background: #7D3C98;
+      background-color: #7D3C98;
       color: white;
-      padding: 15px 20px;
+      padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
     .logo {
       font-size: 24px;
       font-weight: bold;
     }
-    .menu-btn {
-      font-size: 26px;
+    #username {
+      font-size: 14px;
+    }
+    .menu-toggle {
+      font-size: 28px;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
     }
-    nav {
+    .sidebar {
       position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
+      top: 60px;
+      right: -260px;
+      width: 220px;
       background-color: #7D3C98;
-      transition: right 0.4s ease;
-      padding-top: 60px;
-      z-index: 1000;
+      border-radius: 20px 0 20px 20px;
+      transition: right 0.4s;
+      padding: 15px 10px;
+      z-index: 999;
     }
-    nav.open {
-      right: 0;
+    .sidebar.active {
+      right: 10px;
     }
-    nav a, nav button {
-      display: block;
+    .sidebar a, .sidebar button {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.1);
       color: white;
-      padding: 15px 20px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
       text-decoration: none;
       font-size: 18px;
-      border: none;
-      background: none;
-      text-align: right;
       cursor: pointer;
+      transition: background 0.3s;
     }
-    .product-page {
+    .sidebar a i, .sidebar button i {
+      margin-left: 10px;
+    }
+    .sidebar a:hover, .sidebar button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .product-container {
       display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      padding: 50px 20px;
-      align-items: flex-start;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
       background: #fff;
-    }
-    .product-image {
-      flex: 1 1 350px;
-      text-align: center;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .product-image img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-      cursor: zoom-in;
+      width: 300px;
+      border-radius: 12px;
+      margin-bottom: 20px;
     }
-    .product-image img:hover {
-      transform: scale(1.05);
+    .product-info {
+      text-align: center;
     }
-    .product-details {
-      flex: 1 1 400px;
-    }
-    .product-details h1 {
-      font-size: 32px;
-      color: #4a235a;
-      margin-bottom: 15px;
+    .product-info h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #4A235A;
     }
     .rating {
       color: #FFD700;
       margin-bottom: 10px;
     }
-    .discount-badge {
-      background: #ff4d4d;
-      color: white;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 14px;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-    .product-price {
+    .price {
       font-size: 24px;
       color: #7D3C98;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
-    .product-short {
+    .quantity-control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .quantity-control button {
+      background: #7D3C98;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      font-size: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+    .quantity-control input {
+      width: 50px;
+      text-align: center;
       font-size: 18px;
-      color: #555;
+      padding: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .total-price {
+      font-size: 20px;
       margin-bottom: 20px;
+      color: #4A235A;
     }
     .btn-primary {
       background: #7D3C98;
       color: white;
       border: none;
-      padding: 14px 30px;
-      font-size: 20px;
+      padding: 12px 25px;
+      font-size: 18px;
       border-radius: 10px;
       cursor: pointer;
+      margin-bottom: 20px;
       transition: background 0.3s;
     }
     .btn-primary:hover {
       background: #5c2a8c;
     }
-    .product-extra {
-      margin-top: 30px;
-      background: #f5f5f5;
+    .section-details {
+      background: #f8f8f8;
       padding: 20px;
+      margin-top: 30px;
       border-radius: 10px;
-      font-size: 16px;
-      line-height: 1.8;
-      color: #444;
+      width: 100%;
+      max-width: 600px;
+      text-align: right;
     }
-    .product-extra h3 {
+    .section-details h3 {
       color: #7D3C98;
       margin-bottom: 15px;
     }
-    .product-extra ul {
+    .section-details ul {
       padding: 0;
       list-style: none;
+      font-size: 16px;
+      color: #555;
     }
-    .product-extra li::before {
+    .section-details li::before {
       content: "✔️ ";
-      margin-left: 5px;
+      margin-left: 8px;
       color: #7D3C98;
     }
     footer {
@@ -154,68 +174,66 @@
       font-size: 14px;
       margin-top: 50px;
     }
-    @media (max-width: 768px) {
-      .product-page {
-        flex-direction: column;
-        text-align: center;
-      }
-      .product-details {
-        margin-top: 20px;
-      }
-    }
   </style>
 </head>
 
 <body>
 
 <header>
+  <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+  <div id="username">مرحباً، mohamed anwer</div>
   <div class="logo">NaturaQ</div>
-  <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
 </header>
 
-<nav id="nav">
+<div class="sidebar" id="sidebar">
   <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+  <a href="index.html#products"><i class="fas fa-store"></i> المنتجات</a>
+  <a href="index.html#reasons"><i class="fas fa-leaf"></i> لماذا نحن؟</a>
+  <a href="index.html#reviews"><i class="fas fa-comment-dots"></i> آراء العملاء</a>
   <a href="cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
   <a href="user.html"><i class="fas fa-user"></i> صفحتي</a>
   <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
-</nav>
+</div>
 
-<section class="product-page">
+<section class="product-container">
   <div class="product-image">
     <img src="../images/soap.png" alt="صابونة طبيعية">
   </div>
-  <div class="product-details">
+  <div class="product-info">
     <h1>صابونة طبيعية</h1>
-    <div class="rating">
-      ★★★★☆ (4.5)
-    </div>
-    <div class="discount-badge">خصم 20%</div>
-    <p class="product-price">25 ر.ق</p>
-    <p class="product-short">صابونة طبيعية مصنوعة من أجود الزيوت الطبيعية، تنظف البشرة بلطف وترطبها بعمق، مناسبة للاستخدام اليومي لكل أنواع البشرة.</p>
-    <button class="btn-primary">أضف إلى السلة</button>
+    <div class="rating">★★★★★ (5.0)</div>
+    <div class="price" id="unitPrice">25 ر.ق</div>
 
-    <div class="product-extra">
+    <div class="quantity-control">
+      <button onclick="decreaseQuantity()">-</button>
+      <input type="number" id="quantity" value="1" min="1">
+      <button onclick="increaseQuantity()">+</button>
+    </div>
+
+    <div class="total-price" id="totalPrice">الإجمالي: 25 ر.ق</div>
+
+    <button class="btn-primary" onclick="addToCart()">أضف إلى السلة</button>
+
+    <div class="section-details">
       <h3>مميزات المنتج:</h3>
       <ul>
-        <li>تركيبة طبيعية 100%</li>
-        <li>خالٍ من المواد الكيميائية والبارابين</li>
-        <li>مناسب للبشرة الحساسة والجافة</li>
-        <li>شحن سريع خلال 48 ساعة</li>
-        <li>ضمان استرجاع خلال 7 أيام</li>
+        <li>مصنوعة من زيوت طبيعية 100%.</li>
+        <li>مناسبة لجميع أنواع البشرة.</li>
+        <li>خالية من المواد الكيميائية.</li>
+        <li>نتائج فعالة لبشرة صحية ونضرة.</li>
       </ul>
     </div>
 
-    <div class="product-extra">
-      <h3>طريقة استخدام المنتج:</h3>
+    <div class="section-details">
+      <h3>طريقة الاستخدام:</h3>
       <ul>
         <li>بلل البشرة بالماء الدافئ.</li>
-        <li>افرك الصابونة بين اليدين حتى تتكون رغوة.</li>
-        <li>وزع الرغوة بلطف على الوجه أو الجسم.</li>
-        <li>اشطف بالماء جيداً وجفف البشرة بلطف.</li>
-        <li>استخدم يوميًا للحصول على أفضل نتائج.</li>
+        <li>افرك الصابونة حتى تتكون رغوة.</li>
+        <li>وزع الرغوة بلطف على البشرة.</li>
+        <li>اشطف جيدًا وجفف البشرة.</li>
+        <li>ينصح بالاستخدام اليومي.</li>
       </ul>
     </div>
-
   </div>
 </section>
 
@@ -224,9 +242,51 @@
 </footer>
 
 <script>
-function toggleMenu() {
-  document.getElementById('nav').classList.toggle('open');
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('active');
 }
+
+function increaseQuantity() {
+  var qty = document.getElementById('quantity');
+  qty.value = parseInt(qty.value) + 1;
+  updateTotal();
+}
+
+function decreaseQuantity() {
+  var qty = document.getElementById('quantity');
+  if (parseInt(qty.value) > 1) {
+    qty.value = parseInt(qty.value) - 1;
+    updateTotal();
+  }
+}
+
+function updateTotal() {
+  var qty = document.getElementById('quantity').value;
+  var unitPrice = 25; // سعر المنتج الثابت
+  var total = qty * unitPrice;
+  document.getElementById('totalPrice').innerText = 'الإجمالي: ' + total + ' ر.ق';
+}
+
+function addToCart() {
+  alert('تمت إضافة ' + document.getElementById('quantity').value + ' قطعة إلى السلة!');
+}
+
+function logout() {
+  window.location.href = "login.html";
+}
+</script>
+
+<!-- بوت الذكاء الاصطناعي -->
+<script>
+window.chatbaseConfig = {
+  chatbotId: "QyA3pZTR2k1v9jspuzdAs",
+  showLauncher: true,
+  launcherTitle: "مساعد NaturaQ"
+};
+const script = document.createElement("script");
+script.src = "https://www.chatbase.co/embed.min.js";
+script.async = true;
+document.body.appendChild(script);
 </script>
 
 </body>
