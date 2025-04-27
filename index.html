@@ -12,6 +12,7 @@
       font-family: 'Cairo', sans-serif;
       background: #f8f8f8;
     }
+    /* هيدر */
     header {
       background-color: #7D3C98;
       color: white;
@@ -25,29 +26,37 @@
       font-size: 24px;
       font-weight: bold;
     }
+    #username {
+      font-size: 14px;
+    }
     .menu-btn {
-      font-size: 26px;
+      font-size: 28px;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
     }
-    nav {
+    /* القائمة الجانبية */
+    .sidebar {
       position: fixed;
       top: 0;
-      right: -250px;
+      right: -260px;
       width: 250px;
       height: 100%;
       background-color: #7D3C98;
+      color: white;
+      padding-top: 70px;
+      display: flex;
+      flex-direction: column;
       transition: right 0.4s ease;
-      padding-top: 60px;
-      z-index: 1000;
+      z-index: 999;
     }
-    nav.open {
+    .sidebar.open {
       right: 0;
     }
-    nav a, nav button {
-      display: block;
+    .sidebar a, .sidebar button {
+      display: flex;
+      align-items: center;
       color: white;
       padding: 15px 20px;
       text-decoration: none;
@@ -56,13 +65,17 @@
       background: none;
       text-align: right;
       cursor: pointer;
+      transition: background 0.3s;
     }
-    nav a i, nav button i {
-      margin-left: 8px;
+    .sidebar a:hover, .sidebar button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
     }
-    #username {
-      font-size: 14px;
+    .sidebar i {
+      margin-left: 10px;
+      font-size: 20px;
     }
+    /* باقي التنسيقات */
     .hero {
       text-align: center;
       padding: 60px 20px;
@@ -114,18 +127,22 @@
       text-align: center;
       padding: 15px;
       font-size: 14px;
+      margin-top: 40px;
     }
   </style>
 </head>
+
 <body>
 
+<!-- الهيدر -->
 <header>
   <div class="logo">NaturaQ</div>
   <div id="username">مرحباً، زائر</div>
   <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
 </header>
 
-<nav id="nav">
+<!-- القائمة الجانبية -->
+<nav id="nav" class="sidebar">
   <a href="#hero"><i class="fas fa-home"></i> الرئيسية</a>
   <a href="#products"><i class="fas fa-store"></i> المنتجات</a>
   <a href="#reasons"><i class="fas fa-leaf"></i> لماذا نحن؟</a>
@@ -135,67 +152,61 @@
   <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
 </nav>
 
+<!-- هيرو -->
 <section id="hero" class="hero">
   <h1>اكتشفي الجمال الطبيعي</h1>
   <p>منتجات طبيعية 100% لبشرة صحية ونقية</p>
   <button onclick="location.href='#products'">تسوقي الآن</button>
 </section>
 
+<!-- المنتجات -->
 <section id="products" class="products">
   <h2>منتجاتنا المختارة</h2>
   <div class="products-grid">
-
     <div class="product-card">
       <img src="images/soap.png" alt="صابونة طبيعية">
       <h3>صابونة طبيعية</h3>
       <button onclick="location.href='products/natural-handmade-soap.html'">عرض التفاصيل</button>
     </div>
-
     <div class="product-card">
       <img src="images/rice_serum.png" alt="سيروم الأرز">
       <h3>سيروم الأرز</h3>
       <button onclick="location.href='products/fermented-rice-serum.html'">عرض التفاصيل</button>
     </div>
-
     <div class="product-card">
       <img src="images/moisturizing_cream.png" alt="كريم ترطيب طبيعي">
       <h3>كريم ترطيب طبيعي</h3>
       <button onclick="location.href='products/natural-moisturizing-cream.html'">عرض التفاصيل</button>
     </div>
-
     <div class="product-card">
       <img src="images/argan_oil.png" alt="زيت الأرغان الطبيعي">
       <h3>زيت الأرغان الطبيعي</h3>
       <button onclick="location.href='products/natural-argan-oil.html'">عرض التفاصيل</button>
     </div>
-
     <div class="product-card">
       <img src="images/moroccan_clay_mask.png" alt="قناع الطين المغربي">
       <h3>قناع الطين المغربي</h3>
       <button onclick="location.href='products/moroccan-clay-mask.html'">عرض التفاصيل</button>
     </div>
-
     <div class="product-card">
       <img src="images/vitamin_c_serum.png" alt="سيروم فيتامين C">
       <h3>سيروم فيتامين C</h3>
       <button onclick="location.href='products/vitamin-c-serum.html'">عرض التفاصيل</button>
     </div>
-
     <div class="product-card">
       <img src="images/rose_toner.png" alt="تونر الورد الطبيعي">
       <h3>تونر الورد الطبيعي</h3>
       <button onclick="location.href='products/natural-rose-toner.html'">عرض التفاصيل</button>
     </div>
-
     <div class="product-card">
       <img src="images/face_cleanser.png" alt="غسول وجه طبيعي">
       <h3>غسول وجه طبيعي</h3>
       <button onclick="location.href='products/natural-face-cleanser.html'">عرض التفاصيل</button>
     </div>
-
   </div>
 </section>
 
+<!-- لماذا نحن -->
 <section id="reasons" class="why-us">
   <h2>لماذا تختارين NaturaQ؟</h2>
   <div class="cards">
@@ -214,6 +225,7 @@
   </div>
 </section>
 
+<!-- آراء العملاء -->
 <section id="reviews" class="reviews">
   <h2>آراء عملائنا</h2>
   <div class="cards">
@@ -230,10 +242,12 @@
   </div>
 </section>
 
+<!-- فوتر -->
 <footer>
   جميع الحقوق محفوظة © NaturaQ 2025
 </footer>
 
+<!-- سكريبتات القائمة -->
 <script>
 function toggleMenu() {
   document.getElementById('nav').classList.toggle('open');
