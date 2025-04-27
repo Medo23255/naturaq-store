@@ -140,15 +140,15 @@ footer {
 #scrollTopBtn {
   position: fixed;
   bottom: 30px;
-  right: 20px; /* بدل right: خليه left عشان يظهر على اليسار */
+  left: 20px; /* مكان الزر على اليسار */
   z-index: 9999;
-  background-color: #7D3C98;
+  background-color: #7D3C98; /* لون بنفسجي متناسق */
   color: white;
   border: none;
   outline: none;
   width: 50px;
   height: 50px;
-  border-radius: 50%; /* دائري تماماً */
+  border-radius: 50%; /* زر دائري */
   font-size: 22px;
   display: none; /* مخفي في البداية */
   align-items: center;
@@ -159,6 +159,6 @@ footer {
 }
 
 #scrollTopBtn:hover {
-  background-color: #5c2a8c; /* لون أغمق عند المرور عليه */
-  transform: scale(1.1);
+  background-color: #5c2a8c; /* لون أغمق عند المرور */
+  transform: scale(1.1); /* تكبير بسيط عند الهوفر */
 }
