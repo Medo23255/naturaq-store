@@ -3,110 +3,231 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - تفاصيل المنتج</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>صابونة طبيعية - NaturaQ</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: #fafafa;
+    }
+    header {
+      background: #7D3C98;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .menu-btn {
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #7D3C98;
+      transition: right 0.4s ease;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+    nav.open {
+      right: 0;
+    }
+    nav a, nav button {
+      display: block;
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      border: none;
+      background: none;
+      text-align: right;
+      cursor: pointer;
+    }
+    .product-page {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 50px 20px;
+      align-items: flex-start;
+      justify-content: center;
+      background: #fff;
+    }
+    .product-image {
+      flex: 1 1 350px;
+      text-align: center;
+    }
+    .product-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: zoom-in;
+    }
+    .product-image img:hover {
+      transform: scale(1.05);
+    }
+    .product-details {
+      flex: 1 1 400px;
+    }
+    .product-details h1 {
+      font-size: 32px;
+      color: #4a235a;
+      margin-bottom: 15px;
+    }
+    .rating {
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+    .discount-badge {
+      background: #ff4d4d;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .product-price {
+      font-size: 24px;
+      color: #7D3C98;
+      margin-bottom: 20px;
+    }
+    .product-short {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .btn-primary {
+      background: #7D3C98;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-primary:hover {
+      background: #5c2a8c;
+    }
+    .product-extra {
+      margin-top: 30px;
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+    .product-extra h3 {
+      color: #7D3C98;
+      margin-bottom: 15px;
+    }
+    .product-extra ul {
+      padding: 0;
+      list-style: none;
+    }
+    .product-extra li::before {
+      content: "✔️ ";
+      margin-left: 5px;
+      color: #7D3C98;
+    }
+    footer {
+      background: #7D3C98;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+      .product-page {
+        flex-direction: column;
+        text-align: center;
+      }
+      .product-details {
+        margin-top: 20px;
+      }
+    }
+  </style>
 </head>
-<!-- معلومات المستخدم -->
-<div class="user-info" style="text-align:center; margin: 10px 0;">
-  <p id="user-email" style="font-weight: bold;"></p>
-  <button onclick="logout()" style="background-color: #f44336; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer;">تسجيل الخروج</button>
-</div>
+
 <body>
 
-<!-- حماية تسجيل الدخول -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
-    authDomain: "naturaq-store.firebaseapp.com",
-    projectId: "naturaq-store",
-    storageBucket: "naturaq-store.appspot.com",
-    messagingSenderId: "638923298702",
-    appId: "1:638923298702:web:8ed21954723632048b6df"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      window.location.href = "../login.html";
-    }
-  });
-</script>
-
-<!-- مبدل اللغة -->
-<div class="language-switcher">
-  <button onclick="setLanguage('ar')">العربية</button>
-  <button onclick="setLanguage('en')">English</button>
-</div>
-
-<!-- إشعار الذكاء الاصطناعي -->
-<div class="ai-banner" id="ai-message">
-  هل تحتاج مساعدة؟ تحدث مع خدمة العملاء الآن!
-</div>
-
-<!-- الشعار -->
-<header class="header">
-  <img src="../images/logo.png" alt="NaturaQ Logo" class="logo">
+<header>
+  <div class="logo">NaturaQ</div>
+  <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
 </header>
 
-<!-- تفاصيل المنتج -->
+<nav id="nav">
+  <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+  <a href="cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
+  <a href="user.html"><i class="fas fa-user"></i> صفحتي</a>
+  <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+</nav>
+
 <section class="product-page">
-  <img src="../images/soap.png" alt="Natural Handmade Soap" class="product-image">
-  <p id="product-title" style="font-size: 18px; margin: 10px 0;">Natural Handmade Soap</p>
-  <h1 id="product-title-big">Natural Handmade Soap</h1>
-  <p id="product-description">
-    A handmade natural soap crafted from the finest organic ingredients to gently cleanse and hydrate your skin.
-  </p>
-
-  <div class="quantity-control">
-    <button onclick="decreaseQuantity()">-</button>
-    <input type="text" id="quantity" value="1" readonly>
-    <button onclick="increaseQuantity()">+</button>
+  <div class="product-image">
+    <img src="../images/soap.png" alt="صابونة طبيعية">
   </div>
+  <div class="product-details">
+    <h1>صابونة طبيعية</h1>
+    <div class="rating">
+      ★★★★☆ (4.5)
+    </div>
+    <div class="discount-badge">خصم 20%</div>
+    <p class="product-price">25 ر.ق</p>
+    <p class="product-short">صابونة طبيعية مصنوعة من أجود الزيوت الطبيعية، تنظف البشرة بلطف وترطبها بعمق، مناسبة للاستخدام اليومي لكل أنواع البشرة.</p>
+    <button class="btn-primary">أضف إلى السلة</button>
 
-  <p><span id="price-label">Price:</span> 45 QAR</p>
-  <p id="total-price"><span id="total-label">Total:</span> 45 QAR</p>
-  <button class="btn-primary" onclick="addToCart()">أضف إلى السلة</button>
-  <a href="../cart.html" class="btn-secondary">عرض السلة</a>
-  <a href="../index.html" id="back-btn" class="btn-secondary">رجوع إلى الرئيسية</a>
+    <div class="product-extra">
+      <h3>مميزات المنتج:</h3>
+      <ul>
+        <li>تركيبة طبيعية 100%</li>
+        <li>خالٍ من المواد الكيميائية والبارابين</li>
+        <li>مناسب للبشرة الحساسة والجافة</li>
+        <li>شحن سريع خلال 48 ساعة</li>
+        <li>ضمان استرجاع خلال 7 أيام</li>
+      </ul>
+    </div>
+
+    <div class="product-extra">
+      <h3>طريقة استخدام المنتج:</h3>
+      <ul>
+        <li>بلل البشرة بالماء الدافئ.</li>
+        <li>افرك الصابونة بين اليدين حتى تتكون رغوة.</li>
+        <li>وزع الرغوة بلطف على الوجه أو الجسم.</li>
+        <li>اشطف بالماء جيداً وجفف البشرة بلطف.</li>
+        <li>استخدم يوميًا للحصول على أفضل نتائج.</li>
+      </ul>
+    </div>
+
+  </div>
 </section>
 
-<!-- الفوتر -->
-<footer class="footer">
-  © 2025 NaturaQ. جميع الحقوق محفوظة.
+<footer>
+  جميع الحقوق محفوظة © NaturaQ 2025
 </footer>
 
-<!-- سكريبتات -->
-<script src="../addToCart.js"></script>
 <script>
-  function increaseQuantity() {
-    const quantityInput = document.getElementById('quantity');
-    let quantity = parseInt(quantityInput.value);
-    quantityInput.value = quantity + 1;
-    updateTotalPrice();
-  }
-
-  function decreaseQuantity() {
-    const quantityInput = document.getElementById('quantity');
-    let quantity = parseInt(quantityInput.value);
-    if (quantity > 1) {
-      quantityInput.value = quantity - 1;
-      updateTotalPrice();
-    }
-  }
-
-  function updateTotalPrice() {
-    const quantity = parseInt(document.getElementById('quantity').value);
-    const totalPrice = 45 * quantity;
-    const totalLabel = localStorage.getItem('selectedLanguage') === 'en' ? 'Total:' : 'الإجمالي:';
-    document.getElementById('total-price').innerHTML = `<span id="total-label">${totalLabel}</span> ${totalPrice} QAR`;
-  }
+function toggleMenu() {
+  document.getElementById('nav').classList.toggle('open');
+}
 </script>
-<script src="../script.js"></script>
+
 </body>
 </html>
