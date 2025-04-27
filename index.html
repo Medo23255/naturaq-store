@@ -38,43 +38,48 @@
     }
     /* القائمة الجانبية */
     .sidebar {
-      position: fixed;
-      top: 0;
-      Right : -260px;
-      width: 190px;
-      height: 60%;
-      background-color: #7D3C98;
-      color: white;
-      padding-top: 70px;
-      display: flex;
-      flex-direction: column;
-      transition: right 0.4s ease;
-      z-index: 999;
-    }
-    .sidebar.open {
-      left: 0;
-    }
-    .sidebar a, .sidebar button {
-      display: flex;
-      align-items: center;
-      color: white;
-      padding: 15px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      border: none;
-      background: none;
-      text-align: right;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .sidebar a:hover, .sidebar button:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-    }
-    .sidebar i {
-      margin-left: 10px;
-      font-size: 20px;
-    }
+  position: absolute; /* بدل fixed */
+  top: 60px; /* تحته بالظبط بمسافة مناسبة بعد الهيدر */
+  right: 20px; /* على يمين الشاشة مع مسافة صغيرة */
+  width: 190px;
+  background-color: #7D3C98;
+  color: white;
+  padding-top: 10px;
+  display: none; /* نخفيها في البداية */
+  flex-direction: column;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.sidebar.open {
+  display: flex; /* تظهر لما تفتح */
+}
+
+.sidebar a, .sidebar button {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  background: none;
+  text-align: right;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover, .sidebar button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.sidebar i {
+  margin-left: 10px;
+  font-size: 18px;
+}
     /* باقي التنسيقات */
     .hero {
       text-align: center;
