@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaturaQ - الرئيسية</title>
+  <title>منتج - NaturaQ</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       margin: 0;
       font-family: 'Cairo', sans-serif;
-      background: #f8f8f8;
+      background: #fafafa;
     }
-    /* هيدر */
     header {
-      background-color: #7D3C98;
-      color: white;
-      padding: 15px 20px;
+      background: #7b4bc7;
+      color: #fff;
+      padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      position: relative;
+      justify-content: space-between;
     }
     .logo {
       font-size: 24px;
@@ -29,105 +26,146 @@
     #username {
       font-size: 14px;
     }
-    .menu-btn {
+    .menu-toggle {
       font-size: 28px;
       background: none;
       border: none;
-      color: white;
+      color: #fff;
       cursor: pointer;
     }
-    /* القائمة الجانبية */
     .sidebar {
-  position: absolute; /* بدل fixed */
-  top: 80px; /* تحته بالظبط بمسافة مناسبة بعد الهيدر */
-  Left : 05px; /* على يمين الشاشة مع مسافة صغيرة */
-  width: 190px;
-  background-color: #7D3C98;
-  color: white;
-  padding-top: 10px;
-  display: none; /* نخفيها في البداية */
-  flex-direction: column;
-  transition: all 0.3s ease;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
-
-.sidebar.open {
-  display: flex; /* تظهر لما تفتح */
-}
-
-.sidebar a, .sidebar button {
-  display: flex;
-  align-items: center;
-  color: white;
-  padding: 12px 20px;
-  text-decoration: none;
-  font-size: 16px;
-  border: none;
-  background: none;
-  text-align: right;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.sidebar a:hover, .sidebar button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
-
-.sidebar i {
-  margin-left: 10px;
-  font-size: 18px;
-}
-    /* باقي التنسيقات */
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
-      background-color: #eee;
+      position: fixed;
+      top: 60px;
+      right: -260px;
+      width: 250px;
+      height: auto;
+      background: #7b4bc7;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s ease;
+      border-radius: 20px 0 20px 20px;
+      z-index: 1000;
     }
-    .hero h1 {
+    .sidebar.active {
+      right: 0;
+    }
+    .sidebar a, .sidebar button {
+      color: white;
+      background: rgba(255,255,255,0.1);
+      padding: 12px;
       margin-bottom: 10px;
-      font-size: 30px;
-    }
-    .hero p {
-      margin-bottom: 20px;
+      border-radius: 8px;
+      text-align: right;
+      text-decoration: none;
       font-size: 18px;
+      cursor: pointer;
     }
-    .hero button {
-      background-color: #7D3C98;
+    .sidebar i {
+      margin-left: 8px;
+    }
+    .product-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      background: #fff;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .product-image img {
+      width: 300px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .product-info {
+      text-align: center;
+    }
+    .product-info h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #4A235A;
+    }
+    .rating {
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 24px;
+      color: #7D3C98;
+      margin-bottom: 10px;
+    }
+    .quantity-control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .quantity-control button {
+      background: #7D3C98;
       color: white;
       border: none;
-      padding: 12px 30px;
-      font-size: 18px;
-      border-radius: 8px;
+      padding: 8px 15px;
+      font-size: 20px;
+      border-radius: 6px;
       cursor: pointer;
+      margin: 0 10px;
     }
-    .products, .why-us, .reviews {
-      padding: 30px 20px;
+    .quantity-control input {
+      width: 50px;
       text-align: center;
+      font-size: 18px;
+      padding: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
-    .products-grid, .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+    .total-price {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #4A235A;
     }
-    .product-card, .card {
-      background: white;
+    .btn-primary {
+      background: #7D3C98;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 18px;
       border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      text-align: center;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.3s;
     }
-    .product-card img {
+    .btn-primary:hover {
+      background: #5c2a8c;
+    }
+    .section-details {
+      background: #f8f8f8;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
+      max-width: 600px;
+      text-align: right;
+    }
+    .section-details h3 {
+      color: #7D3C98;
+      margin-bottom: 15px;
+    }
+    .section-details ul {
+      padding: 0;
+      list-style: none;
+      font-size: 16px;
+      color: #555;
+    }
+    .section-details li::before {
+      content: "✔️ ";
+      margin-left: 8px;
+      color: #7D3C98;
     }
     footer {
-      background-color: #7D3C98;
+      background: #7b4bc7;
       color: white;
       text-align: center;
       padding: 15px;
@@ -136,172 +174,88 @@
     }
   </style>
 </head>
-
-<body>
-
-<!-- الهيدر -->
-<header>
+<body><header>
   <div class="logo">NaturaQ</div>
-  <div id="username">مرحباً، زائر</div>
-  <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-</header>
-
-<!-- القائمة الجانبية -->
-<nav id="nav" class="sidebar">
-  <a href="#hero"><i class="fas fa-home"></i> الرئيسية</a>
-  <a href="#products"><i class="fas fa-store"></i> المنتجات</a>
-  <a href="#reasons"><i class="fas fa-leaf"></i> لماذا نحن؟</a>
-  <a href="#reviews"><i class="fas fa-comment-dots"></i> آراء العملاء</a>
+  <div id="username">مرحباً، mohamed anwer</div>
+  <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+</header><div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+  <a href="index.html#products"><i class="fas fa-store"></i> المنتجات</a>
+  <a href="index.html#reasons"><i class="fas fa-leaf"></i> لماذا نحن؟</a>
+  <a href="index.html#reviews"><i class="fas fa-comment-dots"></i> آراء العملاء</a>
   <a href="cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
   <a href="user.html"><i class="fas fa-user"></i> صفحتي</a>
   <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
-</nav>
+</div><section class="product-container">
+  <div class="product-image">
+    <img src="../images/soap.png" alt="صابونة طبيعية">
+  </div>
+  <div class="product-info">
+    <h1>صابونة طبيعية</h1>
+    <div class="rating">★★★★★ (5.0)</div>
+    <div class="price" id="unitPrice">25 ر.ق</div><div class="quantity-control">
+  <button onclick="decreaseQuantity()">-</button>
+  <input type="number" id="quantity" value="1" min="1">
+  <button onclick="increaseQuantity()">+</button>
+</div>
 
-<!-- هيرو -->
-<section id="hero" class="hero">
-  <h1>اكتشفي الجمال الطبيعي</h1>
-  <p>منتجات طبيعية 100% لبشرة صحية ونقية</p>
-  <button onclick="location.href='#products'">تسوقي الآن</button>
-</section>
+<div class="total-price" id="totalPrice">الإجمالي: 25 ر.ق</div>
 
-<!-- المنتجات -->
-<section id="products" class="products">
-  <h2>منتجاتنا المختارة</h2>
-  <div class="products-grid">
+<button class="btn-primary" onclick="addToCart()">أضف إلى السلة</button>
 
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/soap.png" alt="صابونة طبيعية">
-      </div>
-      <div class="product-info">
-        <h3>صابونة طبيعية</h3>
-        <button class="btn-details" onclick="location.href='products/natural-handmade-soap.html'">عرض التفاصيل</button>
-      </div>
-    </div>
+<div class="section-details">
+  <h3>مميزات المنتج:</h3>
+  <ul>
+    <li>مصنوعة من زيوت طبيعية 100%.</li>
+    <li>مناسبة لجميع أنواع البشرة.</li>
+    <li>خالية من المواد الكيميائية.</li>
+    <li>نتائج فعالة لبشرة صحية ونضرة.</li>
+  </ul>
+</div>
 
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/rice_serum.png" alt="سيروم الأرز">
-      </div>
-      <div class="product-info">
-        <h3>سيروم الأرز</h3>
-        <button class="btn-details" onclick="location.href='products/fermented-rice-serum.html'">عرض التفاصيل</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/moisturizing_cream.png" alt="كريم ترطيب طبيعي">
-      </div>
-      <div class="product-info">
-        <h3>كريم ترطيب طبيعي</h3>
-        <button class="btn-details" onclick="location.href='products/natural-moisturizing-cream.html'">عرض التفاصيل</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/argan_oil.png" alt="زيت الأرغان الطبيعي">
-      </div>
-      <div class="product-info">
-        <h3>زيت الأرغان الطبيعي</h3>
-        <button class="btn-details" onclick="location.href='products/natural-argan-oil.html'">عرض التفاصيل</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/moroccan_clay_mask.png" alt="قناع الطين المغربي">
-      </div>
-      <div class="product-info">
-        <h3>قناع الطين المغربي</h3>
-        <button class="btn-details" onclick="location.href='products/moroccan-clay-mask.html'">عرض التفاصيل</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/vitamin_c_serum.png" alt="سيروم فيتامين C">
-      </div>
-      <div class="product-info">
-        <h3>سيروم فيتامين C</h3>
-        <button class="btn-details" onclick="location.href='products/vitamin-c-serum.html'">عرض التفاصيل</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/rose_toner.png" alt="تونر الورد الطبيعي">
-      </div>
-      <div class="product-info">
-        <h3>تونر الورد الطبيعي</h3>
-        <button class="btn-details" onclick="location.href='products/natural-rose-toner.html'">عرض التفاصيل</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="images/face_cleanser.png" alt="غسول وجه طبيعي">
-      </div>
-      <div class="product-info">
-        <h3>غسول وجه طبيعي</h3>
-        <button class="btn-details" onclick="location.href='products/natural-face-cleanser.html'">عرض التفاصيل</button>
-      </div>
-    </div>
+<div class="section-details">
+  <h3>طريقة الاستخدام:</h3>
+  <ul>
+    <li>بلل البشرة بالماء الدافئ.</li>
+    <li>افرك الصابونة حتى تتكون رغوة.</li>
+    <li>وزع الرغوة بلطف على البشرة.</li>
+    <li>اشطف جيدًا وجفف البشرة.</li>
+    <li>ينصح بالاستخدام اليومي.</li>
+  </ul>
+</div>
 
   </div>
-</section>
-
-<!-- لماذا نحن -->
-<section id="reasons" class="why-us">
-  <h2>لماذا تختارين NaturaQ؟</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>مكونات طبيعية</h3>
-      <p>نستخدم أفضل المكونات الطبيعية الآمنة.</p>
-    </div>
-    <div class="card">
-      <h3>توصيل سريع</h3>
-      <p>توصيل خلال 48 ساعة داخل قطر.</p>
-    </div>
-    <div class="card">
-      <h3>ثقة العملاء</h3>
-      <p>آلاف العملاء يثقون بمنتجاتنا المميزة.</p>
-    </div>
-  </div>
-</section>
-
-<!-- آراء العملاء -->
-<section id="reviews" class="reviews">
-  <h2>آراء عملائنا</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>سارة محمد</h3>
-      <p>★★★★★</p>
-      <p>منتجات رائعة وشحن سريع!</p>
-    </div>
-    <div class="card">
-      <h3>ريم أحمد</h3>
-      <p>★★★★☆</p>
-      <p>جودة ممتازة وخدمة محترمة.</p>
-    </div>
-  </div>
-</section>
-
-<!-- فوتر -->
-<footer>
+</section><footer>
   جميع الحقوق محفوظة © NaturaQ 2025
-</footer>
-
-<!-- سكريبتات القائمة -->
-<script>
-function toggleMenu() {
-  document.getElementById('nav').classList.toggle('open');
+</footer><script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('active');
 }
-</script>
-
-<!-- بوت الذكاء الاصطناعي -->
-<script>
+function increaseQuantity() {
+  var qty = document.getElementById('quantity');
+  qty.value = parseInt(qty.value) + 1;
+  updateTotal();
+}
+function decreaseQuantity() {
+  var qty = document.getElementById('quantity');
+  if (parseInt(qty.value) > 1) {
+    qty.value = parseInt(qty.value) - 1;
+    updateTotal();
+  }
+}
+function updateTotal() {
+  var qty = document.getElementById('quantity').value;
+  var unitPrice = 25;
+  var total = qty * unitPrice;
+  document.getElementById('totalPrice').innerText = 'الإجمالي: ' + total + ' ر.ق';
+}
+function addToCart() {
+  alert('تمت إضافة ' + document.getElementById('quantity').value + ' قطعة إلى السلة!');
+}
+function logout() {
+  window.location.href = "login.html";
+}
+</script><script>
 window.chatbaseConfig = {
   chatbotId: "QyA3pZTR2k1v9jspuzdAs",
   showLauncher: true,
@@ -311,42 +265,5 @@ const script = document.createElement("script");
 script.src = "https://www.chatbase.co/embed.min.js";
 script.async = true;
 document.body.appendChild(script);
-</script>
-
-<!-- firebase auth -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyA1rtsF8gu6qPUJ-SoomECIUG__VJPjMMI",
-    authDomain: "naturaq-store.firebaseapp.com",
-    projectId: "naturaq-store",
-    storageBucket: "naturaq-store.appspot.com",
-    messagingSenderId: "638923298702",
-    appId: "1:638923298702:web:8ed21954723632048b6df"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      document.getElementById('username').innerText = `مرحباً، ${user.displayName || user.email}`;
-    }
-  });
-
-  window.logout = function() {
-    const auth = getAuth();
-    signOut(auth).then(() => {
-      window.location.href = "login.html";
-    });
-  }
-</script>
-
-<button id="scrollTopBtn" onclick="scrollToTop()" title="رجوع للأعلى">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-</body>
+</script></body>
 </html>
