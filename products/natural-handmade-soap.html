@@ -37,16 +37,16 @@
     .sidebar {
       position: fixed;
       top: 60px;
-      right: -260px;
+      left: -260px; /* تغيير هنا */
       width: 220px;
       background-color: #7D3C98;
-      border-radius: 20px 0 20px 20px;
-      transition: right 0.4s;
+      border-radius: 20px 20px 20px 0;
+      transition: left 0.4s;
       padding: 15px 10px;
       z-index: 999;
     }
     .sidebar.active {
-      right: 10px;
+      left: 10px; /* تغيير هنا */
     }
     .sidebar a, .sidebar button {
       display: flex;
@@ -180,9 +180,9 @@
 <body>
 
 <header>
-  <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-  <div id="username">مرحباً، mohamed anwer</div>
   <div class="logo">NaturaQ</div>
+  <div id="username">مرحباً، mohamed anwer</div>
+  <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 </header>
 
 <div class="sidebar" id="sidebar">
