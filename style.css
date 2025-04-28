@@ -31,40 +31,48 @@ header {
 }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  right: -260px; /* لاحظ الاتجاه هنا يمين */
-  width: 250px;
-  height: 100%;
-  background: #7b4bc7;
+  position: absolute; /* بدل fixed */
+  top: 60px; /* تحته بالظبط بمسافة مناسبة بعد الهيدر */
+  right: 20px; /* على يمين الشاشة مع مسافة صغيرة */
+  width: 190px;
+  background-color: #7D3C98;
   color: white;
-  padding: 20px;
-  display: flex;
+  padding-top: 10px;
+  display: none; /* نخفيها في البداية */
   flex-direction: column;
-  transition: right 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 1000;
 }
 
-.sidebar.active {
-  right: 0;
+.sidebar.open {
+  display: flex; /* تظهر لما تفتح */
 }
 
 .sidebar a, .sidebar button {
+  display: flex;
+  align-items: center;
   color: white;
-  background: rgba(255,255,255,0.1);
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  text-align: right;
+  padding: 12px 20px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  text-align: right;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover, .sidebar button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
 .sidebar i {
-  margin-left: 8px;
+  margin-left: 10px;
+  font-size: 18px;
 }
-
 
 /* القسم الأول (الهيرو) */
 .hero {
