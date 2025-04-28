@@ -37,16 +37,16 @@
     .sidebar {
       position: fixed;
       top: 60px;
-      left: -260px; /* تغيير هنا */
+      right: -260px; /* تعديل صحيح */
       width: 220px;
       background-color: #7D3C98;
-      border-radius: 20px 20px 20px 0;
-      transition: left 0.4s;
+      border-radius: 20px 0 20px 20px;
+      transition: right 0.4s;
       padding: 15px 10px;
       z-index: 999;
     }
     .sidebar.active {
-      left: 10px; /* تغيير هنا */
+      right: 10px; /* تعديل صحيح */
     }
     .sidebar a, .sidebar button {
       display: flex;
@@ -262,7 +262,7 @@ function decreaseQuantity() {
 
 function updateTotal() {
   var qty = document.getElementById('quantity').value;
-  var unitPrice = 25; // سعر المنتج الثابت
+  var unitPrice = 25; // سعر المنتج
   var total = qty * unitPrice;
   document.getElementById('totalPrice').innerText = 'الإجمالي: ' + total + ' ر.ق';
 }
