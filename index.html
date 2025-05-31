@@ -6,7 +6,6 @@
   <title>NaturaQ - الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <style>
     body {
       margin: 0;
@@ -14,7 +13,7 @@
       background: #fafafa;
     }
     header {
-      background: #7D3C98;
+      background: #7b4bc7;
       color: #fff;
       padding: 10px 20px;
       display: flex;
@@ -25,9 +24,6 @@
       font-size: 24px;
       font-weight: bold;
     }
-    #username {
-      font-size: 14px;
-    }
     .menu-toggle {
       font-size: 28px;
       background: none;
@@ -35,20 +31,22 @@
       color: #fff;
       cursor: pointer;
     }
+    #username {
+      font-size: 14px;
+    }
     .sidebar {
       position: fixed;
       top: 0;
       right: -260px;
       width: 250px;
       height: 100%;
-      background: #7D3C98;
+      background: #7b4bc7;
       color: white;
       padding: 20px;
       display: flex;
       flex-direction: column;
       transition: right 0.3s ease;
       z-index: 1000;
-      border-radius: 20px 0 0 20px;
     }
     .sidebar.active {
       right: 0;
@@ -56,78 +54,66 @@
     .sidebar a, .sidebar button {
       color: white;
       background: rgba(255,255,255,0.1);
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
       text-align: right;
       text-decoration: none;
       font-size: 18px;
-      display: flex;
-      align-items: center;
-      transition: background 0.3s;
+      cursor: pointer;
     }
-    .sidebar a i, .sidebar button i {
-      margin-left: 10px;
+    .sidebar i {
+      margin-left: 8px;
     }
-    .sidebar a:hover, .sidebar button:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
     .hero {
       text-align: center;
       background: #f2f2f2;
       padding: 50px 20px;
     }
     .hero h1 {
-      margin-bottom: 10px;
       font-size: 32px;
-      color: #333;
+      margin-bottom: 10px;
     }
     .hero p {
       font-size: 18px;
-      color: #555;
       margin-bottom: 20px;
     }
     .btn-primary {
-      background: #7D3C98;
+      background: #7b4bc7;
       color: white;
       padding: 10px 25px;
       border-radius: 8px;
       text-decoration: none;
       font-size: 18px;
+      margin-top: 10px;
       display: inline-block;
-      border: none;
       cursor: pointer;
-      transition: background 0.3s;
     }
-    .btn-primary:hover {
-      background: #5c2a8c;
-    }
-
     .products {
       padding: 50px 20px;
       background: #f5f5f5;
       text-align: center;
     }
     .products h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-      color: #4A235A;
+      font-size: 30px;
+      color: #4a235a;
+      margin-bottom: 40px;
     }
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      gap: 25px;
     }
     .product-card {
       background: white;
       border-radius: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      text-align: center;
     }
     .product-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
     }
     .product-card img {
       width: 100%;
@@ -135,45 +121,54 @@
       object-fit: cover;
     }
     .product-info {
-      padding: 15px;
+      padding: 20px;
     }
     .product-info h3 {
+      margin: 10px 0;
       font-size: 20px;
       color: #7D3C98;
-      margin-bottom: 10px;
     }
     .btn-details {
-      background: #7D3C98;
+      background-color: #7D3C98;
       color: white;
-      padding: 8px 20px;
       border: none;
+      padding: 10px 20px;
       border-radius: 8px;
       margin-top: 10px;
       cursor: pointer;
-      transition: background 0.3s;
     }
-    .btn-details:hover {
-      background: #5c2a8c;
+    .reasons, .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      padding: 30px;
     }
-
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
     footer {
-      background: #7D3C98;
+      background: #7b4bc7;
       color: white;
       text-align: center;
       padding: 15px;
       font-size: 14px;
       margin-top: 40px;
     }
-
     #scrollTopBtn {
       position: fixed;
       bottom: 30px;
       left: 20px;
-      background: #7D3C98;
+      z-index: 9999;
+      background-color: #7D3C98;
       color: white;
+      border: none;
       width: 50px;
       height: 50px;
-      border: none;
       border-radius: 50%;
       font-size: 22px;
       display: none;
@@ -182,10 +177,9 @@
       cursor: pointer;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: background 0.3s, transform 0.3s;
-      z-index: 9999;
     }
     #scrollTopBtn:hover {
-      background: #5c2a8c;
+      background-color: #5c2a8c;
       transform: scale(1.1);
     }
   </style>
@@ -195,7 +189,7 @@
 
 <header>
   <div class="logo">NaturaQ</div>
-  <div id="username">مرحباً، mohamed anwer</div>
+  <div id="username">مرحباً، Mohamed Anwer</div>
   <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 </header>
 
@@ -210,9 +204,9 @@
 </div>
 
 <section id="hero" class="hero">
-  <h1>اكتشف الجمال الطبيعي</h1>
+  <h1>اكتشفي الجمال الطبيعي</h1>
   <p>منتجات طبيعية 100% لبشرة صحية ونقية</p>
-  <button class="btn-primary" onclick="location.href='#products'">تسوق الآن</button>
+  <a href="#products" class="btn-primary">تسوقي الآن</a>
 </section>
 
 <section id="products" class="products">
@@ -232,13 +226,35 @@
         <button class="btn-details" onclick="location.href='products/fermented-rice-serum.html'">عرض التفاصيل</button>
       </div>
     </div>
-    <div class="product-card">
-      <img src="images/moisturizing_cream.png" alt="كريم ترطيب طبيعي">
-      <div class="product-info">
-        <h3>كريم ترطيب طبيعي</h3>
-        <button class="btn-details" onclick="location.href='products/natural-moisturizing-cream.html'">عرض التفاصيل</button>
-      </div>
-    </div>
+    <!-- باقي المنتجات -->
+  </div>
+</section>
+
+<section id="reasons" class="reasons">
+  <div class="card">
+    <h3>مكونات طبيعية</h3>
+    <p>نستخدم أفضل المكونات الطبيعية للعناية بجمالك.</p>
+  </div>
+  <div class="card">
+    <h3>توصيل سريع</h3>
+    <p>توصيل آمن وسريع خلال 48 ساعة داخل قطر.</p>
+  </div>
+  <div class="card">
+    <h3>ثقة العملاء</h3>
+    <p>آلاف العملاء يثقون في منتجاتنا المميزة.</p>
+  </div>
+</section>
+
+<section id="reviews" class="reviews">
+  <div class="card">
+    <h3>سارة محمد</h3>
+    <p>★★★★★</p>
+    <p>منتجات ممتازة وشحن سريع!</p>
+  </div>
+  <div class="card">
+    <h3>ريم أحمد</h3>
+    <p>★★★★☆</p>
+    <p>أحببت الجودة والخدمة السريعة.</p>
   </div>
 </section>
 
@@ -246,45 +262,41 @@
   جميع الحقوق محفوظة © NaturaQ 2025
 </footer>
 
-<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+<button onclick="scrollToTop()" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
 
 <script>
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('active');
 }
 
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+function logout() {
+  window.location.href = "login.html";
 }
 
 window.onscroll = function() {
-  const btn = document.getElementById('scrollTopBtn');
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+  let btn = document.getElementById('scrollTopBtn');
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
     btn.style.display = "flex";
   } else {
     btn.style.display = "none";
   }
-}
+};
 
-function logout() {
-  window.location.href = "login.html";
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 
-<!-- بوت الذكاء الاصطناعي -->
 <script>
 window.chatbaseConfig = {
   chatbotId: "QyA3pZTR2k1v9jspuzdAs",
   showLauncher: true,
   launcherTitle: "مساعد NaturaQ"
 };
-const script = document.createElement("script");
-script.src = "https://www.chatbase.co/embed.min.js";
-script.async = true;
-document.body.appendChild(script);
+const chatScript = document.createElement("script");
+chatScript.src = "https://www.chatbase.co/embed.min.js";
+chatScript.async = true;
+document.body.appendChild(chatScript);
 </script>
 
 </body>
